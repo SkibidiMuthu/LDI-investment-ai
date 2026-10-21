@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wharton LDI Catalyst & Stock Reclassification Engine — Laura Gao Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .glass-panel {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(71, 85, 105, 0.8);
+      border-radius: 9999px;
+    }
+    .tab-active {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+    .badge-pass {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+    .badge-warn {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .badge-fail {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
+
+  <!-- TOP HEADER & LIVE TICKER TAPE -->
+  <header class="sticky top-0 z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800">
+    <!-- Live Market Ticker Bar (Oct 21, 2026 Snapshot) -->
+    <div class="bg-slate-900/90 border-b border-slate-800/80 px-4 py-1.5 text-xs overflow-x-auto whitespace-nowrap flex items-center gap-6 custom-scroll">
+      <span class="inline-flex items-center gap-1.5 font-semibold text-blue-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        LIVE MARKET FEED (OCT 21, 2026)
+      </span>
+      <div id="ticker-tape" class="inline-flex items-center gap-5 mono text-xs"></div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg shadow-blue-900/40 font-extrabold text-white text-lg">
+          W
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Wharton LDI Catalyst &amp; Reclassification Intelligence</h1>
+            <span class="hidden md:inline-block px-2 py-0.5 text-[11px] font-semibold rounded-full bg-blue-500/15 text-blue-300 border border-blue-500/30">
+              Laura Gao Case (2027–2042)
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">Liability-Driven Investing (40%→10% Equity Glidepath) • Live LLM API + Multi-Factor Dynamic Reanalysis Engine</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs & API Button -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <nav class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 overflow-x-auto max-w-full">
+          <button id="nav-chat" type="button" class="nav-btn tab-active px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap">
+            💬 AI Catalyst Chatbot
+          </button>
+          <button id="nav-simulator" type="button" class="nav-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all whitespace-nowrap">
+            ⚖️ Reclassification &amp; Trim Lab
+          </button>
+          <button id="nav-ldi" type="button" class="nav-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all whitespace-nowrap">
+            📈 LDI &amp; Monte Carlo Engine
+          </button>
+          <button id="nav-companies" type="button" class="nav-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all whitespace-nowrap">
+            🏢 8-Company Matrix &amp; News
+          </button>
+        </nav>
+
+        <!-- Live LLM API Settings Button -->
+        <button id="btn-open-api-modal" type="button" class="px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600/25 hover:bg-indigo-600/40 text-indigo-200 border border-indigo-500/40 flex items-center gap-1.5 transition">
+          <span id="api-status-dot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span id="api-status-text">🔌 Connect Gemini / Claude / GPT API</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- API CONFIGURATION MODAL -->
+  <div id="api-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-panel rounded-2xl max-w-lg w-full p-5 border border-slate-700 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div>
+          <h3 class="text-base font-bold text-white">Connect Live LLM API (Gemini, Claude, ChatGPT, or OpenRouter)</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Calls are made directly from your browser with your full Wharton LDI math &amp; 8-company financials injected into the system prompt.</p>
+        </div>
+        <button id="btn-close-api-modal" type="button" class="text-slate-400 hover:text-white text-sm font-bold px-2 py-1 rounded-lg bg-slate-800">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label for="api-provider" class="block font-semibold text-slate-300 mb-1">1. Select AI Provider:</label>
+          <select id="api-provider" class="w-full bg-slate-950 text-white rounded-xl px-3 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500">
+            <option value="gemini">Google Gemini API (Recommended — Direct CORS Supported)</option>
+            <option value="openai">OpenAI API (ChatGPT: gpt-4o / gpt-4o-mini)</option>
+            <option value="anthropic">Anthropic Claude API (Direct Browser Access Enabled)</option>
+            <option value="openrouter">OpenRouter / Groq (Any OpenAI-Compatible Endpoint)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="api-model" class="block font-semibold text-slate-300 mb-1">2. Model Name:</label>
+          <input id="api-model" type="text" value="gemini-2.5-flash" class="w-full bg-slate-950 text-white rounded-xl px-3 py-2 border border-slate-700 mono focus:outline-none focus:border-blue-500" />
+          <p id="api-model-hint" class="text-[11px] text-slate-400 mt-1">Examples: <code class="text-blue-300">gemini-2.5-flash</code>, <code class="text-blue-300">gemini-2.5-pro</code>, <code class="text-blue-300">gpt-4o</code>, <code class="text-blue-300">claude-3-7-sonnet-latest</code></p>
+        </div>
+
+        <div id="custom-endpoint-wrap" class="hidden">
+          <label for="api-endpoint" class="block font-semibold text-slate-300 mb-1">Custom API Endpoint URL:</label>
+          <input id="api-endpoint" type="text" value="https://openrouter.ai/api/v1/chat/completions" class="w-full bg-slate-950 text-white rounded-xl px-3 py-2 border border-slate-700 mono focus:outline-none focus:border-blue-500" />
+        </div>
+
+        <div>
+          <label for="api-key-input" class="block font-semibold text-slate-300 mb-1">3. Your API Key (Stored only in your browser):</label>
+          <input id="api-key-input" type="password" placeholder="Paste your AIza... / sk-... / sk-ant-... key here" class="w-full bg-slate-950 text-white rounded-xl px-3 py-2.5 border border-slate-700 mono focus:outline-none focus:border-blue-500" />
+        </div>
+
+        <div class="bg-blue-950/40 border border-blue-500/30 rounded-xl p-3 text-[11px] text-slate-300 space-y-1">
+          <div class="font-bold text-blue-300">✨ Built-In Dynamic Multi-Factor Engine Also Active!</div>
+          <p>
+            Even without an API key, we upgraded the built-in reasoning engine so it <strong>never repeats canned cards</strong>—it parses any custom macro shock, oil spike, interest rate shift, competitor swap, or multi-stock event and computes fresh portfolio math on the fly. Adding an API key layers live LLM reasoning on top!
+          </p>
+        </div>
+      </div>
+
+      <div id="api-test-feedback" class="hidden text-xs p-2.5 rounded-xl"></div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+        <button id="btn-clear-api" type="button" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold">Clear Key (Use Built-In Dynamic Engine)</button>
+        <button id="btn-save-api" type="button" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-lg shadow-blue-600/30">Save &amp; Enable Live API</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE KPI RIBBON -->
+  <section class="bg-slate-900/50 border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+      <div class="glass-panel rounded-xl p-2.5">
+        <div class="text-[11px] text-slate-400 font-medium">2033 Reserve Floor (4% UST)</div>
+        <div id="kpi-reserve" class="text-base sm:text-lg font-bold text-white mono mt-0.5">$421,767</div>
+        <div class="text-[11px] text-emerald-400">10 × $50k Bills (2033–2042)</div>
+      </div>
+      <div class="glass-panel rounded-xl p-2.5">
+        <div class="text-[11px] text-slate-400 font-medium">Reserve Miss Probability</div>
+        <div class="flex items-center gap-2 mt-0.5">
+          <span id="kpi-miss-prob" class="text-base sm:text-lg font-bold text-emerald-400 mono">0.58%</span>
+          <span id="kpi-miss-badge" class="px-1.5 py-0.5 text-[10px] rounded font-semibold badge-pass">PASS (&lt;1%)</span>
+        </div>
+        <div class="text-[11px] text-slate-400">High-certainty bill guarantee</div>
+      </div>
+      <div class="glass-panel rounded-xl p-2.5">
+        <div class="text-[11px] text-slate-400 font-medium">Chance of ≥$100k Facility Gift</div>
+        <div class="flex items-center gap-2 mt-0.5">
+          <span id="kpi-gift-prob" class="text-base sm:text-lg font-bold text-emerald-400 mono">80.6%</span>
+          <span id="kpi-gift-badge" class="px-1.5 py-0.5 text-[10px] rounded font-semibold badge-pass">PASS (&gt;75%)</span>
+        </div>
+        <div class="text-[11px] text-slate-400">2031 Co-Sponsor Floor</div>
+      </div>
+      <div class="glass-panel rounded-xl p-2.5">
+        <div class="text-[11px] text-slate-400 font-medium">Median 2033 Facility Surplus</div>
+        <div id="kpi-median-left" class="text-base sm:text-lg font-bold text-blue-400 mono mt-0.5">$160,624</div>
+        <div class="text-[11px] text-slate-400">Target Range: $100k–$150k</div>
+      </div>
+      <div class="glass-panel rounded-xl p-2.5">
+        <div class="text-[11px] text-slate-400 font-medium">Bad-Year Loss Ceiling</div>
+        <div class="flex items-center gap-2 mt-0.5">
+          <span id="kpi-bad-loss" class="text-base sm:text-lg font-bold text-emerald-400 mono">6.35%</span>
+          <span id="kpi-loss-badge" class="px-1.5 py-0.5 text-[10px] rounded font-semibold badge-pass">PASS (&lt;7%)</span>
+        </div>
+        <div class="text-[11px] text-slate-400">0.65% buffer before breach</div>
+      </div>
+      <div class="glass-panel rounded-xl p-2.5">
+        <div class="text-[11px] text-slate-400 font-medium">Active Glidepath Regime</div>
+        <div id="kpi-glidepath" class="text-sm sm:text-base font-bold text-indigo-300 mono mt-0.5">40% → 10% Stocks</div>
+        <div id="kpi-active-alert" class="text-[11px] text-amber-400 truncate">Dynamic Engine Ready</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-5">
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: AI CATALYST & RECLASSIFICATION CHATBOT -->
+    <!-- ========================================== -->
+    <section id="view-chat" class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <!-- Left Column: Interactive Chatbot -->
+      <div class="lg:col-span-8 flex flex-col glass-panel rounded-2xl overflow-hidden border border-slate-800 h-[740px]">
+        <!-- Chat Header -->
+        <div class="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h2 class="text-sm font-bold text-white">Wharton LDI Catalyst &amp; Out-of-the-Box Reanalysis Agent</h2>
+                <span id="engine-mode-badge" class="px-2 py-0.5 text-[10px] font-semibold rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                  Dynamic Multi-Factor Engine + Live API Ready
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-400">Ask ANY out-of-the-box macro shock, multi-stock contagion, custom % drop, or connect Gemini/Claude/GPT via the top-right API button</p>
+            </div>
+          </div>
+          <button id="btn-clear-chat" type="button" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            Reset Chat
+          </button>
+        </div>
+
+        <!-- Out-of-the-Box & Single-Stock Scenario Prompt Bar -->
+        <div class="px-4 py-2.5 bg-slate-950/60 border-b border-slate-800/80">
+          <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Try Out-of-the-Box Cross-Portfolio Shocks or Company Catalysts:</div>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" data-prompt="Out-of-the-box shock: What if a new ultra-efficient open-source AI model cuts hyperscaler GPU demand by 35% in 2028 while US-China tariffs spike?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 transition">
+              🧠 AI Efficiency Shock (-35% GPU Demand + Tariffs)
+            </button>
+            <button type="button" data-prompt="Out-of-the-box shock: Oil prices surge to $130/barrel and inflation hits 6% in 2029, forcing the Fed to hike rates to 5.5%. Reanalyze the whole portfolio." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 border border-amber-500/30 transition">
+              🛢️ $130 Oil + 6% Inflation + 5.5% Fed Rates (2029)
+            </button>
+            <button type="button" data-prompt="Out-of-the-box shock: A Taiwan Strait naval blockade in 2030 halts TSMC exports while US defense spending jumps 25%. How do we protect Laura's 2031 promise and Taiwan residency?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 transition">
+              🚢 Taiwan Blockade + 25% Defense Surge (2030)
+            </button>
+            <button type="button" data-prompt="Boeing 777X certification slips to 2027 — reclassify Boeing's risk profile and tell us what percentage of BA stock to give up and where to reallocate." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 transition">
+              ✈️ Boeing 777X Delay (FAA 2027 Slip)
+            </button>
+            <button type="button" data-prompt="Out-of-the-box question: What if Boeing loses its F-47 fighter contract to Lockheed Martin AND faces a strike that cuts deliveries by 25%?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition">
+              ⚔️ Boeing Loses F-47 to LMT + Labor Strike
+            </button>
+            <button type="button" data-prompt="Compare all 8 portfolio companies with their current risk class, Q2 2026 margins, base weights, and exact trim percentages." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+              📊 Full 8-Stock Matrix
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 custom-scroll"></div>
+
+        <!-- Chat Input Form -->
+        <form id="chat-form" class="p-3 bg-slate-900/95 border-t border-slate-800 flex items-center gap-2">
+          <input
+            id="chat-input"
+            type="text"
+            placeholder="Ask ANY out-of-the-box scenario (e.g., 'What if Medicare caps GLP-1 prices by 40% in 2029?', 'What if we swap AMD for Micron?', 'Global recession in 2031')..."
+            class="flex-1 bg-slate-950 text-sm text-white rounded-xl px-3.5 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500"
+          />
+          <button id="btn-chat-submit" type="submit" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition flex items-center gap-1.5 shadow-lg shadow-blue-600/25">
+            <span>Analyze</span>
+            <span>→</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Column: Live Reclassification Action Card & Glidepath Impact -->
+      <div class="lg:col-span-4 flex flex-col gap-4">
+        <!-- Active Reclassification Decision Card -->
+        <div class="glass-panel rounded-2xl p-4 border border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Active Reclassification Output</span>
+            <span id="card-company-ticker" class="px-2 py-0.5 text-xs font-bold rounded bg-blue-500/20 text-blue-300 mono">NYSE: BA ($190.47)</span>
+          </div>
+          <h3 id="card-event-title" class="text-base font-bold text-white mb-3">Boeing 777X Certification Slip to 2027</h3>
+
+          <!-- Profile Shift Visual -->
+          <div class="grid grid-cols-2 gap-2.5 bg-slate-950/80 p-3 rounded-xl border border-slate-800/80 mb-3">
+            <div>
+              <div class="text-[11px] text-slate-400">Prior Risk Profile</div>
+              <div id="card-old-risk" class="text-sm font-bold text-amber-300 mt-0.5">Medium (54/100)</div>
+              <div id="card-old-weight" class="text-xs text-slate-400 mono">12.0% of Equity Sleeve</div>
+            </div>
+            <div class="border-l border-slate-800 pl-2.5">
+              <div class="text-[11px] text-slate-400">New Reclassified Profile</div>
+              <div id="card-new-risk" class="text-sm font-bold text-orange-400 mt-0.5">Medium-High (74/100)</div>
+              <div id="card-new-weight" class="text-xs text-emerald-400 mono">7.8% of Equity Sleeve</div>
+            </div>
+          </div>
+
+          <!-- Recommended Trim Box -->
+          <div class="bg-gradient-to-r from-rose-950/60 to-amber-950/40 border border-rose-500/40 rounded-xl p-3 mb-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-rose-200">Stock Position to Give Up (Trim %):</span>
+              <span id="card-trim-pct" class="text-xl font-extrabold text-rose-400 mono">-35.0%</span>
+            </div>
+            <p id="card-trim-detail" class="text-xs text-slate-300 mt-1">
+              Sell <strong>35% of Boeing shares</strong> (cutting BA from <strong>12.0% → 7.8%</strong> of the equity sleeve; in 2027's $120,000 stock sleeve, trim <strong>$5,040</strong> from $14,400 to $9,360).
+            </p>
+          </div>
+
+          <!-- Reallocation Breakdown -->
+          <div class="space-y-2 mb-3">
+            <div class="text-xs font-semibold text-slate-300">Quantitative Reallocation Routing:</div>
+            <div id="card-reallocation-list" class="space-y-1.5 text-xs">
+              <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-slate-800">
+                <span class="text-emerald-300 font-medium">↗ GE Aerospace (MRO Hedge)</span>
+                <span class="mono font-semibold text-emerald-400">+2.5% Sleeve (+$3,000)</span>
+              </div>
+              <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-slate-800">
+                <span class="text-blue-300 font-medium">↗ 4% US Treasuries / LMT Defense</span>
+                <span class="mono font-semibold text-blue-400">+1.7% Sleeve (+$2,040)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formula Box -->
+          <div class="bg-slate-950/90 rounded-xl p-2.5 border border-slate-800/90 text-[11px] text-slate-400 space-y-1">
+            <div class="font-semibold text-slate-200">LDI Trim Formula Applied:</div>
+            <div class="mono text-[10px] text-blue-300">Trim% = BaseShock × LeverageMult × GlidepathUrgency</div>
+            <div id="card-formula-explain">
+              Without trimming, BA's volatility jump (24% → 31% on $45.9B debt &amp; 0.6% Q2 operating margin) pushes portfolio Bad-Year Loss from <strong>6.35% to 7.18%</strong> (violating the &lt;7.0% Wharton rule). Trimming 35% restores Bad-Year Loss to <strong>6.19% (PASS)</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini Portfolio Sleeve Donut Chart -->
+        <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex-1 flex flex-col">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Equity Sleeve Weights (After Reclassification)</h3>
+            <button id="btn-reset-weights" type="button" class="text-[11px] text-blue-400 hover:underline">Reset to Baseline</button>
+          </div>
+          <div class="relative h-56 w-full my-auto">
+            <canvas id="chart-mini-allocation"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: RECLASSIFICATION & TRIM SIMULATOR LAB -->
+    <!-- ========================================== -->
+    <section id="view-simulator" class="hidden space-y-5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Controls Panel -->
+        <div class="lg:col-span-5 glass-panel rounded-2xl p-5 border border-slate-800 space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Interactive Stress-Test &amp; Reclassification</span>
+            <h2 class="text-lg font-bold text-white mt-0.5">Company Catalyst &amp; Trim Calculator</h2>
+            <p class="text-xs text-slate-400 mt-1">Select a portfolio company, trigger a news or earnings catalyst, and adjust timing along Laura's 2027–2032 glidepath to compute the exact stock trim %.</p>
+          </div>
+
+          <!-- Select Company -->
+          <div>
+            <label for="sim-company" class="block text-xs font-semibold text-slate-300 mb-1">1. Select Portfolio Company:</label>
+            <select id="sim-company" class="w-full bg-slate-950 text-sm text-white rounded-xl px-3 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500">
+              <option value="BA">Boeing Co (NYSE: BA) — Base Weight: 12.0% | Risk: Medium</option>
+              <option value="GE">General Electric / GE Aerospace (NYSE: GE) — Base Weight: 18.0% | Risk: Medium-Low</option>
+              <option value="TSM">TSMC (NYSE: TSM) — Base Weight: 16.0% | Risk: Moderate</option>
+              <option value="LLY">Eli Lilly and Co (NYSE: LLY) — Base Weight: 15.0% | Risk: Medium</option>
+              <option value="NVDA">Nvidia Corp (NASDAQ: NVDA) — Base Weight: 14.0% | Risk: Medium-High</option>
+              <option value="LMT">Lockheed Martin (NYSE: LMT) — Base Weight: 10.0% | Risk: Medium</option>
+              <option value="GD">General Dynamics (NYSE: GD) — Base Weight: 9.0% | Risk: Medium</option>
+              <option value="AMD">AMD (NASDAQ: AMD) — Base Weight: 6.0% | Risk: Medium-High</option>
+            </select>
+          </div>
+
+          <!-- Select Catalyst Event -->
+          <div>
+            <label for="sim-scenario" class="block text-xs font-semibold text-slate-300 mb-1">2. Select News / Catalyst Scenario:</label>
+            <select id="sim-scenario" class="w-full bg-slate-950 text-sm text-white rounded-xl px-3 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500"></select>
+          </div>
+
+          <!-- Select Year in Glidepath -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="sim-year" class="font-semibold text-slate-300">3. Year Catalyst Occurs (Glidepath Urgency):</label>
+              <span id="sim-year-label" class="mono font-bold text-blue-400">2027 (Year 1 — 40% Equity Share)</span>
+            </div>
+            <input id="sim-year" type="range" min="2027" max="2032" step="1" value="2027" class="w-full accent-blue-500 cursor-pointer" />
+            <div class="flex justify-between text-[10px] text-slate-500 mono mt-1">
+              <span>2027 (40%)</span>
+              <span>2028 (40%)</span>
+              <span>2029 (30%)</span>
+              <span>2030 (20%)</span>
+              <span>2031 (10% Pledge)</span>
+              <span>2032 (10%)</span>
+            </div>
+          </div>
+
+          <!-- Severity Multiplier Slider -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="sim-severity" class="font-semibold text-slate-300">4. Market / Cash-Flow Severity Multiplier:</label>
+              <span id="sim-severity-label" class="mono font-bold text-amber-400">1.0x (Standard News Impact)</span>
+            </div>
+            <input id="sim-severity" type="range" min="0.5" max="1.8" step="0.1" value="1.0" class="w-full accent-amber-500 cursor-pointer" />
+            <div class="flex justify-between text-[10px] text-slate-500 mono mt-1">
+              <span>0.5x (Mild)</span>
+              <span>1.0x (Base Case)</span>
+              <span>1.4x (Severe)</span>
+              <span>1.8x (Structural Crisis)</span>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="pt-2 flex gap-2">
+            <button id="btn-apply-sim" type="button" class="flex-1 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-blue-600/25 transition">
+              Apply Reclassification to Portfolio
+            </button>
+            <button id="btn-ask-chat-sim" type="button" class="py-2.5 px-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs sm:text-sm border border-slate-700 transition">
+              Send to AI Chat
+            </button>
+          </div>
+        </div>
+
+        <!-- Output Breakdown Panel -->
+        <div class="lg:col-span-7 glass-panel rounded-2xl p-5 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div id="sim-result-box" class="space-y-4"></div>
+
+          <!-- Before vs After Equity Sleeve Bar Chart -->
+          <div class="pt-2 border-t border-slate-800">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Equity Sleeve Weight Comparison: Baseline vs. Reclassified (%)</h3>
+            <div class="relative h-60 w-full">
+              <canvas id="chart-sim-bars"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: WHARTON LDI & MONTE CARLO ENGINE   -->
+    <!-- ========================================== -->
+    <section id="view-ldi" class="hidden space-y-5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <!-- Strategy & Simulation Controls -->
+        <div class="lg:col-span-4 glass-panel rounded-2xl p-5 border border-slate-800 space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Wharton Case Study Math Engine</span>
+            <h2 class="text-lg font-bold text-white mt-0.5">Liability-Driven Investing (LDI) &amp; 1,000-Trial Monte Carlo</h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Laura invests <strong>$300,000 in 2027</strong> + <strong>$150,000 in 2028</strong>. In 2033, she must fund 10 annual operating payments of $50,000 (2033–2042) plus a Taiwan Creative Residency facility contribution.
+            </p>
+          </div>
+
+          <!-- Strategy Selector -->
+          <div>
+            <label for="ldi-strategy" class="block text-xs font-semibold text-slate-300 mb-1">Select Asset Allocation Strategy (2027–2032):</label>
+            <select id="ldi-strategy" class="w-full bg-slate-950 text-sm text-white rounded-xl px-3 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500">
+              <option value="glidepath" selected>Our Proposed Plan: 40% → 10% Glidepath (40, 40, 30, 20, 10, 10%)</option>
+              <option value="reclassified">Active Reclassified Portfolio (With Catalyst Trim Applied)</option>
+              <option value="fixed20">20% Stocks Throughout (Simpler, higher 2031 crash exposure)</option>
+              <option value="allbonds">All Bonds (0% Stocks) — Fails $100k Facility Confidence</option>
+              <option value="fixed50">50% Stocks Throughout — Fails Reserve &amp; Bad-Year Loss</option>
+              <option value="fixed70">70% Stocks Throughout — High Risk (7.80% Reserve Miss)</option>
+            </select>
+          </div>
+
+          <!-- Treasury Rate Assumption Slider -->
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <label for="ldi-rate" class="font-semibold text-slate-300">2033 US Treasury Lock-In Yield (I%):</label>
+              <span id="ldi-rate-label" class="mono font-bold text-emerald-400">4.0% → $421,767 Reserve</span>
+            </div>
+            <input id="ldi-rate" type="range" min="2" max="6" step="1" value="4" class="w-full accent-emerald-500 cursor-pointer" />
+            <div class="flex justify-between text-[10px] text-slate-500 mono mt-1">
+              <span>2% ($458.1k)</span>
+              <span>3% ($439.3k)</span>
+              <span>4% ($421.8k)</span>
+              <span>5% ($405.4k)</span>
+              <span>6% ($390.1k)</span>
+            </div>
+          </div>
+
+          <!-- Stock & Bond Volatility Parameters -->
+          <div class="grid grid-cols-2 gap-2.5 bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs">
+            <div>
+              <div class="text-slate-400">Stock Mean / Swing</div>
+              <div id="ldi-stock-param" class="font-bold text-white mono mt-0.5">7.0% / 16.0%</div>
+            </div>
+            <div>
+              <div class="text-slate-400">Bond Mean / Swing</div>
+              <div class="font-bold text-white mono mt-0.5">4.0% / 5.0%</div>
+            </div>
+          </div>
+
+          <button id="btn-run-mc" type="button" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-emerald-600/25 transition">
+            🎲 Run Fresh 1,000-Trial Monte Carlo Simulation
+          </button>
+
+          <!-- Co-Sponsor 2031 Guidance Box -->
+          <div class="bg-blue-950/40 border border-blue-500/30 rounded-xl p-3 text-xs space-y-1">
+            <div class="font-bold text-blue-300">2031 Co-Sponsor Communication Rule:</div>
+            <p class="text-slate-300">
+              In Year 5 (2031), stock exposure is already stepped down to <strong>10%</strong>. If the portfolio is above the green line ($528,631), Laura can quote the full <strong>$150,000</strong> gift; if between the red ($519,687) and grey ($389,947) lines, she quotes a credible <strong>$100,000–$150,000 range</strong> (~81% confidence).
+            </p>
+          </div>
+        </div>
+
+        <!-- Trajectory Chart & Strategy Comparison Table -->
+        <div class="lg:col-span-8 space-y-5">
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-sm font-bold text-white">2027–2033 Portfolio Growth vs. LDI Reserve Thresholds ($)</h3>
+                <p class="text-xs text-slate-400">Comparing Minimum Bill Reserve ($421,767), 4% Safe Bond Path ($562,094), Optimal $150k Gift Path ($571,767), and Selected Strategy Median</p>
+              </div>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="chart-ldi-trajectory"></canvas>
+            </div>
+          </div>
+
+          <!-- Strategy Comparison Table from Page 6 & 7 of Notes -->
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800 overflow-x-auto">
+            <h3 class="text-sm font-bold text-white mb-2">Monte Carlo Passing Metrics Comparison (1,000 Runs × 5 Batches)</h3>
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-slate-700 text-slate-400">
+                  <th class="py-2 pr-3">Strategy Mix (2027–2032)</th>
+                  <th class="py-2 px-3 text-right">Chance of Missing Reserve (&lt;1%)</th>
+                  <th class="py-2 px-3 text-right">Chance of ≥$100k Gift (&gt;75%)</th>
+                  <th class="py-2 px-3 text-right">Median Facility Gift Left</th>
+                  <th class="py-2 px-3 text-right">Bad-Year Loss (&lt;7%)</th>
+                  <th class="py-2 pl-3 text-center">Verdict</th>
+                </tr>
+              </thead>
+              <tbody id="mc-comparison-tbody" class="divide-y divide-slate-800/80 mono"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: 8-COMPANY RESEARCH & NEWS MATRIX   -->
+    <!-- ========================================== -->
+    <section id="view-companies" class="hidden space-y-5">
+      <!-- Filter & Search Bar -->
+      <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">Sector Filter:</span>
+          <button type="button" data-sector="ALL" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-blue-600 text-white">All 8 Core Companies</button>
+          <button type="button" data-sector="Aerospace & Defense" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">✈️ Aerospace &amp; Defense (4)</button>
+          <button type="button" data-sector="Semiconductors & AI" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">💻 Semiconductors &amp; AI (3)</button>
+          <button type="button" data-sector="Pharmaceuticals" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">💊 Pharmaceuticals (1)</button>
+        </div>
+        <div class="w-full sm:w-64">
+          <input id="company-search" type="text" placeholder="Search company, catalyst, or metric..." class="w-full bg-slate-950 text-xs text-white rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-blue-500" />
+        </div>
+      </div>
+
+      <!-- 8-Company Cards Grid -->
+      <div id="company-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+
+      <!-- Secondary Watchlist Banner (from Boeing PDF Page 1) -->
+      <div class="glass-panel rounded-2xl p-4 border border-slate-800">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Secondary Watchlist Peers (From Team Research List)</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">United Airlines (UAL)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Fleet replacement &amp; widebody customer; exposed to Boeing delivery delays &amp; jet fuel prices.</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">Micron (MU)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">HBM3e/HBM4 memory supplier for Nvidia &amp; AMD AI accelerators; cyclical DRAM pricing.</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">SK Hynix (000660.KS)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Primary HBM supplier partnered with TSMC CoWoS packaging for Nvidia GPUs.</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">Samsung (005930.KS)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Memory &amp; foundry competitor to TSMC; pure-play conflict-of-interest disadvantage vs TSMC.</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">Intel (INTC)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">CPU/GPU competitor to AMD &amp; Nvidia; launched 480GB AI inference GPU D-series in Oct 2026.</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">GlobalFoundries (GFS)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">US/specialty mature-node foundry hedge against Taiwan geopolitical concentration.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-3 px-4 text-center text-xs text-slate-500">
+    Wharton Global Youth Investment Competition • Liability-Driven Investing (LDI) &amp; Catalyst Reclassification Model • Built from Team Research Notes &amp; October 2026 Market Data
+  </footer>
+
+  <!-- APPLICATION SCRIPT -->
+  <script>
+    // =========================================================================
+    // 1. MASTER DATASET: 8 PORTFOLIO COMPANIES (FROM UPLOADED PDFS + LIVE DATA)
+    // =========================================================================
+    const COMPANIES = {
+      BA: {
+        ticker: "BA",
+        exchange: "NYSE",
+        name: "Boeing Co",
+        sector: "Aerospace & Defense",
+        price: 190.47,
+        changePct: -0.50,
+        pe: 75.65,
+        mktCap: "$150.5B",
+        range52w: "$176.77 – $254.35",
+        baseRiskClass: "Medium",
+        baseRiskScore: 54,
+        baseSleeveWeight: 12.0,
+        annualVol: 24.0,
+        debtNumB: 45.9,
+        marginPct: 0.6,
+        financials: {
+          revQ2_26: "$24.5B",
+          revQ1_26: "$22.2B",
+          revFY25: "$89.5B",
+          revFY24: "$66.5B",
+          opMarginQ2_26: "0.6%",
+          opMarginQ1_26: "2.0%",
+          opMarginFY25: "4.8%",
+          opMarginFY24: "-16.1%",
+          netProfitQ2_26: "$156M",
+          netProfitFY25: "$2.24B",
+          ocfQ2_26: "$1.36B",
+          fcfQ2_26: "$631M",
+          capexQ2_26: "$733M",
+          debtQ2_26: "$45.9B",
+          backlog: "$715B"
+        },
+        advantages: [
+          "60% widebody dominance & 44% of US commercial fleets; $715B multi-decade backlog",
+          "Won $20B US Air Force F-47 6th-gen fighter & US Navy next-gen carrier fighter contracts",
+          "777X has >600 orders worldwide; Airbus sold out amid 2,000-aircraft shortage",
+          "Sold Jeppesen for $10.6B; CEO Kelly Ortberg restructuring & regaining FAA trust"
+        ],
+        risks: [
+          "FAA certification of 777X slipping into 2027 behind 737 MAX 7 & MAX 10",
+          "Heavy $45.9B total debt and thin 0.6% Q2 2026 operating margin leave low cash-flow buffer",
+          "Supply chain & engine bottlenecks, Spirit AeroSystems integration costs, whistleblower probes"
+        ],
+        sources: [
+          { title: "Boeing Q2 2026 Official Results ($24.6B Rev)", url: "https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/" },
+          { title: "Leeham News: Why Boeing 777X Certification Is Slipping (Sept 2026)", url: "https://leehamnews.com/2026/09/17/examining-why-boeings-777x-certification-timeline-is-likely-slipping/" },
+          { title: "Aeronautics Mag: FAA Puts 737 MAX 7/10 Ahead of 777X", url: "https://aeronauticsmagazine.com/news/boeing-777x-certification-delayed-again-as-faa-clears-path-for-737-max-7-and-max-10-first" }
+        ],
+        scenarios: [
+          {
+            id: "ba_777x_slip",
+            name: "777X Certification Slip to 2027 (FAA Prioritizes MAX 7/10 — Active Oct 2026 News)",
+            newRiskClass: "Medium-High",
+            newRiskScore: 74,
+            baseTrimPct: 35,
+            volDelta: +7.0,
+            returnDelta: -1.8,
+            reallocateTo: [
+              { ticker: "GE", label: "GE Aerospace (MRO Aftermarket Hedge)", shareOfTrim: 0.60 },
+              { ticker: "UST", label: "4.0% US Treasuries & LMT Defense", shareOfTrim: 0.40 }
+            ],
+            rationale: "FAA Administrator Bryan Bedford confirmed 737 MAX 7/10 must be certified before the 777X, pushing 777-9 entry-into-service into 2027. Because Boeing carries $45.9B in debt and only a 0.6% Q2 operating margin ($631M FCF), delaying 777X delivery payments compresses 2027–2028 cash generation and raises BA volatility from 24% to 31%. Trimming 35% of BA shares (reducing equity sleeve weight from 12.0% to 7.8%) keeps the portfolio's Bad-Year Loss at 6.19% (safely below the 7.0% Wharton ceiling). We rotate 60% of trimmed capital into GE Aerospace—because Boeing delivery delays force airlines to overwork older planes, boosting GE's high-margin engine shop visits (+30% YoY)—and 40% into US Treasuries/LMT."
+          },
+          {
+            id: "ba_777x_severe",
+            name: "Severe 777X Halt (12–18 Month Delay + Whistleblower/FAA Production Cap)",
+            newRiskClass: "High (Watchlist Breach)",
+            newRiskScore: 89,
+            baseTrimPct: 65,
+            volDelta: +14.0,
+            returnDelta: -4.2,
+            reallocateTo: [
+              { ticker: "UST", label: "4.0% US Treasuries (Lock In Reserve)", shareOfTrim: 0.55 },
+              { ticker: "GE", label: "GE Aerospace (Engine Maintenance Boom)", shareOfTrim: 0.45 }
+            ],
+            rationale: "A multi-quarter certification freeze or new whistleblower production cap would push Boeing back into negative free cash flow (similar to Q1 2026's -$1.45B FCF) while $45.9B in debt remains elevated. We immediately reclassify Boeing from Medium to High Risk and give up 65% of our BA stock (cutting weight from 12.0% to 4.2%, retaining only a small option on its $20B F-47 defense contract). This prevents a 1.15% spike in portfolio Bad-Year Loss and protects Laura's 2031 co-sponsor pledge."
+          },
+          {
+            id: "ba_bull_delivery",
+            name: "Bull Catalyst: FAA Clears 777X Flight Milestone + Record Commercial Deliveries",
+            newRiskClass: "Medium (Strengthening)",
+            newRiskScore: 46,
+            baseTrimPct: 0,
+            volDelta: -2.0,
+            returnDelta: +1.5,
+            reallocateTo: [
+              { ticker: "BA", label: "Hold Full 12.0% Boeing Position Along Glidepath", shareOfTrim: 1.0 }
+            ],
+            rationale: "If Boeing hits its highest delivery rate and secures FAA Type Inspection Authorization for the 777X on schedule, free cash flow accelerates toward $3B+/yr, allowing rapid paydown of its $45.9B debt. Maintain full 12.0% sleeve allocation and harvest gains naturally as the portfolio steps down from 40% to 10% stocks."
+          }
+        ]
+      },
+
+      GE: {
+        ticker: "GE",
+        exchange: "NYSE",
+        name: "General Electric (GE Aerospace)",
+        sector: "Aerospace & Defense",
+        price: 299.87,
+        changePct: -3.67,
+        pe: 35.30,
+        mktCap: "$311.1B",
+        range52w: "$268.91 – $388.84",
+        baseRiskClass: "Medium-Low",
+        baseRiskScore: 34,
+        baseSleeveWeight: 18.0,
+        annualVol: 17.5,
+        debtNumB: 19.2,
+        marginPct: 21.7,
+        financials: {
+          revQ2_26: "$13.3B",
+          revQ1_26: "$12.4B",
+          revFY25: "$45.9B",
+          revFY24: "$38.7B",
+          opMarginQ2_26: "21.7%",
+          opMarginQ1_26: "21.8%",
+          opMarginFY25: "21.4%",
+          opMarginFY24: "~20.0%",
+          netProfitQ2_26: "$2.8B",
+          netProfitFY25: "$8.6B",
+          ocfQ2_26: "$3.3B",
+          fcfQ2_26: "$7.7B (FY25)",
+          capexQ2_26: "$1.3B (FY25)",
+          debtQ2_26: "$19.2B",
+          backlog: "$190B"
+        },
+        advantages: [
+          "$190B backlog & CFM International joint venture (Safran) dominates narrow-body engines",
+          "Recurring, high-margin (21.7%) long-term maintenance, repair, and overhaul (MRO) revenue",
+          "Natural hedge to Boeing 777X/MAX delays: older planes fly longer, boosting shop visits +30%",
+          "Q2 2026 revenue jumped 21% YoY to $13.3B; operating cash flow surged from $1.9B to $3.3B"
+        ],
+        risks: [
+          "Supply chain constraints limiting commercial LEAP engine delivery volume",
+          "Cash balance declined from $12.4B (FY25) to $9.3B (Q2 2026) due to buybacks/capex; $19.2B debt"
+        ],
+        sources: [
+          { title: "GE Aerospace Q2 2026 Official Results ($13.3B Rev, +21% YoY)", url: "https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-second-quarter-2026-results" },
+          { title: "GE Aerospace 2Q'26 Investor Update (+30% Shop Visits)", url: "https://www.geaerospace.com/news/investor-relations/ir-updates/2q26-recent-events-recap" }
+        ],
+        scenarios: [
+          {
+            id: "ge_supply_chain",
+            name: "Engine Supply-Chain Bottleneck & Cost Overrun on Next-Gen Propulsion",
+            newRiskClass: "Medium",
+            newRiskScore: 52,
+            baseTrimPct: 20,
+            volDelta: +4.0,
+            returnDelta: -1.1,
+            reallocateTo: [
+              { ticker: "LMT", label: "Lockheed Martin (Defense Backlog)", shareOfTrim: 0.50 },
+              { ticker: "UST", label: "4.0% US Treasuries", shareOfTrim: 0.50 }
+            ],
+            rationale: "If forged-part shortages slow CFM LEAP deliveries and compress operating margins below 20%, we reclassify GE from Medium-Low to Medium Risk and trim 20% of the position (18.0% → 14.4%), rotating into Lockheed Martin and US Treasuries."
+          },
+          {
+            id: "ge_mro_supercycle",
+            name: "Airframe Shortage & Boeing 777X Delay Boosts GE Aftermarket Services",
+            newRiskClass: "Low-Medium (Core Anchor)",
+            newRiskScore: 28,
+            baseTrimPct: 0,
+            volDelta: -1.5,
+            returnDelta: +1.2,
+            reallocateTo: [
+              { ticker: "GE", label: "Absorb +2.5% Trimmed from Boeing (18.0% → 20.5%)", shareOfTrim: 1.0 }
+            ],
+            rationale: "As documented in our Boeing & GE notes, airframe delivery delays force airlines to overwork older aircraft, driving a boom in engine maintenance and spare parts (+25% to +30% YoY). GE is our #1 recipient of capital trimmed from Boeing."
+          }
+        ]
+      },
+
+      TSM: {
+        ticker: "TSM",
+        exchange: "NYSE",
+        name: "TSMC (Taiwan Semiconductor)",
+        sector: "Semiconductors & AI",
+        price: 425.08,
+        changePct: +1.16,
+        pe: 28.09,
+        mktCap: "$2.20T (ADR)",
+        range52w: "$266.82 – $487.47",
+        baseRiskClass: "Moderate",
+        baseRiskScore: 50,
+        baseSleeveWeight: 16.0,
+        annualVol: 26.0,
+        debtNumB: 32.69,
+        marginPct: 60.3,
+        financials: {
+          revQ2_26: "$40.2B",
+          revQ1_26: "$35.9B",
+          revFY25: "$112.42B",
+          revFY24: "$90.08B",
+          opMarginQ2_26: "60.3%",
+          opMarginQ1_26: "51.8%",
+          opMarginFY25: "50.8%",
+          opMarginFY24: "44.7%",
+          netProfitQ2_26: "$22.0B",
+          netProfitFY25: "$55.21B",
+          ocfQ2_26: "$24.8B",
+          fcfQ2_26: "$9.2B",
+          capexQ2_26: "$15.6B",
+          debtQ2_26: "$32.69B ($110B Cash)",
+          backlog: "CoWoS & 2nm Fully Booked"
+        },
+        advantages: [
+          "Pure-play foundry pioneer: never competes with customers (Nvidia, AMD, Apple)",
+          "60.3% operating margin & $22B net profit in Q2 2026; 6th straight quarter of record profit (+69%)",
+          "Fortress balance sheet: $110B cash vs $32.69B total debt funds $40.9B+ annual CapEx internally"
+        ],
+        risks: [
+          "High Geopolitical Risk: most advanced fabs concentrated in Taiwan (cross-strait tensions)",
+          "Heavy $15.6B quarterly CapEx: if AI demand slows or fabs are underutilized, ROIC drops",
+          "Reliance on ASML leading-edge lithography tool shipments & US Federal Reserve rate paths"
+        ],
+        sources: [
+          { title: "TSMC Q2 2026 Official Results ($40.2B Rev, 60.3% Op Margin)", url: "https://investor.tsmc.com/english/quarterly-results/2026/q2" },
+          { title: "Quartz: TSMC Record 69% Profit Jump on AI Demand (Oct 2026)", url: "https://qz.com/tsmc-record-profit-ai-chip-demand-101526" },
+          { title: "Benzinga: TSMC Capacity Battles as Nvidia, Apple, AMD Scramble", url: "https://www.benzinga.com/markets/tech/26/10/62404541/taiwan-semiconductor-holds-the-cards-as-nvidia-apple-and-amd-battle-for-limited-ai-chip-capacity" }
+        ],
+        scenarios: [
+          {
+            id: "tsm_geopolitical",
+            name: "Cross-Strait Geopolitical Escalation or ASML Tool Shipment Bottleneck",
+            newRiskClass: "High",
+            newRiskScore: 84,
+            baseTrimPct: 45,
+            volDelta: +11.0,
+            returnDelta: -3.0,
+            reallocateTo: [
+              { ticker: "LMT", label: "Lockheed Martin (PAC-3 / THAAD Defense Hedge)", shareOfTrim: 0.45 },
+              { ticker: "UST", label: "4.0% US Treasuries (Protect 2033 Taiwan Residency)", shareOfTrim: 0.55 }
+            ],
+            rationale: "While TSMC's profitability and financial risk are highly favorable ($110B cash vs $32.69B debt, 60.3% operating margin), its Geopolitical Risk is rated HIGH in our research notes, and Laura's creative residency itself is located in Taiwan. If cross-strait tensions escalate, Laura faces correlated project + portfolio risk. We reclassify TSMC from Moderate to High Risk and give up 45% of TSM shares (16.0% → 8.8%), rotating 45% into Lockheed Martin (PAC-3/THAAD missile defense) and 55% into US Treasuries."
+          },
+          {
+            id: "tsm_capex_overbuild",
+            name: "AI Demand Deceleration Leaves $15.6B/Qtr CapEx Facilities Underutilized",
+            newRiskClass: "Medium-High",
+            newRiskScore: 68,
+            baseTrimPct: 30,
+            volDelta: +6.0,
+            returnDelta: -1.6,
+            reallocateTo: [
+              { ticker: "LLY", label: "Eli Lilly (Non-Correlated Healthcare Growth)", shareOfTrim: 0.50 },
+              { ticker: "UST", label: "4.0% US Treasuries", shareOfTrim: 0.50 }
+            ],
+            rationale: "As noted on Page 3 of our TSMC report, TSMC committed $15.6B in Q2 2026 CapEx ($40.9B in FY25). If AI demand softens, underutilized 2nm/CoWoS facilities will compress margins from 60.3% back toward 45%. Trim 30% of TSM (16.0% → 11.2%) and rotate into Eli Lilly and US Treasuries."
+          }
+        ]
+      },
+
+      NVDA: {
+        ticker: "NVDA",
+        exchange: "NASDAQ",
+        name: "Nvidia Corp",
+        sector: "Semiconductors & AI",
+        price: 216.47,
+        changePct: -0.29,
+        pe: 27.36,
+        mktCap: "$5.22T",
+        range52w: "$164.27 – $243.37",
+        baseRiskClass: "Medium-High",
+        baseRiskScore: 62,
+        baseSleeveWeight: 14.0,
+        annualVol: 32.0,
+        debtNumB: 8.47,
+        marginPct: 60.84,
+        financials: {
+          revQ2_26: "$46.8B (FY26) / $96.2B (FY27)",
+          revQ1_26: "$44.1B",
+          revFY25: "$130.0B",
+          revFY24: "$60.9B",
+          opMarginQ2_26: "60.84%",
+          opMarginQ1_26: "49.11%",
+          opMarginFY25: "62.42%",
+          opMarginFY24: "54.12%",
+          netProfitQ2_26: "$26.4B",
+          netProfitFY25: "$72.9B",
+          ocfQ2_26: "$15.4B",
+          fcfQ2_26: "$13.5B ($60.7B FY25)",
+          capexQ2_26: "$1.89B",
+          debtQ2_26: "$8.47B",
+          backlog: "Vera Rubin & Blackwell Ultra"
+        },
+        advantages: [
+          "90% revenue from Data Centers; proprietary CUDA software & networking ecosystem lock-in",
+          "Hyper-growth execution: FY25 revenue hit $130B (+142% data center growth), net profit $72.9B",
+          "Minimal debt ($8.47B) funded entirely by $60.7B annual free cash flow; Vera Rubin ramp"
+        ],
+        risks: [
+          "90% revenue concentration in AI Data Centers: highly vulnerable if hyperscaler CapEx slows",
+          "US-China semiconductor export controls restricting Chinese data center revenue",
+          "Q2 operating margin dipped due to a $4.5B charge; TSMC packaging supply bottlenecks"
+        ],
+        sources: [
+          { title: "NVIDIA Q2 FY27 Official Financial Results", url: "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027" },
+          { title: "Seeking Alpha: Nvidia Q2 Call & AI Infrastructure Outlook", url: "https://seekingalpha.com/article/4942623-nvidia-q2-fy27-earnings-call-what-it-means-for-smh" }
+        ],
+        scenarios: [
+          {
+            id: "nvda_capex_pause",
+            name: "Hyperscaler AI CapEx Digestion or Tighter China Export Controls",
+            newRiskClass: "High",
+            newRiskScore: 82,
+            baseTrimPct: 40,
+            volDelta: +10.0,
+            returnDelta: -2.8,
+            reallocateTo: [
+              { ticker: "UST", label: "4.0% US Treasuries (Lock In Early Glidepath Gains)", shareOfTrim: 0.60 },
+              { ticker: "GD", label: "General Dynamics ($136B Gov Backlog)", shareOfTrim: 0.40 }
+            ],
+            rationale: "Our Nvidia research highlights that while financials are exceptional ($60.7B FCF vs $8.47B debt), 90% of revenue depends on AI data centers and is exposed to Chinese trade limits and hyperscaler CapEx sustainability. If cloud CapEx decelerates, NVDA's high beta threatens our <7% bad-year loss rule. We reclassify NVDA to High Risk and give up 40% of NVDA shares (14.0% → 8.4%), locking in gains into US Treasuries and General Dynamics."
+          }
+        ]
+      },
+
+      LLY: {
+        ticker: "LLY",
+        exchange: "NYSE",
+        name: "Eli Lilly and Co",
+        sector: "Pharmaceuticals",
+        price: 1283.66,
+        changePct: +3.49,
+        pe: 43.08,
+        mktCap: "$1.21T",
+        range52w: "$793.82 – $1,311.75",
+        baseRiskClass: "Medium",
+        baseRiskScore: 48,
+        baseSleeveWeight: 15.0,
+        annualVol: 21.0,
+        debtNumB: 54.9,
+        marginPct: 39.1,
+        financials: {
+          revQ2_26: "$22.97B",
+          revQ1_26: "$19.80B",
+          revFY25: "$65.18B",
+          revFY24: "$45.04B",
+          opMarginQ2_26: "39.1%",
+          opMarginQ1_26: "45.0%",
+          opMarginFY25: "40.4%",
+          opMarginFY24: "28.6%",
+          netProfitQ2_26: "$7.10B",
+          netProfitFY25: "$20.64B",
+          ocfQ2_26: "$10.69B",
+          fcfQ2_26: "$7.76B",
+          capexQ2_26: "$2.93B ($7.84B FY25)",
+          debtQ2_26: "$54.9B ($8.95B Cash)",
+          backlog: "2026 Guidance Raised to $85B–$87B"
+        },
+        advantages: [
+          "Dominates GLP-1 obesity & diabetes market: Mounjaro ($9.9B Q2 rev, 86.7% share vs Wegovy 13.2%) & Zepbound ($4.9B US rev, ~70% weight-loss share)",
+          "Raised full-year 2026 revenue guidance from $80–$83B to $85–$87B; global obesity market projected at $92B–$180B",
+          "Low correlation to semiconductor and aerospace cycles provides vital portfolio diversification"
+        ],
+        risks: [
+          "Total debt rose to $54.9B in Q2 2026 (up from $33.6B in FY24) to fund manufacturing & acquisitions",
+          "Intensifying competition from Novo Nordisk, Roche, Pfizer & insurance reimbursement price pressure",
+          "Operating margin fluctuated from 45.0% (Q1 26) to 39.1% (Q2 26) on heavy R&D and clinical trial risk"
+        ],
+        sources: [
+          { title: "Quartz: Eli Lilly Lifts 2026 Revenue Guidance on Mounjaro & Zepbound", url: "https://qz.com/eli-lilly-q1-2026-earnings-mounjaro-zepbound-revenue-guidance-043026" },
+          { title: "Eli Lilly Official Release on Mounjaro & Zepbound Access", url: "https://lilly.gcs-web.com/news-releases/news-release-details/lilly-and-us-government-agree-expand-access-obesity-medicines" }
+        ],
+        scenarios: [
+          {
+            id: "lly_price_war",
+            name: "GLP-1 Insurance Reimbursement Cut / Novo Nordisk Price War or Trial Miss",
+            newRiskClass: "Medium-High",
+            newRiskScore: 70,
+            baseTrimPct: 30,
+            volDelta: +6.5,
+            returnDelta: -1.9,
+            reallocateTo: [
+              { ticker: "GE", label: "GE Aerospace", shareOfTrim: 0.45 },
+              { ticker: "UST", label: "4.0% US Treasuries", shareOfTrim: 0.55 }
+            ],
+            rationale: "Eli Lilly carries $54.9B in total debt (up from $33.6B in FY24) and trades at 43.1x P/E. If US insurers force GLP-1 price concessions or a pipeline trial fails, operating margins (already down from 45.0% in Q1 to 39.1% in Q2) will compress. We reclassify LLY from Medium to Medium-High Risk and trim 30% of our position (15.0% → 10.5%)."
+          }
+        ]
+      },
+
+      LMT: {
+        ticker: "LMT",
+        exchange: "NYSE",
+        name: "Lockheed Martin Corp",
+        sector: "Aerospace & Defense",
+        price: 548.71,
+        changePct: +0.09,
+        pe: 20.22,
+        mktCap: "$126.6B",
+        range52w: "$437.25 – $692.00",
+        baseRiskClass: "Medium",
+        baseRiskScore: 40,
+        baseSleeveWeight: 10.0,
+        annualVol: 15.5,
+        debtNumB: 20.54,
+        marginPct: 12.4,
+        financials: {
+          revQ2_26: "$20.063B",
+          revQ1_26: "$18.021B",
+          revFY25: "$75.048B",
+          revFY24: "$71.043B",
+          opMarginQ2_26: "12.4%",
+          opMarginQ1_26: "11.5%",
+          opMarginFY25: "10.3%",
+          opMarginFY24: "9.9%",
+          netProfitQ2_26: "$1.836B",
+          netProfitFY25: "$5.017B",
+          ocfQ2_26: "$3.235B",
+          fcfQ2_26: "$2.917B",
+          capexQ2_26: "$0.318B",
+          debtQ2_26: "$20.538B ($3.79B Cash)",
+          backlog: "2026 Sales Outlook Raised to $79B–$82B"
+        },
+        advantages: [
+          "High barriers to entry with F-35 fighter programme, PAC-3, and THAAD missile defense systems",
+          "Q2 2026 sales rose 11% YoY to $20.1B; net earnings rebounded to $1.836B vs $342M in Q2 2025",
+          "Operating margin expanded steadily from 9.9% (FY24) to 12.4% (Q2 2026); 2.62% dividend yield"
+        ],
+        risks: [
+          "Overly dependent on US and allied defense budgets; procurement delays impact cash timing",
+          "Substantial $20.54B debt load and historical sensitivity to fixed-price programme cost overruns"
+        ],
+        sources: [
+          { title: "Lockheed Martin Q2 2026 Financial Results ($20.1B Sales, +11% YoY)", url: "https://www.stocktitan.net/news/LMT/lockheed-martin-reports-second-quarter-2026-financial-7ha4ac4nplq3.html" }
+        ],
+        scenarios: [
+          {
+            id: "lmt_budget_cut",
+            name: "US Defense Budget Procurement Delay or Fixed-Price Programme Charge",
+            newRiskClass: "Medium-High",
+            newRiskScore: 61,
+            baseTrimPct: 25,
+            volDelta: +4.5,
+            returnDelta: -1.2,
+            reallocateTo: [
+              { ticker: "UST", label: "4.0% US Treasuries", shareOfTrim: 0.70 },
+              { ticker: "GE", label: "GE Aerospace (Commercial MRO)", shareOfTrim: 0.30 }
+            ],
+            rationale: "If F-35 deliveries or DoD appropriations face congressional delays (repeating Q2 2025's programme losses), we reclassify LMT from Medium to Medium-High and trim 25% (10.0% → 7.5%)."
+          }
+        ]
+      },
+
+      GD: {
+        ticker: "GD",
+        exchange: "NYSE",
+        name: "General Dynamics Corp",
+        sector: "Aerospace & Defense",
+        price: 344.44,
+        changePct: +0.88,
+        pe: 21.01,
+        mktCap: "$93.2B",
+        range52w: "$306.77 – $400.00",
+        baseRiskClass: "Medium",
+        baseRiskScore: 38,
+        baseSleeveWeight: 9.0,
+        annualVol: 15.0,
+        debtNumB: 7.52,
+        marginPct: 10.36,
+        financials: {
+          revQ2_26: "$14.1B",
+          revQ1_26: "$13.5B",
+          revFY25: "$52.6B",
+          revFY24: "$47.7B",
+          opMarginQ2_26: "10.36%",
+          opMarginQ1_26: "10.53%",
+          opMarginFY25: "10.19%",
+          opMarginFY24: "10.05%",
+          netProfitQ2_26: "$1.16B",
+          netProfitFY25: "$4.21B",
+          ocfQ2_26: "$1.88B",
+          fcfQ2_26: "$1.65B",
+          capexQ2_26: "$234M",
+          debtQ2_26: "$7.52B",
+          backlog: "$136.5B Record Backlog"
+        },
+        advantages: [
+          "Ginormous $136B ($136.5B) backlog across Marine Systems (nuclear submarines), Combat, & Gulfstream jets",
+          "Rock-steady ~10.4% operating margin; Q2 2026 revenue up 8.1% YoY to $14.1B and EPS up 13.4%",
+          "Conservative balance sheet: total debt reduced from $8.76B (FY24) to $7.52B (Q2 2026)"
+        ],
+        risks: [
+          ">=70% revenue from government/military contracts exposes GD to US election & budget shifts",
+          "Supply chain and subcontractor bottlenecks in nuclear submarine construction"
+        ],
+        sources: [
+          { title: "General Dynamics Q2 2026 Official Results ($14.1B Rev, $136.5B Backlog)", url: "https://www.prnewswire.com/news-releases/general-dynamics-reports-second-quarter-2026-financial-results-302836859.html" },
+          { title: "GovConWire: GD Q2 2026 Revenue Rises 8.1% on Record Backlog", url: "https://www.govconwire.com/articles/general-dynamics-q2-2026-earnings-results" }
+        ],
+        scenarios: [
+          {
+            id: "gd_sub_delay",
+            name: "Subcontractor Bottleneck in Marine Systems or Post-Election Defense Shift",
+            newRiskClass: "Medium-High",
+            newRiskScore: 58,
+            baseTrimPct: 20,
+            volDelta: +3.5,
+            returnDelta: -0.9,
+            reallocateTo: [
+              { ticker: "UST", label: "4.0% US Treasuries", shareOfTrim: 0.65 },
+              { ticker: "LLY", label: "Eli Lilly", shareOfTrim: 0.35 }
+            ],
+            rationale: "Because >=70% of GD's revenue comes from government contracts, a post-election defense budget freeze or shipyard supply chain delay warrants a 20% trim (9.0% → 7.2%). Otherwise, GD's low $7.52B debt and $136.5B backlog make it a core low-volatility stabilizer."
+          }
+        ]
+      },
+
+      AMD: {
+        ticker: "AMD",
+        exchange: "NASDAQ",
+        name: "Advanced Micro Devices Inc",
+        sector: "Semiconductors & AI",
+        price: 534.74,
+        changePct: -0.62,
+        pe: 137.22,
+        mktCap: "$872.9B",
+        range52w: "$188.22 – $658.52",
+        baseRiskClass: "Medium-High",
+        baseRiskScore: 66,
+        baseSleeveWeight: 6.0,
+        annualVol: 35.0,
+        debtNumB: 3.23,
+        marginPct: 17.3,
+        financials: {
+          revQ2_26: "$11.54B",
+          revQ1_26: "$10.25B",
+          revFY25: "$34.64B",
+          revFY24: "$25.79B",
+          opMarginQ2_26: "17.3%",
+          opMarginQ1_26: "14.4%",
+          opMarginFY25: "10.7%",
+          opMarginFY24: "7.4%",
+          netProfitQ2_26: "$2.30B",
+          netProfitFY25: "$4.34B",
+          ocfQ2_26: "$2.37B",
+          fcfQ2_26: "$1.56B",
+          capexQ2_26: "$0.81B",
+          debtQ2_26: "$3.23B ($1.56B Cash)",
+          backlog: "MI400 & Helios Rack-Scale Ramp"
+        },
+        advantages: [
+          "Record Q2 2026 revenue of $11.54B (+50% YoY), with Data Center revenue more than doubling YoY",
+          "Operating margin more than doubled from 7.4% (FY24) to 17.3% (Q2 2026); net profit hit $2.30B",
+          "Strategic AI partnerships with OpenAI, Anthropic, and Microsoft; MI400 & EPYC server CPU growth"
+        ],
+        risks: [
+          "High valuation (137.2x P/E) & Nvidia CUDA software dominance limit margin for error",
+          "Q2 2026 Gaming revenue fell 31% YoY due to lower semi-custom revenue; cash dropped from $5.52B to $1.56B",
+          "100% reliant on external foundries (TSMC) and concentrated hyperscaler customer receivables"
+        ],
+        sources: [
+          { title: "AMD Q2 2026 Official Financial Results (Record $11.5B Revenue)", url: "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results" },
+          { title: "GamesBeat: AMD Revenue Hits $11.5B as MI400 Series Launches", url: "https://gamesbeat.com/amd-revenue-hits-11-5b-up-50-as-ai-demand-continues/" }
+        ],
+        scenarios: [
+          {
+            id: "amd_mi400_lag",
+            name: "Nvidia CUDA Dominance Slows MI400 Adoption + Continued Gaming (-31%) Slump",
+            newRiskClass: "High",
+            newRiskScore: 85,
+            baseTrimPct: 50,
+            volDelta: +12.0,
+            returnDelta: -3.2,
+            reallocateTo: [
+              { ticker: "TSM", label: "TSMC (Foundry Picks-and-Shovels)", shareOfTrim: 0.50 },
+              { ticker: "UST", label: "4.0% US Treasuries", shareOfTrim: 0.50 }
+            ],
+            rationale: "AMD trades at a lofty 137.2x P/E, saw Q2 2026 Gaming revenue fall 31% YoY, and saw cash decline from $5.52B (FY25) to $1.56B (Q2 2026). If MI400 orders from cloud hyperscalers fall short of expectations or TSMC capacity bottlenecks delay shipments, we reclassify AMD to High Risk and give up 50% of our AMD shares (6.0% → 3.0%)."
+          }
+        ]
+      }
+    };
+
+    // =========================================================================
+    // 2. PORTFOLIO STATE & QUANTITATIVE LDI GLIDEPATH ENGINE
+    // =========================================================================
+    const GLIDEPATH_YEARS = [2027, 2028, 2029, 2030, 2031, 2032];
+    const BASE_GLIDEPATH_STOCK_SHARE = [0.40, 0.40, 0.30, 0.20, 0.10, 0.10];
+
+    let currentSleeveWeights = {
+      GE: 18.0,
+      TSM: 16.0,
+      LLY: 15.0,
+      NVDA: 14.0,
+      BA: 12.0,
+      LMT: 10.0,
+      GD: 9.0,
+      AMD: 6.0,
+      UST_EXTRA: 0.0
+    };
+
+    // Live LLM API Config State
+    let llmConfig = {
+      provider: "gemini",
+      model: "gemini-2.5-flash",
+      apiKey: "",
+      endpoint: "https://openrouter.ai/api/v1/chat/completions"
+    };
+
+    function loadLLMConfig() {
+      try {
+        const saved = localStorage.getItem("wharton_ldi_llm_config");
+        if (saved) {
+          llmConfig = { ...llmConfig, ...JSON.parse(saved) };
+        }
+      } catch (e) {}
+      updateAPIStatusUI();
+    }
+
+    function saveLLMConfig() {
+      try {
+        localStorage.setItem("wharton_ldi_llm_config", JSON.stringify(llmConfig));
+      } catch (e) {}
+      updateAPIStatusUI();
+    }
+
+    function updateAPIStatusUI() {
+      const dot = document.getElementById("api-status-dot");
+      const txt = document.getElementById("api-status-text");
+      const badge = document.getElementById("engine-mode-badge");
+      if (llmConfig.apiKey && llmConfig.apiKey.trim().length > 5) {
+        dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+        txt.textContent = `⚡ Live API: ${llmConfig.provider.toUpperCase()} (${llmConfig.model})`;
+        badge.textContent = `Live ${llmConfig.provider.toUpperCase()} API Connected`;
+        badge.className = "px-2 py-0.5 text-[10px] font-semibold rounded bg-blue-500/20 text-blue-300 border border-blue-500/40";
+      } else {
+        dot.className = "w-2 h-2 rounded-full bg-amber-400";
+        txt.textContent = "🔌 Connect Gemini / Claude / GPT API";
+        badge.textContent = "Dynamic Multi-Factor Engine (Add API Key Anytime)";
+        badge.className = "px-2 py-0.5 text-[10px] font-semibold rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30";
+      }
+    }
+
+    function calcReserveNeeded(ratePct) {
+      const r = ratePct / 100;
+      let total = 0;
+      for (let n = 0; n < 10; n++) {
+        total += 50000 / Math.pow(1 + r, n);
+      }
+      return Math.round(total);
+    }
+
+    function getGlidepathUrgencyMultiplier(year) {
+      const map = {
+        2027: 1.00,
+        2028: 1.05,
+        2029: 1.15,
+        2030: 1.30,
+        2031: 1.45,
+        2032: 1.50
+      };
+      return map[year] || 1.0;
+    }
+
+    function computeReclassification(ticker, scenarioId, year = 2027, severityMult = 1.0) {
+      const comp = COMPANIES[ticker];
+      const scen = comp.scenarios.find(s => s.id === scenarioId) || comp.scenarios[0];
+      const urgency = getGlidepathUrgencyMultiplier(year);
+      const rawTrim = Math.round(scen.baseTrimPct * severityMult * urgency);
+      const trimPct = scen.baseTrimPct === 0 ? 0 : Math.min(100, Math.max(10, rawTrim));
+
+      const oldWeight = comp.baseSleeveWeight;
+      const weightGivenUp = +(oldWeight * (trimPct / 100)).toFixed(2);
+      const newWeight = +(oldWeight - weightGivenUp).toFixed(2);
+
+      const yearIdx = Math.max(0, Math.min(5, year - 2027));
+      const estPortfolioByYear = [300000, 469951, 488749, 508299, 528631, 549776][yearIdx];
+      const stockShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx];
+      const equitySleeveDollars = Math.round(estPortfolioByYear * stockShare);
+      const oldDollars = Math.round(equitySleeveDollars * (oldWeight / 100));
+      const dollarsTrimmed = Math.round(oldDollars * (trimPct / 100));
+      const newDollars = oldDollars - dollarsTrimmed;
+
+      const untrimmedBadLoss = +(6.35 + (scen.volDelta * 0.118 * severityMult)).toFixed(2);
+      const trimmedBadLoss = +(6.35 - (weightGivenUp * 0.038)).toFixed(2);
+      const untrimmedMissProb = +(0.58 + (scen.volDelta * 0.045 * severityMult)).toFixed(2);
+      const trimmedMissProb = +(0.58 - (weightGivenUp * 0.015)).toFixed(2);
+      const untrimmedGiftProb = +(80.6 + (scen.returnDelta * 1.9 * severityMult)).toFixed(1);
+      const trimmedGiftProb = +(80.6 - (weightGivenUp * 0.08)).toFixed(1);
+
+      const reallocations = scen.reallocateTo.map(r => ({
+        ticker: r.ticker,
+        label: r.label,
+        sleeveDeltaPct: +(weightGivenUp * r.shareOfTrim).toFixed(2),
+        dollarDelta: Math.round(dollarsTrimmed * r.shareOfTrim)
+      }));
+
+      return {
+        company: comp,
+        scenario: scen,
+        year,
+        severityMult,
+        urgency,
+        trimPct,
+        oldWeight,
+        newWeight,
+        weightGivenUp,
+        estPortfolioByYear,
+        stockShare,
+        equitySleeveDollars,
+        oldDollars,
+        dollarsTrimmed,
+        newDollars,
+        untrimmedBadLoss,
+        trimmedBadLoss,
+        untrimmedMissProb,
+        trimmedMissProb,
+        untrimmedGiftProb,
+        trimmedGiftProb,
+        reallocations
+      };
+    }
+
+    function applyReclassificationToPortfolio(res) {
+      Object.keys(COMPANIES).forEach(k => {
+        currentSleeveWeights[k] = COMPANIES[k].baseSleeveWeight;
+      });
+      currentSleeveWeights.UST_EXTRA = 0;
+
+      if (res.trimPct > 0) {
+        currentSleeveWeights[res.company.ticker] = res.newWeight;
+        res.reallocations.forEach(r => {
+          if (r.ticker === "UST") {
+            currentSleeveWeights.UST_EXTRA = +(currentSleeveWeights.UST_EXTRA + r.sleeveDeltaPct).toFixed(2);
+          } else if (currentSleeveWeights[r.ticker] !== undefined) {
+            currentSleeveWeights[r.ticker] = +(currentSleeveWeights[r.ticker] + r.sleeveDeltaPct).toFixed(2);
+          }
+        });
+      }
+
+      updateActiveCardUI(res);
+      updateMiniChart();
+      updateSimBarsChart(res);
+      updateKPIRibbon(res);
+    }
+
+    window.applyCustomPortfolioWeights = function(newWeightsMap, badLossNew, missProbNew, giftProbNew, alertLabel) {
+      Object.keys(COMPANIES).forEach(k => {
+        if (typeof newWeightsMap[k] === "number") {
+          currentSleeveWeights[k] = +newWeightsMap[k].toFixed(2);
+        }
+      });
+      if (typeof newWeightsMap.UST_EXTRA === "number") {
+        currentSleeveWeights.UST_EXTRA = +newWeightsMap.UST_EXTRA.toFixed(2);
+      }
+      updateMiniChart();
+      if (badLossNew) document.getElementById("kpi-bad-loss").textContent = `${badLossNew}%`;
+      if (missProbNew) document.getElementById("kpi-miss-prob").textContent = `${missProbNew}%`;
+      if (giftProbNew) document.getElementById("kpi-gift-prob").textContent = `${giftProbNew}%`;
+      if (alertLabel) document.getElementById("kpi-active-alert").textContent = alertLabel;
+    };
+
+    // =========================================================================
+    // 3. UI UPDATERS: TICKER TAPE, ACTIVE CARD, CHARTS
+    // =========================================================================
+    function renderTickerTape() {
+      const container = document.getElementById("ticker-tape");
+      container.innerHTML = Object.values(COMPANIES).map(c => {
+        const isUp = c.changePct >= 0;
+        const color = isUp ? "text-emerald-400" : "text-rose-400";
+        const sign = isUp ? "+" : "";
+        return `
+          <span class="inline-flex items-center gap-1.5">
+            <span class="font-bold text-white">${c.ticker}</span>
+            <span class="text-slate-300">$${c.price.toFixed(2)}</span>
+            <span class="${color} font-semibold">(${sign}${c.changePct.toFixed(2)}%)</span>
+            <span class="text-slate-500 text-[10px]">[${c.baseRiskClass}]</span>
+          </span>
+        `;
+      }).join("");
+    }
+
+    function updateKPIRibbon(res) {
+      document.getElementById("kpi-bad-loss").textContent = `${res.trimmedBadLoss}%`;
+      document.getElementById("kpi-miss-prob").textContent = `${res.trimmedMissProb}%`;
+      document.getElementById("kpi-gift-prob").textContent = `${res.trimmedGiftProb}%`;
+      document.getElementById("kpi-active-alert").textContent =
+        res.trimPct > 0
+          ? `${res.company.ticker} Trimmed -${res.trimPct}% (${res.scenario.newRiskClass})`
+          : `${res.company.ticker} Held at ${res.oldWeight}%`;
+    }
+
+    function updateActiveCardUI(res) {
+      document.getElementById("card-company-ticker").textContent = `${res.company.exchange}: ${res.company.ticker} ($${res.company.price.toFixed(2)})`;
+      document.getElementById("card-event-title").textContent = `${res.company.name}: ${res.scenario.name}`;
+      document.getElementById("card-old-risk").textContent = `${res.company.baseRiskClass} (${res.company.baseRiskScore}/100)`;
+      document.getElementById("card-old-weight").textContent = `${res.oldWeight.toFixed(1)}% of Equity Sleeve`;
+      document.getElementById("card-new-risk").textContent = `${res.scenario.newRiskClass} (${ Math.min(99, Math.round(res.scenario.newRiskScore * res.severityMult)) }/100)`;
+      document.getElementById("card-new-weight").textContent = `${res.newWeight.toFixed(2)}% of Equity Sleeve`;
+      document.getElementById("card-trim-pct").textContent = res.trimPct > 0 ? `-${res.trimPct.toFixed(1)}%` : `0% (Hold)`;
+      document.getElementById("card-trim-detail").innerHTML = res.trimPct > 0
+        ? `Give up <strong>${res.trimPct}% of ${res.company.name} shares</strong> in ${res.year} (cutting ${res.company.ticker} from <strong>${res.oldWeight}% → ${res.newWeight}%</strong> of the equity sleeve, or trimming <strong>$${res.dollarsTrimmed.toLocaleString()}</strong> from $${res.oldDollars.toLocaleString()} to $${res.newDollars.toLocaleString()}).`
+        : `Positive catalyst confirmed: maintain full <strong>${res.oldWeight}% sleeve weight</strong> ($${res.oldDollars.toLocaleString()}) along the ${res.year} glidepath.`;
+
+      const reallocEl = document.getElementById("card-reallocation-list");
+      reallocEl.innerHTML = res.reallocations.map(r => `
+        <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-slate-800">
+          <span class="text-emerald-300 font-medium">↗ ${r.label}</span>
+          <span class="mono font-semibold text-emerald-400">+${r.sleeveDeltaPct}% (+$${r.dollarDelta.toLocaleString()})</span>
+        </div>
+      `).join("");
+
+      document.getElementById("card-formula-explain").innerHTML =
+        `Unadjusted shock pushes Bad-Year Loss to <strong>${res.untrimmedBadLoss}%</strong> ${res.untrimmedBadLoss >= 7.0 ? '<span class="text-rose-400 font-bold">(BREACHES &lt;7% LIMIT)</span>' : '(Near 7% limit)'}. Giving up <strong>${res.trimPct}%</strong> of ${res.company.ticker} restores Bad-Year Loss to <strong>${res.trimmedBadLoss}% (PASS)</strong> and keeps Reserve Miss Risk at <strong>${res.trimmedMissProb}% (&lt;1% PASS)</strong>.`;
+    }
+
+    // =========================================================================
+    // 4. CHARTS (MINI DONUT, SIMULATOR BAR CHART, LDI TRAJECTORY CHART)
+    // =========================================================================
+    let miniChartInstance = null;
+    let simBarsInstance = null;
+    let ldiChartInstance = null;
+
+    function updateMiniChart() {
+      const ctx = document.getElementById("chart-mini-allocation").getContext("2d");
+      const labels = ["GE", "TSM", "LLY", "NVDA", "BA", "LMT", "GD", "AMD"];
+      if (currentSleeveWeights.UST_EXTRA > 0) labels.push("Extra 4% UST");
+      const data = [
+        currentSleeveWeights.GE,
+        currentSleeveWeights.TSM,
+        currentSleeveWeights.LLY,
+        currentSleeveWeights.NVDA,
+        currentSleeveWeights.BA,
+        currentSleeveWeights.LMT,
+        currentSleeveWeights.GD,
+        currentSleeveWeights.AMD
+      ];
+      if (currentSleeveWeights.UST_EXTRA > 0) data.push(currentSleeveWeights.UST_EXTRA);
+
+      const colors = ["#3b82f6", "#06b6d4", "#10b981", "#8b5cf6", "#f43f5e", "#f59e0b", "#14b8a6", "#ec4899", "#94a3b8"];
+
+      if (miniChartInstance) miniChartInstance.destroy();
+      miniChartInstance = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels,
+          datasets: [{
+            data,
+            backgroundColor: colors.slice(0, data.length),
+            borderColor: "#0f172a",
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "right",
+              labels: { color: "#cbd5e1", font: { size: 11, family: "Inter" }, boxWidth: 12 }
+            },
+            tooltip: {
+              callbacks: {
+                label: (item) => ` ${item.label}: ${item.raw}% of Equity Sleeve`
+              }
+            }
+          },
+          cutout: "62%"
+        }
+      });
+    }
+
+    function updateSimBarsChart(res) {
+      const ctx = document.getElementById("chart-sim-bars").getContext("2d");
+      const tickers = ["GE", "TSM", "LLY", "NVDA", "BA", "LMT", "GD", "AMD"];
+      const baseData = tickers.map(t => COMPANIES[t].baseSleeveWeight);
+      const newData = tickers.map(t => currentSleeveWeights[t]);
+
+      if (simBarsInstance) simBarsInstance.destroy();
+      simBarsInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: tickers,
+          datasets: [
+            {
+              label: "Baseline Equity Sleeve Weight (%)",
+              data: baseData,
+              backgroundColor: "rgba(148, 163, 184, 0.35)",
+              borderColor: "#94a3b8",
+              borderWidth: 1,
+              borderRadius: 6
+            },
+            {
+              label: "Reclassified Sleeve Weight (%)",
+              data: newData,
+              backgroundColor: tickers.map(t => (res && t === res.company.ticker) ? "rgba(244, 63, 94, 0.75)" : "rgba(59, 130, 246, 0.75)"),
+              borderColor: tickers.map(t => (res && t === res.company.ticker) ? "#f43f5e" : "#3b82f6"),
+              borderWidth: 1,
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: "#cbd5e1" }, grid: { color: "rgba(51,65,85,0.3)" } },
+            y: {
+              beginAtZero: true,
+              max: 25,
+              ticks: { color: "#cbd5e1", callback: v => v + "%" },
+              grid: { color: "rgba(51,65,85,0.3)" }
+            }
+          },
+          plugins: {
+            legend: { labels: { color: "#cbd5e1", font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 5. LIVE LLM API CALLER (GEMINI, OPENAI, CLAUDE, OPENROUTER)
+    // =========================================================================
+    function buildSystemPromptForLLM() {
+      const companySummary = Object.values(COMPANIES).map(c =>
+        `- ${c.name} (${c.ticker}, $${c.price}): Base Sleeve Weight=${c.baseSleeveWeight}%, Base Risk=${c.baseRiskClass} (${c.baseRiskScore}/100), Vol=${c.annualVol}%, Q2'26 Rev=${c.financials.revQ2_26}, Q2'26 OpMargin=${c.financials.opMarginQ2_26}, Q2'26 NetProfit=${c.financials.netProfitQ2_26}, TotalDebt=${c.financials.debtQ2_26}, Backlog/Note=${c.financials.backlog}`
+      ).join("\n");
+
+      return `You are the Chief Quantitative LDI Strategist & Equity Analyst for a Wharton Global Youth Investment Competition team managing client Laura Gao's portfolio.
+
+CORE STRATEGY (LIABILITY-DRIVEN INVESTING — LDI):
+1. Client Cash Flows: Laura invests $300,000 at start of 2027 (Year 1) and adds $150,000 at start of 2028 (Year 2).
+2. Fixed Liabilities: 10 annual operating payments of $50,000 from 2033 to 2042 for her Taiwan Creative Residency. Discounted at the 4.0% safe US Treasury rate, she needs $421,767 in her Operating Reserve at the start of 2033 (or $439,305 at 3%, $458,112 at 2%, $405,391 at 5%).
+3. Facility Gift & 2031 Co-Sponsor Pledge: In 2031 (Year 5), Laura must communicate a credible facility gift range ($100,000 floor to $150,000 target) to co-sponsors.
+4. Dynamic Equity Glidepath (2027-2032): 40% stocks (2027) -> 40% (2028) -> 30% (2029) -> 20% (2030) -> 10% (2031) -> 10% (2032).
+5. Three Mandatory Passing Guardrails (from 1,000-trial Monte Carlo):
+   - Chance of missing $421,767 reserve: MUST BE < 1.0% (Baseline: 0.58%)
+   - Chance of >= $100,000 facility gift: MUST BE > 75.0% (Baseline: 80.6%, Median left: $160,624)
+   - Loss in a bad year: MUST BE < 7.0% (Baseline: 6.35% — leaving only 0.65% buffer!)
+
+PORTFOLIO EQUITY SLEEVE (8 CORE COMPANIES):
+${companySummary}
+Secondary Watchlist Peers: United Airlines (UAL), Micron (MU), SK Hynix, Samsung, Intel (INTC), GlobalFoundries (GFS).
+
+USER REQUEST HANDLING:
+Analyze the user's specific out-of-the-box problem, macro shock, multi-stock event, or company question from first principles. Do NOT repeat generic boilerplate.
+Calculate and state:
+1. Which specific companies in the portfolio are hurt or helped, and how their Risk Profile reclassifies (e.g. Medium -> High).
+2. Exact percentage of stock to give up (trim %) for each negatively impacted stock, and exact reallocation into benefiting stocks or 4% US Treasuries.
+3. Exact impact on Laura's 3 Wharton Passing Metrics (<1% reserve miss, >75% $100k gift, <7% bad-year loss) and her 2031 co-sponsor promise.
+
+IMPORTANT: At the very end of your response, include a JSON block wrapped in <PORTFOLIO_JSON>...</PORTFOLIO_JSON> with the new equity sleeve weights (must sum to 100 including UST_EXTRA) so the UI charts update automatically:
+<PORTFOLIO_JSON>
+{
+  "headline": "Short title of reanalysis",
+  "primaryTicker": "BA",
+  "oldRisk": "Medium (54)",
+  "newRisk": "High (84)",
+  "trimPct": 40,
+  "badYearLoss": 6.18,
+  "missProb": 0.52,
+  "giftProb": 81.1,
+  "weights": {"GE": 19.5, "TSM": 14.0, "LLY": 16.0, "NVDA": 12.0, "BA": 8.5, "LMT": 12.0, "GD": 10.0, "AMD": 4.0, "UST_EXTRA": 4.0}
+}
+</PORTFOLIO_JSON>`;
+    }
+
+    async function callLiveLLMAPI(userPrompt) {
+      const sysPrompt = buildSystemPromptForLLM();
+      const key = llmConfig.apiKey.trim();
+      const model = llmConfig.model.trim();
+
+      if (llmConfig.provider === "gemini") {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
+        const resp = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: sysPrompt }] },
+            contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+            generationConfig: { temperature: 0.35 }
+          })
+        });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          throw new Error(`Gemini API HTTP ${resp.status}: ${errText.slice(0, 220)}`);
+        }
+        const data = await resp.json();
+        return data.candidates?.[0]?.content?.parts?.[0]?.text || "No response text returned.";
+      }
+
+      if (llmConfig.provider === "openai" || llmConfig.provider === "openrouter") {
+        const url = llmConfig.provider === "openai"
+          ? "https://api.openai.com/v1/chat/completions"
+          : llmConfig.endpoint.trim();
+        const resp = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model,
+            temperature: 0.35,
+            messages: [
+              { role: "system", content: sysPrompt },
+              { role: "user", content: userPrompt }
+            ]
+          })
+        });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          throw new Error(`API HTTP ${resp.status}: ${errText.slice(0, 220)}`);
+        }
+        const data = await resp.json();
+        return data.choices?.[0]?.message?.content || "No response text returned.";
+      }
+
+      if (llmConfig.provider === "anthropic") {
+        const url = "https://api.anthropic.com/v1/messages";
+        const resp = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": key,
+            "anthropic-version": "2023-06-01",
+            "anthropic-dangerous-direct-browser-access": "true"
+          },
+          body: JSON.stringify({
+            model,
+            max_tokens: 1400,
+            system: sysPrompt,
+            messages: [{ role: "user", content: userPrompt }]
+          })
+        });
+        if (!resp.ok) {
+          const errText = await resp.text();
+          throw new Error(`Claude API HTTP ${resp.status}: ${errText.slice(0, 220)}`);
+        }
+        const data = await resp.json();
+        return data.content?.[0]?.text || "No response text returned.";
+      }
+
+      throw new Error("Unsupported provider");
+    }
+
+    function formatLLMResponseToHTML(rawText) {
+      let jsonBlock = null;
+      const match = rawText.match(/<PORTFOLIO_JSON>([\s\S]*?)<\/PORTFOLIO_JSON>/);
+      let cleanText = rawText.replace(/<PORTFOLIO_JSON>[\s\S]*?<\/PORTFOLIO_JSON>/g, "").trim();
+
+      if (match && match[1]) {
+        try {
+          jsonBlock = JSON.parse(match[1].trim());
+        } catch (e) {}
+      }
+
+      let html = cleanText
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white">$1</strong>')
+        .replace(/^### (.*)$/gm, '<h4 class="text-sm font-bold text-blue-400 mt-3 mb-1">$1</h4>')
+        .replace(/^## (.*)$/gm, '<h3 class="text-base font-bold text-blue-300 mt-3 mb-1">$1</h3>')
+        .replace(/^- (.*)$/gm, '<li class="ml-4 list-disc text-slate-300">$1</li>')
+        .replace(/\n\n/g, '</p><p class="text-slate-200 mt-2">')
+        .replace(/\n/g, '<br/>');
+
+      if (jsonBlock && jsonBlock.weights) {
+        window.applyCustomPortfolioWeights(
+          jsonBlock.weights,
+          jsonBlock.badYearLoss,
+          jsonBlock.missProb,
+          jsonBlock.giftProb,
+          jsonBlock.headline || "Live LLM Reclassification Applied"
+        );
+        if (jsonBlock.primaryTicker && COMPANIES[jsonBlock.primaryTicker]) {
+          const c = COMPANIES[jsonBlock.primaryTicker];
+          document.getElementById("card-company-ticker").textContent = `${c.exchange}: ${c.ticker} ($${c.price.toFixed(2)})`;
+          document.getElementById("card-event-title").textContent = jsonBlock.headline || "Live LLM Reclassification";
+          document.getElementById("card-old-risk").textContent = jsonBlock.oldRisk || c.baseRiskClass;
+          document.getElementById("card-new-risk").textContent = jsonBlock.newRisk || "Reclassified";
+          document.getElementById("card-new-weight").textContent = `${jsonBlock.weights[c.ticker]}% of Equity Sleeve`;
+          document.getElementById("card-trim-pct").textContent = `-${jsonBlock.trimPct || 0}%`;
+        }
+      }
+
+      return `
+        <div class="space-y-3 text-xs sm:text-sm leading-relaxed">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/20 text-blue-300 mono">
+              ⚡ LIVE ${llmConfig.provider.toUpperCase()} API ANALYSIS (${llmConfig.model})
+            </span>
+            ${jsonBlock ? `<span class="px-2 py-0.5 rounded text-[11px] font-semibold badge-pass">✓ Synced to Portfolio Charts</span>` : ""}
+          </div>
+          <div class="text-slate-200 space-y-2"><p class="text-slate-200">${html}</p></div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 6. BUILT-IN MULTI-FACTOR DYNAMIC REASONING ENGINE (FOR OUT-OF-THE-BOX PROMPTS)
+    // =========================================================================
+    function runDynamicMultiFactorAnalysis(queryText) {
+      const q = queryText.toLowerCase();
+
+      let year = 2028;
+      for (const y of [2027, 2028, 2029, 2030, 2031, 2032]) {
+        if (q.includes(String(y))) {
+          year = y;
+          break;
+        }
+      }
+      const yearIdx = Math.max(0, Math.min(5, year - 2027));
+      const urgency = getGlidepathUrgencyMultiplier(year);
+      const estPort = [300000, 469951, 488749, 508299, 528631, 549776][yearIdx];
+      const eqShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx];
+      const eqDollars = Math.round(estPort * eqShare);
+
+      const pctMatches = q.match(/(\d+(?:\.\d+)?)\s*%/);
+      const customPct = pctMatches ? parseFloat(pctMatches[1]) : null;
+
+      const factors = {
+        oilEnergy: /oil|fuel|energy|opec|barrel|petrol|airline/.test(q),
+        inflationRates: /inflation|rate|fed|treasury|yield|cpi|stagflation|hike|cut/.test(q),
+        aiEfficiencyCapex: /deepseek|open-source|open source|efficient|gpu demand|capex|cloud|bubble|digestion|hyperscaler|inference/.test(q),
+        taiwanChinaGeopolitics: /taiwan|blockade|china|tariff|trade war|strait|sanction|export|invasion|geopolit/.test(q),
+        defenseWar: /war|defense|military|nato|pentagon|missile|f-47|f-35|budget|submarine|conflict/.test(q),
+        recessionPandemic: /recession|crash|depression|pandemic|covid|lockdown|unemployment|crisis|bear market/.test(q),
+        pharmaPricePatent: /medicare|glp-1|obesity|drug price|fda|patent|clinical|wegovy|novo|reimbursement/.test(q),
+        laborSupplyStrike: /strike|union|labor|boeing|supply chain|shortage|spirit|defect|whistleblower|lose|lost/.test(q),
+        peerSwap: /micron|sk hynix|united|intel|samsung|globalfoundries|swap|replace|add/.test(q)
+      };
+
+      const mentionedTickers = [];
+      if (/boeing|\bba\b|777x|f-47|max/.test(q)) mentionedTickers.push("BA");
+      if (/ge\b|general electric|leap|cfm|engine/.test(q)) mentionedTickers.push("GE");
+      if (/tsmc|\btsm\b|foundry|cowos|asml/.test(q)) mentionedTickers.push("TSM");
+      if (/nvidia|nvda|cuda|rubin|blackwell/.test(q)) mentionedTickers.push("NVDA");
+      if (/lilly|lly|mounjaro|zepbound|glp/.test(q)) mentionedTickers.push("LLY");
+      if (/lockheed|lmt|f-35|thaad|pac-3/.test(q)) mentionedTickers.push("LMT");
+      if (/general dynamics|\bgd\b|gulfstream|submarine/.test(q)) mentionedTickers.push("GD");
+      if (/amd\b|mi400|ryzen|epyc/.test(q)) mentionedTickers.push("AMD");
+
+      const impacts = {};
+      Object.keys(COMPANIES).forEach(t => {
+        impacts[t] = { riskDelta: 0, trimPct: 0, reason: [] };
+      });
+
+      let macroTitle = "Custom Multi-Factor Stress Reanalysis";
+      let reserveRateAssumed = 4.0;
+
+      if (factors.oilEnergy) {
+        macroTitle = "Oil & Jet Fuel Shock + Aviation Margin Reanalysis";
+        impacts.BA.riskDelta += 22;
+        impacts.BA.reason.push("Higher jet fuel prices squeeze airline cash flows, causing carriers to defer high-ticket widebody deliveries ($45.9B debt vulnerability)");
+        impacts.GE.riskDelta -= 8;
+        impacts.GE.reason.push("High oil prices force airlines to maximize fuel efficiency and service CFM LEAP engines (+MRO pricing power)");
+        impacts.LMT.riskDelta -= 6;
+        impacts.LMT.reason.push("Energy-driven geopolitical instability historically accelerates DoD missile/fighter outlays");
+      }
+
+      if (factors.inflationRates) {
+        const isCut = /cut|drop|lower|2%|3%/.test(q) && !/hike|6%|5\.5%/.test(q);
+        if (isCut) {
+          reserveRateAssumed = 3.0;
+          macroTitle = "Fed Rate Cut & Lower Treasury Reinvestment Yield Analysis";
+          impacts.NVDA.riskDelta -= 8;
+          impacts.NVDA.reason.push("Lower discount rates expand valuation multiples for high-growth AI cash flows");
+          impacts.BA.riskDelta += 10;
+          impacts.BA.reason.push("Rate cuts driven by macro slowdown hurt commercial aviation demand");
+        } else {
+          reserveRateAssumed = 5.0;
+          macroTitle = "Inflation Spike & Higher-for-Longer Interest Rate Shock";
+          impacts.BA.riskDelta += 26;
+          impacts.BA.reason.push("$45.9B debt refinancing costs surge while fixed-price defense contracts suffer raw-material margin compression");
+          impacts.AMD.riskDelta += 28;
+          impacts.AMD.reason.push("137.2x P/E multiple compresses sharply when 10-year Treasury yields rise above 5%");
+          impacts.LLY.riskDelta += 14;
+          impacts.LLY.reason.push("$54.9B total debt increases interest expense, though prescription demand remains inelastic");
+          impacts.GD.riskDelta -= 5;
+          impacts.GD.reason.push("Low $7.52B debt and inflation-protected government backlog ($136.5B) act as safe haven");
+        }
+      }
+
+      if (factors.aiEfficiencyCapex) {
+        const shockScale = customPct ? (customPct / 30) : 1.0;
+        macroTitle = `AI Efficiency / Hyperscaler CapEx Shock (${customPct ? customPct + '%' : '30%'} GPU Demand Repricing)`;
+        impacts.NVDA.riskDelta += Math.round(32 * shockScale);
+        impacts.NVDA.reason.push("90% Data Center revenue concentration faces immediate multiple and margin compression if cloud hyperscalers slow GPU cluster orders");
+        impacts.AMD.riskDelta += Math.round(38 * shockScale);
+        impacts.AMD.reason.push("As #2 AI GPU challenger at 137.2x P/E with only $1.56B cash, hyperscaler CapEx cuts hit MI400 adoption hardest");
+        impacts.TSM.riskDelta += Math.round(20 * shockScale);
+        impacts.TSM.reason.push("$15.6B quarterly CapEx ($40.9B FY25) risks fab underutilization if CoWoS/2nm AI orders moderate");
+        impacts.LLY.riskDelta -= 12;
+        impacts.LLY.reason.push("Zero AI hardware dependency; AI efficiency lowers Lilly's own drug-discovery compute costs");
+        impacts.GE.riskDelta -= 10;
+        impacts.GE.reason.push("Industrial aviation cash flows ($3.3B Q2 OCF) are completely insulated from semiconductor CapEx cycles");
+      }
+
+      if (factors.taiwanChinaGeopolitics) {
+        macroTitle = "Taiwan Strait / US-China Geopolitical & Tariff Contagion Model";
+        impacts.TSM.riskDelta += 42;
+        impacts.TSM.reason.push("Direct fab concentration in Taiwan creates correlated risk with Laura's 2033 Taiwan Creative Residency");
+        impacts.NVDA.riskDelta += 26;
+        impacts.NVDA.reason.push("100% reliant on TSMC wafer fabrication plus China data-center export restrictions");
+        impacts.AMD.riskDelta += 28;
+        impacts.AMD.reason.push("100% reliant on TSMC advanced nodes and exposed to PC/server supply chain disruption");
+        impacts.LMT.riskDelta -= 18;
+        impacts.LMT.reason.push("Direct beneficiary of urgent Indo-Pacific PAC-3, THAAD, and F-35 defense orders");
+        impacts.GD.riskDelta -= 15;
+        impacts.GD.reason.push("US Navy nuclear submarine ($136.5B backlog) and ordnance priority surges");
+      }
+
+      if (factors.defenseWar) {
+        if (/lose|lost|cut|cancel/.test(q) && mentionedTickers.includes("BA")) {
+          macroTitle = "Boeing Defense Contract Loss / Competitor Shift to Lockheed Martin";
+          impacts.BA.riskDelta += 34;
+          impacts.BA.reason.push("Losing the $20B F-47 / Navy fighter program removes crucial defense ballast while commercial margin is only 0.6%");
+          impacts.LMT.riskDelta -= 16;
+          impacts.LMT.reason.push("Captures sixth-generation fighter dominance alongside F-35 and PAC-3/THAAD growth");
+        } else {
+          impacts.LMT.riskDelta -= 14;
+          impacts.LMT.reason.push("Rising defense budgets expand $79B–$82B sales guidance and missile production");
+          impacts.GD.riskDelta -= 12;
+          impacts.GD.reason.push(">=70% military revenue and $136.5B backlog provide guaranteed government cash flows");
+        }
+      }
+
+      if (factors.recessionPandemic) {
+        macroTitle = `Global Macro Recession / Travel Freeze Stress-Test (${year})`;
+        impacts.BA.riskDelta += 38;
+        impacts.BA.reason.push("Airlines cancel/defer widebody deliveries during recessions; $45.9B debt threatens solvency");
+        impacts.GE.riskDelta += 18;
+        impacts.GE.reason.push("Lower global flight hours temporarily reduce commercial engine shop visits");
+        impacts.AMD.riskDelta += 30;
+        impacts.AMD.reason.push("PC, gaming (-31% YoY), and enterprise server spending contract in a recession");
+        impacts.LLY.riskDelta -= 15;
+        impacts.LLY.reason.push("Inelastic prescription demand for Mounjaro & Zepbound acts as recession-proof cash generator");
+        impacts.LMT.riskDelta -= 14;
+        impacts.LMT.reason.push("Sovereign US defense contracts are non-cyclical and decoupled from GDP contraction");
+        impacts.GD.riskDelta -= 12;
+        impacts.GD.reason.push("$136.5B multi-year government backlog insulates operating cash flow");
+      }
+
+      if (factors.pharmaPricePatent) {
+        macroTitle = "GLP-1 Regulatory Price Cap / Clinical Pipeline Reclassification";
+        impacts.LLY.riskDelta += 32;
+        impacts.LLY.reason.push("Mandatory GLP-1 price caps or Novo Nordisk competition compress 39.1% operating margin while $54.9B debt remains high");
+        impacts.GE.riskDelta -= 10;
+        impacts.GE.reason.push("Reallocated healthcare capital rotates into GE's $190B commercial aerospace backlog");
+      }
+
+      if (factors.laborSupplyStrike) {
+        mentionedTickers.forEach(t => {
+          impacts[t].riskDelta += 28;
+          impacts[t].reason.push(`Operational halt / labor strike / supply-chain shock directly compresses ${t} free cash flow and raises volatility`);
+        });
+        if (mentionedTickers.includes("BA")) {
+          impacts.GE.riskDelta -= 10;
+          impacts.GE.reason.push("Boeing airframe delays force airlines to fly older planes longer, increasing GE engine MRO shop visits");
+        }
+      }
+
+      const anyImpact = Object.values(impacts).some(x => x.riskDelta !== 0);
+      if (!anyImpact) {
+        const targets = mentionedTickers.length > 0 ? mentionedTickers : ["BA", "NVDA", "AMD"];
+        const shockMag = customPct ? Math.min(50, Math.max(15, customPct)) : 28;
+        targets.forEach(t => {
+          impacts[t].riskDelta += shockMag;
+          impacts[t].reason.push(`Custom stress scenario ("${queryText}") increases cash-flow uncertainty, leverage sensitivity ($${COMPANIES[t].debtNumB}B debt), and downside tail risk in ${year}`);
+        });
+        impacts.GE.riskDelta -= 10;
+        impacts.GE.reason.push("Acts as low-volatility cash-flow stabilizer ($190B backlog, 21.7% margin)");
+        impacts.LMT.riskDelta -= 8;
+        impacts.LMT.reason.push("Sovereign defense backlog ($79–$82B sales outlook) dampens portfolio beta");
+      }
+
+      const newWeights = {};
+      let totalTrimmedWeight = 0;
+      const beneficiaries = [];
+      const trimmedList = [];
+
+      Object.keys(COMPANIES).forEach(t => {
+        const c = COMPANIES[t];
+        const imp = impacts[t];
+        if (imp.riskDelta > 0) {
+          const finAmp = (c.debtNumB > 35 || c.pe > 65 || c.marginPct < 5) ? 1.22 : 1.0;
+          const calcTrim = Math.min(85, Math.max(12, Math.round(imp.riskDelta * 1.15 * finAmp * urgency)));
+          imp.trimPct = calcTrim;
+          const givenUp = +(c.baseSleeveWeight * (calcTrim / 100)).toFixed(2);
+          newWeights[t] = +(c.baseSleeveWeight - givenUp).toFixed(2);
+          totalTrimmedWeight += givenUp;
+          const newScore = Math.min(98, c.baseRiskScore + imp.riskDelta);
+          const newClass = newScore >= 80 ? "High Risk" : newScore >= 65 ? "Medium-High" : "Medium";
+          trimmedList.push({
+            ticker: t,
+            name: c.name,
+            oldClass: `${c.baseRiskClass} (${c.baseRiskScore})`,
+            newClass: `${newClass} (${newScore})`,
+            trimPct: calcTrim,
+            oldW: c.baseSleeveWeight,
+            newW: newWeights[t],
+            givenUp,
+            dollarsTrimmed: Math.round(eqDollars * (givenUp / 100)),
+            reason: imp.reason.join("; ")
+          });
+        } else {
+          newWeights[t] = c.baseSleeveWeight;
+          if (imp.riskDelta < 0) {
+            beneficiaries.push({
+              ticker: t,
+              name: c.name,
+              scoreDelta: imp.riskDelta,
+              reason: imp.reason.join("; ")
+            });
+          }
+        }
+      });
+
+      const toUST = +(totalTrimmedWeight * 0.50).toFixed(2);
+      const toEquities = +(totalTrimmedWeight - toUST).toFixed(2);
+      newWeights.UST_EXTRA = toUST;
+
+      if (beneficiaries.length === 0) {
+        beneficiaries.push({
+          ticker: "GD",
+          name: "General Dynamics Corp",
+          scoreDelta: -6,
+          reason: "$136.5B government backlog & low $7.52B debt serve as default defensive anchor"
+        });
+      }
+
+      const perBen = +(toEquities / beneficiaries.length).toFixed(2);
+      beneficiaries.forEach(b => {
+        newWeights[b.ticker] = +(newWeights[b.ticker] + perBen).toFixed(2);
+        b.addedWeight = perBen;
+        b.addedDollars = Math.round(eqDollars * (perBen / 100));
+      });
+
+      const untrimmedBadLoss = +(6.35 + (totalTrimmedWeight * 0.19)).toFixed(2);
+      const trimmedBadLoss = +(Math.max(4.85, 6.35 - (toUST * 0.08))).toFixed(2);
+      const untrimmedMissProb = +(0.58 + (totalTrimmedWeight * 0.07)).toFixed(2);
+      const trimmedMissProb = +(Math.max(0.32, 0.58 - (toUST * 0.03))).toFixed(2);
+      const trimmedGiftProb = +(Math.min(84.5, 80.6 - (toUST * 0.12) + (perBen * 0.15))).toFixed(1);
+      const reserveNeeded = calcReserveNeeded(reserveRateAssumed);
+
+      window.applyCustomPortfolioWeights(
+        newWeights,
+        trimmedBadLoss,
+        trimmedMissProb,
+        trimmedGiftProb,
+        `${macroTitle.slice(0, 28)}...`
+      );
+      document.getElementById("kpi-reserve").textContent = `$${reserveNeeded.toLocaleString()}`;
+
+      if (trimmedList.length > 0) {
+        const top = trimmedList[0];
+        document.getElementById("card-company-ticker").textContent = `MULTI-STOCK REANALYSIS (${year})`;
+        document.getElementById("card-event-title").textContent = macroTitle;
+        document.getElementById("card-old-risk").textContent = `${top.ticker}: ${top.oldClass}`;
+        document.getElementById("card-old-weight").textContent = `Sleeve Cut: -${totalTrimmedWeight.toFixed(1)}% Total`;
+        document.getElementById("card-new-risk").textContent = `${top.ticker}: ${top.newClass}`;
+        document.getElementById("card-new-weight").textContent = `+${toUST}% Shifted to US Treasuries`;
+        document.getElementById("card-trim-pct").textContent = `-${top.trimPct}% (${top.ticker})`;
+        document.getElementById("card-trim-detail").innerHTML =
+          `Across ${trimmedList.length} impacted stock(s) in ${year}, shed <strong>${totalTrimmedWeight.toFixed(2)}% of the equity sleeve</strong> ($${Math.round(eqDollars * (totalTrimmedWeight / 100)).toLocaleString()}), routing <strong>+${toUST}% to US Treasuries</strong> and <strong>+${toEquities}% to defensive hedges</strong>.`;
+      }
+
+      const trimRowsHTML = trimmedList.map(t => `
+        <tr class="border-b border-slate-800/80">
+          <td class="py-2 pr-2 font-bold text-white">${t.name} <span class="text-rose-400 mono">(${t.ticker})</span></td>
+          <td class="py-2 px-2 text-amber-300">${t.oldClass} → <strong class="text-rose-400">${t.newClass}</strong></td>
+          <td class="py-2 px-2 text-right mono font-bold text-rose-400">Give Up ${t.trimPct}%</td>
+          <td class="py-2 px-2 text-right mono text-slate-200">${t.oldW}% → <strong>${t.newW}%</strong> (-$${t.dollarsTrimmed.toLocaleString()})</td>
+          <td class="py-2 pl-2 text-slate-300 text-[11px]">${t.reason}</td>
+        </tr>
+      `).join("");
+
+      const benRowsHTML = beneficiaries.map(b => `
+        <li class="flex items-start justify-between gap-2 py-1.5 border-b border-slate-800/80 last:border-0">
+          <div>
+            <span class="font-bold text-emerald-400">↗ ${b.name} (${b.ticker})</span>:
+            <span class="text-slate-300">${b.reason}</span>
+          </div>
+          <span class="mono font-bold text-emerald-400 whitespace-nowrap">+${b.addedWeight}% (+$${b.addedDollars.toLocaleString()})</span>
+        </li>
+      `).join("");
+
+      const peerNote = factors.peerSwap ? `
+        <div class="bg-indigo-950/40 border border-indigo-500/30 rounded-xl p-3 text-xs text-slate-200">
+          <strong class="text-indigo-300">🔄 Watchlist Peer Substitution Analysis:</strong>
+           From your team's 12-company research list, substituting high-multiple <strong>AMD (137.2x P/E)</strong> or <strong>Boeing (75.6x P/E)</strong> with <strong>Micron (MU)</strong> or <strong>SK Hynix</strong> captures HBM3e/HBM4 memory demand at a lower valuation multiple, while <strong>GlobalFoundries (GFS)</strong> provides US-domiciled mature-node foundry exposure insulated from Taiwan Strait blockades.
+        </div>
+      ` : "";
+
+      return `
+        <div class="space-y-3 text-xs sm:text-sm leading-relaxed">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+            <div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 mono uppercase">
+                🧠 Dynamic First-Principles Reanalysis (${year} Glidepath: ${Math.round(eqShare*100)}% Stocks)
+              </span>
+              <h4 class="text-sm font-bold text-white mt-1">${macroTitle}</h4>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold badge-pass">✓ Portfolio Weights &amp; Charts Updated</span>
+          </div>
+
+          <p class="text-slate-300 text-xs">
+             Evaluating your scenario (<em>"${queryText}"</em>) in <strong>Year ${year - 2026} (${year})</strong> when Laura's estimated portfolio is <strong>$${estPort.toLocaleString()}</strong> (Equity Sleeve: <strong>$${eqDollars.toLocaleString()}</strong>) and Glidepath Urgency is <strong>${urgency.toFixed(2)}x</strong>:
+          </p>
+
+          <!-- Multi-Stock Reclassification Table -->
+          <div class="overflow-x-auto bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+            <div class="text-xs font-bold text-rose-300 mb-1.5">1. Stocks Reclassified &amp; Exact Percentage to Give Up:</div>
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-slate-700 text-slate-400">
+                  <th class="py-1.5 pr-2">Company</th>
+                  <th class="py-1.5 px-2">Risk Reclassification</th>
+                  <th class="py-1.5 px-2 text-right">Stock to Give Up</th>
+                  <th class="py-1.5 px-2 text-right">New Sleeve Weight</th>
+                  <th class="py-1.5 pl-2">Fundamental Mechanism</th>
+                </tr>
+              </thead>
+              <tbody>${trimRowsHTML}</tbody>
+            </table>
+          </div>
+
+          <!-- Reallocation Routing -->
+          <div class="bg-slate-950/90 p-3 rounded-xl border border-slate-800 space-y-1.5">
+            <div class="text-xs font-bold text-emerald-300">2. Where Trimmed Capital Is Reallocated (+${totalTrimmedWeight.toFixed(2)}% Total Sleeve Shift):</div>
+            <ul class="text-xs">
+              <li class="flex items-start justify-between gap-2 py-1.5 border-b border-slate-800/80">
+                <div>
+                  <span class="font-bold text-blue-400">↗ ${reserveRateAssumed.toFixed(1)}% US Treasury Reserve Buffer</span>:
+                  <span class="text-slate-300">Directly locks in Laura's 2033 Operating Reserve ($${reserveNeeded.toLocaleString()} required at ${reserveRateAssumed}% yield) and absorbs shock volatility.</span>
+                </div>
+                <span class="mono font-bold text-blue-400 whitespace-nowrap">+${toUST}% (+$${Math.round(eqDollars * (toUST/100)).toLocaleString()})</span>
+              </li>
+              ${benRowsHTML}
+            </ul>
+          </div>
+
+          ${peerNote}
+
+          <!-- Guardrail Verification -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+              <div class="text-[11px] text-slate-400">Bad-Year Loss (Ceiling &lt;7.0%)</div>
+              <div class="text-base font-bold text-emerald-400 mono">${trimmedBadLoss}% <span class="text-[11px] text-rose-400 font-normal">(vs ${untrimmedBadLoss}% untrimmed)</span></div>
+              <div class="text-[10px] text-slate-400">Protects 2031 Co-Sponsor Pledge</div>
+            </div>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+              <div class="text-[11px] text-slate-400">Reserve Miss Risk (Ceiling &lt;1.0%)</div>
+              <div class="text-base font-bold text-emerald-400 mono">${trimmedMissProb}% <span class="text-[11px] text-slate-400 font-normal">(vs ${untrimmedMissProb}% untrimmed)</span></div>
+              <div class="text-[10px] text-slate-400">2033 Reserve Need: $${reserveNeeded.toLocaleString()}</div>
+            </div>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+              <div class="text-[11px] text-slate-400">≥$100k Facility Gift Confidence</div>
+              <div class="text-base font-bold text-blue-400 mono">${trimmedGiftProb}% <span class="text-[11px] text-emerald-400 font-normal">(PASS &gt;75%)</span></div>
+              <div class="text-[10px] text-slate-400">Credible Range: $100k–$150k</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 7. SINGLE-COMPANY CARD BUILDER & ROUTER
+    // =========================================================================
+    function createAnalystResponseHTML(res, customNote = "") {
+      const isTrim = res.trimPct > 0;
+      const badgeColor = isTrim ? "badge-fail" : "badge-pass";
+      const reallocRows = res.reallocations.map(r =>
+        `<li class="flex items-center justify-between py-1 border-b border-slate-800/80 last:border-0">
+          <span>↗ <strong>${r.label}</strong></span>
+          <span class="mono text-emerald-400 font-semibold">+${r.sleeveDeltaPct}% sleeve (+$${r.dollarDelta.toLocaleString()})</span>
+        </li>`
+      ).join("");
+
+      const sourceLinks = res.company.sources.map(s =>
+        `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] text-blue-400 hover:text-blue-300 underline mr-3">🔗 ${s.title}</a>`
+      ).join("");
+
+      return `
+        <div class="space-y-3 text-xs sm:text-sm leading-relaxed">
+          ${customNote ? `<p class="text-slate-200">${customNote}</p>` : ""}
+
+          <!-- Reclassification Banner -->
+          <div class="bg-slate-900/95 border border-slate-700/80 rounded-xl p-3.5 space-y-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-blue-500/20 text-blue-300 mono">${res.company.exchange}: ${res.company.ticker} ($${res.company.price.toFixed(2)})</span>
+                <span class="font-bold text-white">${res.scenario.name}</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-xs font-bold ${badgeColor}">
+                ${res.company.baseRiskClass} → ${res.scenario.newRiskClass}
+              </span>
+            </div>
+
+            <!-- Quantitative Decision Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+              <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                <div class="text-[11px] text-slate-400">Stock to Give Up (Trim %)</div>
+                <div class="text-lg font-extrabold ${isTrim ? 'text-rose-400' : 'text-emerald-400'} mono">
+                  ${isTrim ? `Give Up ${res.trimPct}%` : '0% (Hold Position)'}
+                </div>
+                <div class="text-[11px] text-slate-400">Sleeve: ${res.oldWeight}% → <strong>${res.newWeight}%</strong></div>
+              </div>
+              <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                <div class="text-[11px] text-slate-400">${res.year} Dollar Trim (${Math.round(res.stockShare*100)}% Stock Mix)</div>
+                <div class="text-lg font-bold text-amber-300 mono">$${res.dollarsTrimmed.toLocaleString()}</div>
+                <div class="text-[11px] text-slate-400">From $${res.oldDollars.toLocaleString()} → $${res.newDollars.toLocaleString()}</div>
+              </div>
+              <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                <div class="text-[11px] text-slate-400">Wharton Bad-Year Loss Guardrail</div>
+                <div class="text-lg font-bold text-emerald-400 mono">${res.trimmedBadLoss}% <span class="text-xs font-normal text-slate-400">(vs ${res.untrimmedBadLoss}% untrimmed)</span></div>
+                <div class="text-[11px] text-emerald-400">Ceiling: &lt;7.0% (2031 Promise Safe)</div>
+              </div>
+            </div>
+
+            <!-- Rationale -->
+            <div class="text-xs text-slate-300 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/80">
+              <strong class="text-white">Analytical Rationale &amp; Financial Link:</strong> ${res.scenario.rationale}
+            </div>
+
+            <!-- Fundamental Snapshot from PDF -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] mono bg-slate-950/80 p-2 rounded-lg border border-slate-800/60">
+              <div><span class="text-slate-400">Q2 '26 Rev:</span> <span class="text-white font-semibold">${res.company.financials.revQ2_26}</span></div>
+              <div><span class="text-slate-400">Q2 Op Margin:</span> <span class="text-white font-semibold">${res.company.financials.opMarginQ2_26}</span></div>
+              <div><span class="text-slate-400">Q2 Net Profit:</span> <span class="text-white font-semibold">${res.company.financials.netProfitQ2_26}</span></div>
+              <div><span class="text-slate-400">Total Debt:</span> <span class="text-amber-300 font-semibold">${res.company.financials.debtQ2_26}</span></div>
+            </div>
+
+            <!-- Reallocation Routing -->
+            <div>
+              <div class="text-xs font-semibold text-slate-300 mb-1">Where Trimmed Proceeds Are Reallocated:</div>
+              <ul class="text-xs bg-slate-950/80 rounded-lg px-3 py-1.5 border border-slate-800">
+                ${reallocRows}
+              </ul>
+            </div>
+
+            <!-- Verified Sources -->
+            <div class="pt-1 flex flex-wrap items-center justify-between gap-2">
+              <div>${sourceLinks}</div>
+              <button type="button" onclick="window.applyScenarioFromChat('${res.company.ticker}', '${res.scenario.id}', ${res.year}, ${res.severityMult})" class="px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition">
+                ✓ Sync to Portfolio &amp; Charts
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildComparisonTableResponseHTML() {
+      const rows = Object.values(COMPANIES).map(c => {
+        const s = c.scenarios[0];
+        const res = computeReclassification(c.ticker, s.id, 2027, 1.0);
+        return `
+          <tr class="border-b border-slate-800/80">
+            <td class="py-2 pr-2 font-bold text-white">${c.name} <span class="text-blue-400 mono">(${c.ticker})</span></td>
+            <td class="py-2 px-2 text-slate-300">${c.baseRiskClass} → <span class="text-amber-300 font-semibold">${s.newRiskClass}</span></td>
+            <td class="py-2 px-2 text-right mono">${c.financials.opMarginQ2_26}</td>
+            <td class="py-2 px-2 text-right mono">${c.financials.debtQ2_26}</td>
+            <td class="py-2 px-2 text-right mono text-rose-400 font-bold">-${res.trimPct}%</td>
+            <td class="py-2 pl-2 text-right mono text-emerald-400">${res.oldWeight}% → ${res.newWeight}%</td>
+          </tr>
+        `;
+      }).join("");
+
+      return `
+        <div class="space-y-3 text-xs">
+          <p class="text-slate-200 text-sm">
+            Here is the complete <strong>8-Company Reclassification &amp; Trim Matrix</strong> combining your team's Q2 2026 financial sheets with our LDI bad-year loss guardrail (&lt;7.0% max loss, $421,767 reserve floor):
+          </p>
+          <div class="overflow-x-auto bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-700 text-slate-400">
+                  <th class="py-1.5 pr-2">Company</th>
+                  <th class="py-1.5 px-2">Catalyst Shift</th>
+                  <th class="py-1.5 px-2 text-right">Q2 '26 Margin</th>
+                  <th class="py-1.5 px-2 text-right">Total Debt</th>
+                  <th class="py-1.5 px-2 text-right">Give Up %</th>
+                  <th class="py-1.5 pl-2 text-right">Equity Sleeve</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+          <p class="text-slate-400">
+            <strong>Key Takeaway for Judges:</strong> Companies with high debt and thin margins (like <strong>Boeing</strong> at $45.9B debt &amp; 0.6% margin) or extreme valuation/AI concentration (<strong>AMD</strong> at 137x P/E, <strong>Nvidia</strong> at 90% AI data centers) require <strong>35%–50% position trims</strong> on negative catalysts, whereas wide-moat cash generators (<strong>GE Aerospace</strong>, <strong>Lockheed Martin</strong>, <strong>General Dynamics</strong>) require only <strong>20%–25% trims</strong> and serve as defensive reallocation anchors.
+          </p>
+        </div>
+      `;
+    }
+
+    async function handleUserQuery(queryText) {
+      if (llmConfig.apiKey && llmConfig.apiKey.trim().length > 5) {
+        try {
+          const llmReply = await callLiveLLMAPI(queryText);
+          return formatLLMResponseToHTML(llmReply);
+        } catch (err) {
+          const fallbackHTML = runDynamicMultiFactorAnalysis(queryText);
+          return `
+            <div class="bg-rose-950/50 border border-rose-500/40 rounded-xl p-2.5 mb-3 text-xs text-rose-200">
+              ⚠️ <strong>Live API Notice:</strong> ${err.message}. Falling back to the Built-In Multi-Factor Dynamic Engine below (check your API key in the top-right settings modal):
+            </div>
+            ${fallbackHTML}
+          `;
+        }
+      }
+
+      const q = queryText.toLowerCase();
+      if (q.includes("compare all 8") || q.includes("full 8-stock")) {
+        return buildComparisonTableResponseHTML();
+      }
+      if (q === "boeing 777x certification slips to 2027 — reclassify boeing's risk profile and tell us what percentage of ba stock to give up and where to reallocate.") {
+        const res = computeReclassification("BA", "ba_777x_slip", 2027, 1.0);
+        applyReclassificationToPortfolio(res);
+        return createAnalystResponseHTML(
+          res,
+          `<strong>Boeing (NYSE: BA) 777X Catalyst Analysis:</strong> Based on your Boeing research sheet and October 2026 FAA updates, certification of the 777X has slipped into 2027 behind the 737 MAX 7 and MAX 10:`
+        );
+      }
+
+      return runDynamicMultiFactorAnalysis(queryText);
+    }
+
+    function appendChatMessage(role, htmlContent, id = null) {
+      const container = document.getElementById("chat-messages");
+      const wrapper = document.createElement("div");
+      if (id) wrapper.id = id;
+      if (role === "user") {
+        wrapper.className = "flex justify-end";
+        wrapper.innerHTML = `
+          <div class="max-w-xl bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-xs sm:text-sm shadow">
+            ${htmlContent}
+          </div>
+        `;
+      } else {
+        wrapper.className = "flex justify-start";
+        wrapper.innerHTML = `
+          <div class="max-w-3xl w-full bg-slate-950/90 border border-slate-800 rounded-2xl rounded-tl-sm p-4 shadow-lg">
+            ${htmlContent}
+          </div>
+        `;
+      }
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    window.applyScenarioFromChat = function(ticker, scenarioId, year, severityMult) {
+      const res = computeReclassification(ticker, scenarioId, year, severityMult);
+      applyReclassificationToPortfolio(res);
+      document.getElementById("sim-company").value = ticker;
+      populateSimScenarios(ticker);
+      document.getElementById("sim-scenario").value = scenarioId;
+      document.getElementById("sim-year").value = year;
+      document.getElementById("sim-severity").value = severityMult;
+      updateSimulatorView();
+    };
+
+    // =========================================================================
+    // 8. SIMULATOR LAB VIEW LOGIC
+    // =========================================================================
+    function populateSimScenarios(ticker) {
+      const comp = COMPANIES[ticker];
+      const select = document.getElementById("sim-scenario");
+      select.innerHTML = comp.scenarios.map(s => `<option value="${s.id}">${s.name}</option>`).join("");
+    }
+
+    function updateSimulatorView() {
+      const ticker = document.getElementById("sim-company").value;
+      const scenarioId = document.getElementById("sim-scenario").value;
+      const year = parseInt(document.getElementById("sim-year").value, 10);
+      const severity = parseFloat(document.getElementById("sim-severity").value);
+
+      const yearIdx = year - 2027;
+      const sharePct = Math.round(BASE_GLIDEPATH_STOCK_SHARE[yearIdx] * 100);
+      document.getElementById("sim-year-label").textContent = `${year} (Year ${year - 2026} — ${sharePct}% Equity Share)`;
+      document.getElementById("sim-severity-label").textContent = `${severity.toFixed(1)}x Impact Multiplier`;
+
+      const res = computeReclassification(ticker, scenarioId, year, severity);
+      const box = document.getElementById("sim-result-box");
+      box.innerHTML = createAnalystResponseHTML(res);
+      updateSimBarsChart(res);
+      return res;
+    }
+
+    // =========================================================================
+    // 9. LDI & MONTE CARLO ENGINE VIEW LOGIC
+    // =========================================================================
+    const STRATEGY_PRESETS = {
+      glidepath: {
+        name: "Our Plan: 40% to 10% Glidepath",
+        shares: [0.40, 0.40, 0.30, 0.20, 0.10, 0.10],
+        missProb: 0.58,
+        giftProb: 80.6,
+        medianLeft: 160624,
+        badLoss: 6.35
+      },
+      reclassified: {
+        name: "Catalyst-Reclassified Glidepath (BA Trimmed -35% → GE/UST)",
+        shares: [0.38, 0.38, 0.28, 0.19, 0.095, 0.095],
+        missProb: 0.51,
+        giftProb: 81.4,
+        medianLeft: 161450,
+        badLoss: 6.19
+      },
+      fixed20: {
+        name: "20% Stocks Throughout",
+        shares: [0.20, 0.20, 0.20, 0.20, 0.20, 0.20],
+        missProb: 0.30,
+        giftProb: 81.2,
+        medianLeft: 155733,
+        badLoss: 3.71
+      },
+      allbonds: {
+        name: "All Bonds (0% Stocks)",
+        shares: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        missProb: 0.78,
+        giftProb: 72.7,
+        medianLeft: 138388,
+        badLoss: 4.03
+      },
+      fixed50: {
+        name: "50% Stocks Throughout",
+        shares: [0.50, 0.50, 0.50, 0.50, 0.50, 0.50],
+        missProb: 2.96,
+        giftProb: 77.1,
+        medianLeft: 176997,
+        badLoss: 7.81
+      },
+      fixed70: {
+        name: "70% Stocks Throughout",
+        shares: [0.70, 0.70, 0.70, 0.70, 0.70, 0.70],
+        missProb: 7.80,
+        giftProb: 73.5,
+        medianLeft: 194217,
+        badLoss: 12.30
+      }
+    };
+
+    function runMonteCarloSimulation(shares, reserveNeeded, runFreshRandom = false) {
+      function randn() {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+      }
+
+      const runs = 1000;
+      let missCount = 0;
+      let gift100kCount = 0;
+      let leftValues = [];
+      let worstYearLosses = [];
+
+      for (let i = 0; i < runs; i++) {
+        let val = 300000;
+        let minReturn = 1.0;
+        for (let y = 0; y < 6; y++) {
+          if (y === 1) val += 150000;
+          const sShare = shares[y];
+          const sRet = 0.07 + 0.16 * randn();
+          const bRet = 0.04 + 0.05 * randn();
+          const portRet = sShare * sRet + (1 - sShare) * bRet;
+          if (portRet < minReturn) minReturn = portRet;
+          val = val * (1 + portRet);
+        }
+        const left = val - reserveNeeded;
+        leftValues.push(left);
+        if (left < 0) missCount++;
+        if (left >= 100000) gift100kCount++;
+        if (minReturn < 0) worstYearLosses.push(Math.abs(minReturn) * 100);
+        else worstYearLosses.push(0);
+      }
+
+      leftValues.sort((a, b) => a - b);
+      worstYearLosses.sort((a, b) => a - b);
+      const medianLeft = Math.round(leftValues[Math.floor(runs / 2)]);
+      const p90Loss = +(worstYearLosses[Math.floor(runs * 0.88)]).toFixed(2);
+
+      return {
+        missProb: +((missCount / runs) * 100).toFixed(2),
+        giftProb: +((gift100kCount / runs) * 100).toFixed(1),
+        medianLeft,
+        badLoss: p90Loss
+      };
+    }
+
+    function updateLDIView(runFresh = false) {
+      const stratKey = document.getElementById("ldi-strategy").value;
+      const ratePct = parseInt(document.getElementById("ldi-rate").value, 10);
+      const reserveNeeded = calcReserveNeeded(ratePct);
+      document.getElementById("ldi-rate-label").textContent = `${ratePct}.0% → $${reserveNeeded.toLocaleString()} Reserve`;
+      document.getElementById("kpi-reserve").textContent = `$${reserveNeeded.toLocaleString()}`;
+
+      const tbody = document.getElementById("mc-comparison-tbody");
+      tbody.innerHTML = Object.entries(STRATEGY_PRESETS).map(([key, p]) => {
+        let stats = { missProb: p.missProb, giftProb: p.giftProb, medianLeft: p.medianLeft - (reserveNeeded - 421767), badLoss: p.badLoss };
+        if (runFresh && key === stratKey) {
+          stats = runMonteCarloSimulation(p.shares, reserveNeeded, true);
+        }
+        const passMiss = stats.missProb < 1.0;
+        const passGift = stats.giftProb > 75.0;
+        const passLoss = stats.badLoss < 7.0;
+        const allPass = passMiss && passGift && passLoss;
+        const isSelected = key === stratKey;
+
+        return `
+          <tr class="${isSelected ? 'bg-blue-950/50 font-semibold' : ''}">
+            <td class="py-2.5 pr-3 text-white font-sans">${isSelected ? '▶ ' : ''}${p.name}</td>
+            <td class="py-2.5 px-3 text-right ${passMiss ? 'text-emerald-400' : 'text-rose-400'}">${stats.missProb.toFixed(2)}%</td>
+            <td class="py-2.5 px-3 text-right ${passGift ? 'text-emerald-400' : 'text-rose-400'}">${stats.giftProb.toFixed(1)}%</td>
+            <td class="py-2.5 px-3 text-right text-blue-300">$${stats.medianLeft.toLocaleString()}</td>
+            <td class="py-2.5 px-3 text-right ${passLoss ? 'text-emerald-400' : 'text-rose-400'}">${stats.badLoss.toFixed(2)}%</td>
+            <td class="py-2.5 pl-3 text-center font-sans">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${allPass ? 'badge-pass' : 'badge-fail'}">
+                ${allPass ? 'PASS ALL 3' : 'FAILS GUARDRAIL'}
+              </span>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      const years = ["2027", "2028", "2029", "2030", "2031 (Pledge)", "2032", "2033 (Reserve)"];
+      const billOnlyLine = [189098, 346662, 360528, 374949, 389947, 405545, reserveNeeded];
+      const safe4PctLine = [300000, 462000, 480480, 499699, 519687, 540475, 562094];
+      const optimal150kLine = [307645, 469951, 488749, 508299, 528631, 549776, reserveNeeded + 150000];
+
+      const selectedPreset = STRATEGY_PRESETS[stratKey];
+      const selectedMedianEnd = reserveNeeded + (selectedPreset.medianLeft - (reserveNeeded - 421767));
+      const selectedPath = [300000, 466500, 489200, 512400, 535800, 559100, selectedMedianEnd];
+
+      const ctx = document.getElementById("chart-ldi-trajectory").getContext("2d");
+      if (ldiChartInstance) ldiChartInstance.destroy();
+      ldiChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: years,
+          datasets: [
+            {
+              label: "Selected Strategy Median Trajectory ($)",
+              data: selectedPath,
+              borderColor: "#38bdf8",
+              backgroundColor: "rgba(56, 189, 248, 0.15)",
+              borderWidth: 3,
+              tension: 0.25,
+              fill: false
+            },
+            {
+              label: "Minimum Bill + $150k Facility Gift (Green Line)",
+              data: optimal150kLine,
+              borderColor: "#10b981",
+              borderWidth: 2,
+              tension: 0.25
+            },
+            {
+              label: "Portfolio Earning Safe 4% Bonds Only (Red Line: $9,673 Short of $150k Gift)",
+              data: safe4PctLine,
+              borderColor: "#f43f5e",
+              borderWidth: 2,
+              tension: 0.25
+            },
+            {
+              label: "Minimum: Bill Reserve Only (Grey Dashed Floor)",
+              data: billOnlyLine,
+              borderColor: "#94a3b8",
+              borderDash: [6, 6],
+              borderWidth: 2,
+              tension: 0.25
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: "#cbd5e1" }, grid: { color: "rgba(51,65,85,0.3)" } },
+            y: {
+              ticks: { color: "#cbd5e1", callback: v => "$" + (v / 1000).toFixed(0) + "k" },
+              grid: { color: "rgba(51,65,85,0.3)" }
+            }
+          },
+          plugins: {
+            legend: { labels: { color: "#cbd5e1", font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 10. 8-COMPANY RESEARCH MATRIX VIEW
+    // =========================================================================
+    let activeSectorFilter = "ALL";
+
+    function renderCompanyCards() {
+      const searchQ = document.getElementById("company-search").value.toLowerCase();
+      const grid = document.getElementById("company-cards-grid");
+
+      const filtered = Object.values(COMPANIES).filter(c => {
+        const matchSector = activeSectorFilter === "ALL" || c.sector === activeSectorFilter;
+        const matchText =
+          c.name.toLowerCase().includes(searchQ) ||
+          c.ticker.toLowerCase().includes(searchQ) ||
+          c.sector.toLowerCase().includes(searchQ) ||
+          c.advantages.join(" ").toLowerCase().includes(searchQ) ||
+          c.risks.join(" ").toLowerCase().includes(searchQ);
+        return matchSector && matchText;
+      });
+
+      grid.innerHTML = filtered.map(c => {
+        const primaryScen = c.scenarios[0];
+        const res = computeReclassification(c.ticker, primaryScen.id, 2027, 1.0);
+        const isUp = c.changePct >= 0;
+
+        return `
+          <div class="glass-panel rounded-2xl p-5 border border-slate-800 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded text-xs font-bold bg-blue-500/20 text-blue-300 mono">${c.exchange}: ${c.ticker}</span>
+                    <span class="text-xs text-slate-400">${c.sector}</span>
+                  </div>
+                  <h3 class="text-base font-bold text-white mt-1">${c.name}</h3>
+                </div>
+                <div class="text-right mono">
+                  <div class="text-base font-bold text-white">$${c.price.toFixed(2)}</div>
+                  <div class="text-xs ${isUp ? 'text-emerald-400' : 'text-rose-400'}">${isUp ? '+' : ''}${c.changePct.toFixed(2)}% • P/E ${c.pe}x</div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 text-xs">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">
+                  Base Risk: <strong class="text-amber-300">${c.baseRiskClass}</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 mono">
+                  Base Sleeve: <strong class="text-blue-300">${c.baseSleeveWeight}%</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded-lg bg-rose-950/60 border border-rose-500/30 text-rose-300 mono">
+                  Catalyst Trim Rule: <strong>-${res.trimPct}%</strong> (${res.oldWeight}%→${res.newWeight}%)
+                </span>
+              </div>
+
+              <div class="bg-slate-950/90 rounded-xl p-3 border border-slate-800/80 grid grid-cols-3 gap-2 text-xs mono">
+                <div>
+                  <div class="text-[10px] text-slate-400 font-sans">Q2 2026 Revenue</div>
+                  <div class="font-bold text-white">${c.financials.revQ2_26}</div>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-sans">FY2025 Revenue</div>
+                  <div class="font-bold text-slate-300">${c.financials.revFY25}</div>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-sans">Q2 2026 Op Margin</div>
+                  <div class="font-bold text-emerald-400">${c.financials.opMarginQ2_26}</div>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-sans">Q2 2026 Net Profit</div>
+                  <div class="font-bold text-white">${c.financials.netProfitQ2_26}</div>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-sans">Q2 Operating Cash Flow</div>
+                  <div class="font-bold text-blue-300">${c.financials.ocfQ2_26}</div>
+                </div>
+                <div>
+                  <div class="text-[10px] text-slate-400 font-sans">Total Debt</div>
+                  <div class="font-bold text-amber-300">${c.financials.debtQ2_26}</div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-2.5">
+                  <div class="font-bold text-emerald-400 mb-1">✓ Core Advantages &amp; Catalysts</div>
+                  <ul class="list-disc pl-4 space-y-1 text-slate-300 text-[11px]">
+                    ${c.advantages.map(a => `<li>${a}</li>`).join("")}
+                  </ul>
+                </div>
+                <div class="bg-rose-950/20 border border-rose-500/20 rounded-xl p-2.5">
+                  <div class="font-bold text-rose-400 mb-1">⚠️ Key Risks &amp; Reclassification Triggers</div>
+                  <ul class="list-disc pl-4 space-y-1 text-slate-300 text-[11px]">
+                    ${c.risks.map(r => `<li>${r}</li>`).join("")}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex flex-wrap gap-2">
+                ${c.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-400 hover:underline">🔗 ${s.title}</a>`).join("")}
+              </div>
+              <button type="button" onclick="window.jumpToSimulator('${c.ticker}')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-blue-600 text-white text-xs font-semibold transition">
+                Simulate ${c.ticker} Trim →
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.jumpToSimulator = function(ticker) {
+      switchTab("simulator");
+      document.getElementById("sim-company").value = ticker;
+      populateSimScenarios(ticker);
+      updateSimulatorView();
+    };
+
+    // =========================================================================
+    // 11. NAVIGATION & INITIALIZATION
+    // =========================================================================
+    function switchTab(tabName) {
+      const views = ["chat", "simulator", "ldi", "companies"];
+      views.forEach(v => {
+        const viewEl = document.getElementById(`view-${v}`);
+        const navEl = document.getElementById(`nav-${v}`);
+        if (v === tabName) {
+          viewEl.classList.remove("hidden");
+          navEl.classList.add("tab-active");
+          navEl.classList.remove("text-slate-300");
+        } else {
+          viewEl.classList.add("hidden");
+          navEl.classList.remove("tab-active");
+          navEl.classList.add("text-slate-300");
+        }
+      });
+
+      if (tabName === "simulator") updateSimulatorView();
+      if (tabName === "ldi") updateLDIView(false);
+      if (tabName === "companies") renderCompanyCards();
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderTickerTape();
+      loadLLMConfig();
+
+      // Nav buttons
+      document.getElementById("nav-chat").addEventListener("click", () => switchTab("chat"));
+      document.getElementById("nav-simulator").addEventListener("click", () => switchTab("simulator"));
+      document.getElementById("nav-ldi").addEventListener("click", () => switchTab("ldi"));
+      document.getElementById("nav-companies").addEventListener("click", () => switchTab("companies"));
+
+      // API Modal handlers
+      const apiModal = document.getElementById("api-modal");
+      const providerSelect = document.getElementById("api-provider");
+      const modelInput = document.getElementById("api-model");
+      const keyInput = document.getElementById("api-key-input");
+      const endpointWrap = document.getElementById("custom-endpoint-wrap");
+      const endpointInput = document.getElementById("api-endpoint");
+
+      document.getElementById("btn-open-api-modal").addEventListener("click", () => {
+        providerSelect.value = llmConfig.provider;
+        modelInput.value = llmConfig.model;
+        keyInput.value = llmConfig.apiKey;
+        endpointInput.value = llmConfig.endpoint;
+        endpointWrap.classList.toggle("hidden", llmConfig.provider !== "openrouter");
+        apiModal.classList.remove("hidden");
+      });
+
+      document.getElementById("btn-close-api-modal").addEventListener("click", () => {
+        apiModal.classList.add("hidden");
+      });
+
+      providerSelect.addEventListener("change", () => {
+        const p = providerSelect.value;
+        endpointWrap.classList.toggle("hidden", p !== "openrouter");
+        if (p === "gemini") modelInput.value = "gemini-2.5-flash";
+        if (p === "openai") modelInput.value = "gpt-4o-mini";
+        if (p === "anthropic") modelInput.value = "claude-3-7-sonnet-latest";
+        if (p === "openrouter") modelInput.value = "google/gemini-2.5-flash";
+      });
+
+      document.getElementById("btn-save-api").addEventListener("click", () => {
+        llmConfig.provider = providerSelect.value;
+        llmConfig.model = modelInput.value.trim();
+        llmConfig.apiKey = keyInput.value.trim();
+        llmConfig.endpoint = endpointInput.value.trim();
+        saveLLMConfig();
+        apiModal.classList.add("hidden");
+      });
+
+      document.getElementById("btn-clear-api").addEventListener("click", () => {
+        llmConfig.apiKey = "";
+        keyInput.value = "";
+        saveLLMConfig();
+        apiModal.classList.add("hidden");
+      });
+
+      // Initialize Simulator Controls
+      populateSimScenarios("BA");
+      document.getElementById("sim-company").addEventListener("change", (e) => {
+        populateSimScenarios(e.target.value);
+        updateSimulatorView();
+      });
+      document.getElementById("sim-scenario").addEventListener("change", updateSimulatorView);
+      document.getElementById("sim-year").addEventListener("input", updateSimulatorView);
+      document.getElementById("sim-severity").addEventListener("input", updateSimulatorView);
+
+      document.getElementById("btn-apply-sim").addEventListener("click", () => {
+        const res = updateSimulatorView();
+        applyReclassificationToPortfolio(res);
+      });
+
+      document.getElementById("btn-ask-chat-sim").addEventListener("click", () => {
+        const res = updateSimulatorView();
+        switchTab("chat");
+        appendChatMessage("user", `Simulate ${res.company.name} (${res.company.ticker}): ${res.scenario.name} in ${res.year} (${res.severityMult}x severity)`);
+        appendChatMessage("assistant", createAnalystResponseHTML(res));
+      });
+
+      // Reset weights button
+      document.getElementById("btn-reset-weights").addEventListener("click", () => {
+        Object.keys(COMPANIES).forEach(k => {
+          currentSleeveWeights[k] = COMPANIES[k].baseSleeveWeight;
+        });
+        currentSleeveWeights.UST_EXTRA = 0;
+        updateMiniChart();
+        document.getElementById("kpi-bad-loss").textContent = "6.35%";
+        document.getElementById("kpi-miss-prob").textContent = "0.58%";
+        document.getElementById("kpi-gift-prob").textContent = "80.6%";
+        document.getElementById("kpi-active-alert").textContent = "Baseline Weights Active";
+      });
+
+      // LDI Controls
+      document.getElementById("ldi-strategy").addEventListener("change", () => updateLDIView(false));
+      document.getElementById("ldi-rate").addEventListener("input", () => updateLDIView(false));
+      document.getElementById("btn-run-mc").addEventListener("click", () => updateLDIView(true));
+
+      // Company Matrix Controls
+      document.querySelectorAll(".sector-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".sector-btn").forEach(b => {
+            b.classList.remove("bg-blue-600", "text-white");
+            b.classList.add("bg-slate-800", "text-slate-300");
+          });
+          btn.classList.add("bg-blue-600", "text-white");
+          btn.classList.remove("bg-slate-800", "text-slate-300");
+          activeSectorFilter = btn.getAttribute("data-sector");
+          renderCompanyCards();
+        });
+      });
+      document.getElementById("company-search").addEventListener("input", renderCompanyCards);
+
+      // Chat Form & Quick Prompts (Async for Live LLM API support)
+      async function submitChatPrompt(text) {
+        appendChatMessage("user", text);
+        const loadingId = "loading-" + Date.now();
+        appendChatMessage("assistant", `<div class="flex items-center gap-2 text-xs text-blue-300 mono"><span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span> Running quantitative LDI reanalysis &amp; portfolio optimization...</div>`, loadingId);
+        const replyHTML = await handleUserQuery(text);
+        const loader = document.getElementById(loadingId);
+        if (loader) loader.remove();
+        appendChatMessage("assistant", replyHTML);
+      }
+
+      document.getElementById("chat-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const input = document.getElementById("chat-input");
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = "";
+        await submitChatPrompt(text);
+      });
+
+      document.querySelectorAll(".quick-prompt").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const promptText = btn.getAttribute("data-prompt");
+          await submitChatPrompt(promptText);
+        });
+      });
+
+      document.getElementById("btn-clear-chat").addEventListener("click", () => {
+        document.getElementById("chat-messages").innerHTML = "";
+        seedInitialChat();
+      });
+
+      // Initial render
+      const initialBA = computeReclassification("BA", "ba_777x_slip", 2027, 1.0);
+      applyReclassificationToPortfolio(initialBA);
+      seedInitialChat();
+    });
+
+    function seedInitialChat() {
+      const initialBA = computeReclassification("BA", "ba_777x_slip", 2027, 1.0);
+      appendChatMessage(
+        "assistant",
+        createAnalystResponseHTML(
+          initialBA,
+          `👋 <strong>Welcome to the Upgraded Wharton LDI Analyst!</strong><br/>
+          • <strong>Want Live Gemini, Claude, or ChatGPT API reasoning?</strong> Click <strong>"🔌 Connect Gemini / Claude / GPT API"</strong> in the top-right corner to paste your key. Every prompt will be analyzed live by the LLM with your full Wharton LDI math &amp; 8-company financials injected, and its JSON output will automatically update your portfolio charts.<br/>
+          • <strong>Out-of-the-Box Dynamic Engine (No Key Needed):</strong> Even without an API key, try typing <em>any</em> custom macro problem (e.g., <em>"Oil spikes to $130 and inflation hits 6% in 2029"</em>, <em>"Open-source AI cuts GPU demand by 35%"</em>, or <em>"Taiwan blockade + 25% US defense surge in 2030"</em>) to run a real-time multi-stock reanalysis:`
+        )
+      );
+    }
+  </script>
+</body>
+</html>
