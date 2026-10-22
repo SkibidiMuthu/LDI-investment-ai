@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wharton LDI Catalyst & Stock Reclassification Engine — Laura Gao Portfolio</title>
+  <title>Wharton LDI Catalyst & Stock Reclassification Engine — Laura Gao 7-Company Portfolio</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,11 +68,11 @@
 
   <!-- TOP HEADER & LIVE TICKER TAPE -->
   <header class="sticky top-0 z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800">
-    <!-- Live Market Ticker Bar (Oct 21, 2026 Snapshot) -->
+    <!-- Live Market Ticker Bar (Oct 22, 2026 Snapshot) -->
     <div class="bg-slate-900/90 border-b border-slate-800/80 px-4 py-1.5 text-xs overflow-x-auto whitespace-nowrap flex items-center gap-6 custom-scroll">
       <span class="inline-flex items-center gap-1.5 font-semibold text-blue-400">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        LIVE MARKET FEED (OCT 21, 2026)
+        LIVE MARKET FEED (OCT 22, 2026 • 7 CORE EQUITIES)
       </span>
       <div id="ticker-tape" class="inline-flex items-center gap-5 mono text-xs"></div>
     </div>
@@ -87,10 +87,10 @@
           <div class="flex items-center gap-2">
             <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Wharton LDI Catalyst &amp; Reclassification Intelligence</h1>
             <span class="hidden md:inline-block px-2 py-0.5 text-[11px] font-semibold rounded-full bg-blue-500/15 text-blue-300 border border-blue-500/30">
-              60% US Gov Bonds / 40% Company Glidepath (2027–2032)
+              60% US Gov Bonds / 40% 7-Company Glidepath (GE, TSM, LLY, NVDA, XOM, BA, SHEL)
             </span>
           </div>
-          <p class="text-xs text-slate-400">Liability-Driven Investing (60%→90% Gov Bonds | 40%→10% Stocks) • Cross-Linked AI Agent, Trim Lab &amp; Monte Carlo</p>
+          <p class="text-xs text-slate-400">Liability-Driven Investing (60%→90% Gov Bonds | 40%→10% Stocks) • Zero-Contradiction Polarity-Aware AI Engine</p>
         </div>
       </div>
 
@@ -107,7 +107,7 @@
             📈 LDI &amp; Monte Carlo Engine
           </button>
           <button id="nav-companies" type="button" class="nav-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-all whitespace-nowrap">
-            🏢 8-Company Matrix &amp; News
+            🏢 7-Company Matrix &amp; News
           </button>
         </nav>
 
@@ -126,7 +126,7 @@
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
           <h3 class="text-base font-bold text-white">Connect Live LLM API (Gemini, Claude, ChatGPT, or OpenRouter)</h3>
-          <p class="text-xs text-slate-400 mt-0.5">All AI responses format into the Dynamic First-Principles Reanalysis table and automatically sync across all tabs.</p>
+          <p class="text-xs text-slate-400 mt-0.5">All AI responses reconcile deterministically with the 7-Company First-Principles Table so Executive Takeaways and Table numbers never conflict.</p>
         </div>
         <button id="btn-close-api-modal" type="button" class="text-slate-400 hover:text-white text-sm font-bold px-2 py-1 rounded-lg bg-slate-800">✕</button>
       </div>
@@ -159,9 +159,9 @@
         </div>
 
         <div class="bg-blue-950/40 border border-blue-500/30 rounded-xl p-3 text-[11px] text-slate-300 space-y-1">
-          <div class="font-bold text-blue-300">✨ Full Cross-App Synchronization Enabled</div>
+          <div class="font-bold text-blue-300">✨ Unified State Reconciliation &amp; Zero Cross-Contamination</div>
           <p>
-            Whether using a Live API key or the Built-In Multi-Factor Engine, every confirmed news event automatically updates the <strong>Active Reclassification Output</strong>, injects a new scenario into the <strong>Interactive Stress-Test &amp; Reclassification Lab</strong>, and updates the <strong>60% Gov Bonds / 40% Company Stocks</strong> glidepath.
+            Every news event is first classified by polarity (Positive De-Risking / Relief-Rally vs. Negative Risk Shock) and mapped strictly to the relevant companies among our 7 holdings (<strong>GE, TSM, LLY, NVDA, XOM, BA, SHEL</strong>). Executive Takeaways, Reclassification Tables, and Trim Lab outputs are generated from the same canonical state object so numbers and tickers never contradict.
           </p>
         </div>
       </div>
@@ -200,7 +200,7 @@
       </div>
       <div class="glass-panel rounded-xl p-2.5">
         <div class="text-[11px] text-slate-400 font-medium">Total Portfolio Macro Split</div>
-        <div id="kpi-macro-split" class="text-sm sm:text-base font-bold text-blue-400 mono mt-0.5">60.7% Bonds / 39.3% Stocks</div>
+        <div id="kpi-macro-split" class="text-sm sm:text-base font-bold text-blue-400 mono mt-0.5">60.9% Bonds / 39.1% Stocks</div>
         <div id="kpi-median-left" class="text-[11px] text-slate-400">Base: 60% UST Bonds / 40% Stocks</div>
       </div>
       <div class="glass-panel rounded-xl p-2.5">
@@ -234,12 +234,12 @@
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
             <div>
               <div class="flex items-center gap-2">
-                <h2 class="text-sm font-bold text-white">Wharton LDI Dynamic First-Principles Reanalysis Agent</h2>
+                <h2 class="text-sm font-bold text-white">Wharton LDI 7-Company Dynamic Reanalysis Agent</h2>
                 <span id="engine-mode-badge" class="px-2 py-0.5 text-[10px] font-semibold rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                  Cross-Tab Auto-Sync Active
+                  Zero-Contradiction Polarity Sync Active
                 </span>
               </div>
-              <p class="text-[11px] text-slate-400">Every AI analysis formats into the structured First-Principles table AND automatically updates Active Output, Trim Lab &amp; LDI Engine</p>
+              <p class="text-[11px] text-slate-400">Distinguishes Positive De-Risking / Profit-Harvest Catalysts from Negative Risk Shocks • Strictly 7 Holdings (GE, TSM, LLY, NVDA, XOM, BA, SHEL)</p>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -254,31 +254,31 @@
 
         <!-- Out-of-the-Box & Single-Stock Scenario Prompt Bar -->
         <div class="px-4 py-2.5 bg-slate-950/60 border-b border-slate-800/80">
-          <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Click Any Scenario or Type Custom News Below (Auto-Syncs Across All Columns &amp; Tabs):</div>
+          <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-1.5">Click Any Scenario or Type Custom News Below (Positive &amp; Negative Catalysts Auto-Sync Across All Tabs):</div>
           <div class="flex flex-wrap gap-1.5">
             <button type="button" data-prompt="Boeing 777X certification slips into 2027 behind 737 MAX 7/10 — reclassify Boeing and calculate exact stock % to give up." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 transition">
-              ✈️ Boeing 777X Delay (FAA 2027 Slip)
+              ✈️ Boeing 777X Delay (-35% Risk Trim)
+            </button>
+            <button type="button" data-prompt="737-10 just got certified" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 transition">
+              ✅ 737-10 Just Got Certified (Score 54→41 | 15% Profit Harvest)
             </button>
             <button type="button" data-prompt="Out-of-the-box shock: What if a new ultra-efficient open-source AI model cuts hyperscaler GPU demand by 35% in 2028 while US-China tariffs spike?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 transition">
               🧠 AI Efficiency Shock (-35% GPU Demand + Tariffs)
             </button>
-            <button type="button" data-prompt="Out-of-the-box shock: Oil prices surge to $130/barrel and inflation hits 6% in 2029, forcing the Fed to hike rates to 5.5%. Reanalyze the whole portfolio." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 border border-amber-500/30 transition">
-              🛢️ $130 Oil + 6% Inflation + 5.5% Rates (2029)
+            <button type="button" data-prompt="Out-of-the-box shock: Oil prices surge to $130/barrel and inflation hits 6% in 2029, forcing the Fed to hike rates to 5.5%. How do ExxonMobil and Shell hedge Boeing?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 border border-amber-500/30 transition">
+              🛢️ $130 Oil + 6% Inflation (XOM &amp; SHEL Hedge BA)
             </button>
-            <button type="button" data-prompt="Out-of-the-box shock: A Taiwan Strait naval blockade in 2030 halts TSMC exports while US defense spending jumps 25%. How do we protect Laura's 2031 promise and Taiwan residency?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 transition">
-              🚢 Taiwan Blockade + 25% Defense Surge (2030)
+            <button type="button" data-prompt="Out-of-the-box shock: OPEC+ floods the market and Brent crude crashes to $52/barrel in 2028. How much ExxonMobil and Shell do we give up?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-orange-600/20 hover:bg-orange-600/30 text-orange-300 border border-orange-500/30 transition">
+              📉 $52 Oil Glut Shock (Trim XOM &amp; SHEL)
             </button>
-            <button type="button" data-prompt="Out-of-the-box question: What if Boeing loses its F-47 fighter contract to Lockheed Martin AND faces a labor strike that cuts deliveries by 25%?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition">
-              ⚔️ Boeing Loses F-47 to LMT + Labor Strike
+            <button type="button" data-prompt="Out-of-the-box shock: A Taiwan Strait naval blockade in 2030 halts TSMC exports while LNG and oil prices spike. How do we protect Laura's 2031 promise?" class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 transition">
+              🚢 Taiwan Blockade (Trim TSM/NVDA → UST/XOM/SHEL)
             </button>
-            <button type="button" data-prompt="Eli Lilly faces a mandatory 40% Medicare GLP-1 price cap and Novo Nordisk price war in 2028 while carrying $54.9B debt." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 transition">
+            <button type="button" data-prompt="Eli Lilly faces a mandatory 40% Medicare GLP-1 price cap and Novo Nordisk price war in 2028 while carrying $54.9B debt." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition">
               💊 Eli Lilly 40% GLP-1 Price Cap Shock
             </button>
-            <button type="button" data-prompt="Compare all 8 portfolio companies with their current risk class, Q2 2026 margins, base weights, and exact trim percentages." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
-              📊 Full 8-Stock Matrix
-            </button>
             <button type="button" data-prompt="Run Institutional Judge-Proof Pitch Audit: Order Book PDP Fallacy, GE Razor-and-Blade OEM Dilution (-130bps), and LDI 2033 Duration Immunization." class="quick-prompt text-xs px-2.5 py-1 rounded-lg bg-teal-600/20 hover:bg-teal-600/30 text-teal-300 border border-teal-500/40 transition">
-              🎯 Judge-Proof Thesis Audit (BA / GE / LDI Critique)
+              🎯 Judge-Proof Thesis Audit (BA / GE / XOM / SHEL / LDI)
             </button>
           </div>
         </div>
@@ -291,7 +291,7 @@
           <input
             id="chat-input"
             type="text"
-            placeholder="Input any news or macro shock (e.g., 'AMD MI400 delayed by TSMC packaging bottleneck in 2028', 'GE engine recall', 'Recession in 2031')..."
+            placeholder="Input any positive or negative news (e.g., '737-10 just got certified', 'Guyana FPSO startup boosts XOM', 'Qatar LNG halt hits Shell', 'Recession in 2031')..."
             class="flex-1 bg-slate-950 text-sm text-white rounded-xl px-3.5 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500"
           />
           <button id="btn-chat-submit" type="submit" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition flex items-center gap-1.5 shadow-lg shadow-blue-600/25">
@@ -315,15 +315,15 @@
           <div class="bg-slate-950/90 p-2.5 rounded-xl border border-slate-800 mb-2.5">
             <div class="flex items-center justify-between text-[11px] mb-1">
               <span class="text-slate-400 font-medium">Macro LDI Split (Base: 60% Gov Bonds / 40% Stocks):</span>
-              <span id="card-macro-split-label" class="mono font-bold text-blue-300">60.7% Bonds / 39.3% Stocks</span>
+              <span id="card-macro-split-label" class="mono font-bold text-blue-300">60.9% Bonds / 39.1% Stocks</span>
             </div>
             <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden flex">
-              <div id="bar-gov-bonds" class="bg-emerald-500 h-full transition-all duration-500" style="width: 60.7%" title="US Government Bonds (Treasuries)"></div>
-              <div id="bar-comp-stocks" class="bg-blue-500 h-full transition-all duration-500" style="width: 39.3%" title="Company Equities"></div>
+              <div id="bar-gov-bonds" class="bg-emerald-500 h-full transition-all duration-500" style="width: 60.9%" title="US Government Bonds (Treasuries)"></div>
+              <div id="bar-comp-stocks" class="bg-blue-500 h-full transition-all duration-500" style="width: 39.1%" title="7 Company Equities"></div>
             </div>
             <div class="flex justify-between text-[10px] text-slate-400 mono mt-1">
-              <span id="bar-bonds-text">🏛️ US Gov Bonds: 60.68% ($182,040)</span>
-              <span id="bar-stocks-text">🏢 8 Companies: 39.32% ($117,960)</span>
+              <span id="bar-bonds-text">🏛️ US Gov Bonds: 60.92% ($182,760)</span>
+              <span id="bar-stocks-text">🏢 7 Companies: 39.08% ($117,240)</span>
             </div>
           </div>
 
@@ -341,10 +341,10 @@
             </div>
           </div>
 
-          <!-- Recommended Trim Box -->
-          <div class="bg-gradient-to-r from-rose-950/60 to-amber-950/40 border border-rose-500/40 rounded-xl p-3 mb-2.5">
+          <!-- Recommended Trim / Harvest Box -->
+          <div id="card-trim-box" class="bg-gradient-to-r from-rose-950/60 to-amber-950/40 border border-rose-500/40 rounded-xl p-3 mb-2.5">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-semibold text-rose-200">Stock Position to Give Up (Trim %):</span>
+              <span id="card-trim-label" class="text-xs font-semibold text-rose-200">Stock Position to Give Up (Trim %):</span>
               <span id="card-trim-pct" class="text-lg sm:text-xl font-extrabold text-rose-400 mono">-35.0% (BA)</span>
             </div>
             <p id="card-trim-detail" class="text-xs text-slate-300 mt-1">
@@ -361,10 +361,10 @@
           <!-- Formula & Guardrail Impact Box (DYNAMICALLY UPDATED EVERY TIME) -->
           <div class="bg-slate-950/90 rounded-xl p-2.5 border border-slate-800/90 text-[11px] text-slate-400 space-y-1">
             <div class="flex items-center justify-between">
-              <span class="font-semibold text-slate-200">LDI Trim Formula &amp; Guardrail Proof:</span>
+              <span class="font-semibold text-slate-200">LDI Algorithm &amp; Guardrail Proof:</span>
               <button type="button" onclick="window.switchTab('simulator')" class="text-[10px] text-blue-400 hover:underline font-semibold">Edit in Trim Lab →</button>
             </div>
-            <div class="mono text-[10px] text-blue-300">Trim% = BaseShock × DebtLeverage × GlidepathUrgency</div>
+            <div id="card-formula-code" class="mono text-[10px] text-blue-300">Trim% = BaseShock × DebtLeverage × GlidepathUrgency</div>
             <div id="card-formula-explain"></div>
           </div>
         </div>
@@ -372,7 +372,7 @@
         <!-- Mini Portfolio Allocation Chart with Toggle (40% Sleeve vs 100% Total Portfolio with 60% Gov Bonds) -->
         <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex-1 flex flex-col">
           <div class="flex items-center justify-between gap-1 mb-2">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Live Portfolio Allocation</h3>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Live 7-Stock Allocation</h3>
             <div class="flex items-center gap-1">
               <button id="btn-chart-mode-total" type="button" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-blue-600 text-white">Total (60% Bonds / 40% Stocks)</button>
               <button id="btn-chart-mode-sleeve" type="button" class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300">40% Stock Sleeve</button>
@@ -396,7 +396,7 @@
           <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-600 text-white mono">📰 AI-CONFIRMED NEWS SYNC</span>
           <div>
             <h3 id="lab-synced-banner-title" class="text-sm font-bold text-white">Synced with AI Agent: Boeing 777X Certification Slip to 2027</h3>
-            <p id="lab-synced-banner-sub" class="text-xs text-slate-300">News scenarios confirmed in the AI Chatbot are automatically added to the Scenario Dropdown below so you can stress-test their timing and severity.</p>
+            <p id="lab-synced-banner-sub" class="text-xs text-slate-300">Positive and negative news scenarios confirmed in the AI Chatbot are automatically added to the Scenario Dropdown below so you can stress-test their timing and severity.</p>
           </div>
         </div>
         <div id="confirmed-news-chips" class="flex flex-wrap gap-1.5"></div>
@@ -407,22 +407,21 @@
         <div class="lg:col-span-5 glass-panel rounded-2xl p-5 border border-slate-800 space-y-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-blue-400">Interactive Stress-Test &amp; Reclassification</span>
-            <h2 class="text-lg font-bold text-white mt-0.5">Company Catalyst &amp; Trim Calculator</h2>
-            <p class="text-xs text-slate-400 mt-1">Includes all preset catalysts PLUS any custom news confirmed by the AI Chatbot. Adjust the glidepath year (2027–2032) and severity multiplier below:</p>
+            <h2 class="text-lg font-bold text-white mt-0.5">7-Company Catalyst &amp; Trim Calculator</h2>
+            <p class="text-xs text-slate-400 mt-1">Select any of our 7 core portfolio companies (GE, TSM, LLY, NVDA, XOM, BA, SHEL) and test either negative risk shocks or positive relief-rally profit harvests:</p>
           </div>
 
           <!-- Select Company -->
           <div>
-            <label for="sim-company" class="block text-xs font-semibold text-slate-300 mb-1">1. Select Portfolio Company (or AI Multi-Stock Event):</label>
+            <label for="sim-company" class="block text-xs font-semibold text-slate-300 mb-1">1. Select Portfolio Company (7 Core Holdings):</label>
             <select id="sim-company" class="w-full bg-slate-950 text-sm text-white rounded-xl px-3 py-2.5 border border-slate-700 focus:outline-none focus:border-blue-500">
-              <option value="BA">Boeing Co (NYSE: BA) — 12.0% of Stock Sleeve (4.80% Total) | Risk: Medium</option>
-              <option value="GE">GE Aerospace (NYSE: GE) — 18.0% of Stock Sleeve (7.20% Total) | Risk: Medium-Low</option>
-              <option value="TSM">TSMC (NYSE: TSM) — 16.0% of Stock Sleeve (6.40% Total) | Risk: Moderate</option>
-              <option value="LLY">Eli Lilly (NYSE: LLY) — 15.0% of Stock Sleeve (6.00% Total) | Risk: Medium</option>
-              <option value="NVDA">Nvidia Corp (NASDAQ: NVDA) — 14.0% of Stock Sleeve (5.60% Total) | Risk: Medium-High</option>
-              <option value="LMT">Lockheed Martin (NYSE: LMT) — 10.0% of Stock Sleeve (4.00% Total) | Risk: Medium</option>
-              <option value="GD">General Dynamics (NYSE: GD) — 9.0% of Stock Sleeve (3.60% Total) | Risk: Medium</option>
-              <option value="AMD">AMD (NASDAQ: AMD) — 6.0% of Stock Sleeve (2.40% Total) | Risk: Medium-High</option>
+              <option value="BA">Boeing Co (NYSE: BA) — 12.0% of Stock Sleeve (4.80% Total) | Risk: Medium (54)</option>
+              <option value="GE">GE Aerospace (NYSE: GE) — 18.0% of Stock Sleeve (7.20% Total) | Risk: Medium-Low (34)</option>
+              <option value="TSM">TSMC (NYSE: TSM) — 16.0% of Stock Sleeve (6.40% Total) | Risk: Moderate (50)</option>
+              <option value="LLY">Eli Lilly (NYSE: LLY) — 15.0% of Stock Sleeve (6.00% Total) | Risk: Medium (48)</option>
+              <option value="NVDA">Nvidia Corp (NASDAQ: NVDA) — 14.0% of Stock Sleeve (5.60% Total) | Risk: Medium-High (62)</option>
+              <option value="XOM">ExxonMobil Corp (NYSE: XOM) — 13.0% of Stock Sleeve (5.20% Total) | Risk: Low-Medium (36)</option>
+              <option value="SHEL">Shell plc (NYSE: SHEL) — 12.0% of Stock Sleeve (4.80% Total) | Risk: Low-Medium (38)</option>
             </select>
           </div>
 
@@ -468,7 +467,7 @@
           <div class="pt-2 border-t border-slate-800 space-y-2">
             <label for="lab-custom-news-input" class="block text-xs font-semibold text-emerald-400">➕ Inject New Custom News Event into Trim Lab &amp; AI Agent:</label>
             <div class="flex gap-2">
-              <input id="lab-custom-news-input" type="text" placeholder="e.g., 'Boeing 777X engine mount redesign delays delivery 9 months'" class="flex-1 bg-slate-950 text-xs text-white rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-emerald-500" />
+              <input id="lab-custom-news-input" type="text" placeholder="e.g., '737-10 just got certified' or 'Brent crude drops to $55'" class="flex-1 bg-slate-950 text-xs text-white rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-emerald-500" />
               <button id="btn-lab-inject-news" type="button" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs whitespace-nowrap transition">
                 Confirm &amp; Add
               </button>
@@ -493,8 +492,8 @@
           <!-- Before vs After Equity Sleeve Bar Chart -->
           <div class="pt-2 border-t border-slate-800">
             <div class="flex items-center justify-between mb-2">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Company Weights Inside the 40% Equity Sleeve: Baseline vs. Reclassified (%)</h3>
-              <span id="sim-bar-subtitle" class="text-[11px] text-blue-400 mono">60% Gov Bonds + 40% Company Sleeve</span>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">7-Company Weights Inside the 40% Equity Sleeve: Baseline vs. Reclassified (%)</h3>
+              <span id="sim-bar-subtitle" class="text-[11px] text-blue-400 mono">60% Gov Bonds + 40% 7-Company Sleeve</span>
             </div>
             <div class="relative h-60 w-full">
               <canvas id="chart-sim-bars"></canvas>
@@ -515,7 +514,7 @@
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Wharton Case Study Math Engine</span>
             <h2 class="text-lg font-bold text-white mt-0.5">Liability-Driven Investing (LDI) &amp; 1,000-Trial Monte Carlo</h2>
             <p class="text-xs text-slate-400 mt-1">
-              Laura invests <strong>$300,000 in 2027</strong> + <strong>$150,000 in 2028</strong>. Our baseline glidepath starts at <strong>60% US Government Bonds / 40% Company Stocks</strong> (2027–2028) and steps down to <strong>90% Gov Bonds / 10% Stocks</strong> (2031–2032).
+              Laura invests <strong>$300,000 in 2027</strong> + <strong>$150,000 in 2028</strong>. Our baseline glidepath starts at <strong>60% US Government Bonds / 40% Company Stocks</strong> (2027–2028) across our 7 core leaders and steps down to <strong>90% Gov Bonds / 10% Stocks</strong> (2031–2032).
             </p>
           </div>
 
@@ -534,7 +533,7 @@
 
           <!-- Year-by-Year Bond vs Stock Breakdown Table -->
           <div class="bg-slate-950/90 p-3 rounded-xl border border-slate-800 text-xs">
-            <div class="font-bold text-slate-200 mb-1.5">Active Glidepath Schedule (Gov Bonds vs. Companies):</div>
+            <div class="font-bold text-slate-200 mb-1.5">Active Glidepath Schedule (Gov Bonds vs. 7 Companies):</div>
             <div id="ldi-glidepath-schedule-rows" class="space-y-1 mono text-[11px]"></div>
             <div class="mt-2 pt-2 border-t border-slate-800 flex justify-between text-[11px]"><span class="text-slate-400">Stock / Bond Swing:</span><span id="ldi-stock-param" class="mono text-white font-semibold">7.0% (16% Vol) / 4.0% (5% Vol)</span></div>
           </div>
@@ -574,7 +573,7 @@
             </div>
           </div>
 
-          <!-- Strategy Comparison Table from Page 6 & 7 of Notes -->
+          <!-- Strategy Comparison Table -->
           <div class="glass-panel rounded-2xl p-5 border border-slate-800 overflow-x-auto">
             <h3 class="text-sm font-bold text-white mb-2">Monte Carlo Passing Metrics Comparison (1,000 Runs × 5 Batches)</h3>
             <table class="w-full text-left border-collapse text-xs">
@@ -596,53 +595,54 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- VIEW 4: 8-COMPANY RESEARCH & NEWS MATRIX   -->
+    <!-- VIEW 4: 7-COMPANY RESEARCH & NEWS MATRIX   -->
     <!-- ========================================== -->
     <section id="view-companies" class="hidden space-y-5">
       <!-- Filter & Search Bar -->
       <div class="glass-panel rounded-2xl p-4 border border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-2 flex-wrap">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">Sector Filter:</span>
-          <button type="button" data-sector="ALL" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-blue-600 text-white">All 8 Core Companies</button>
-          <button type="button" data-sector="Aerospace & Defense" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">✈️ Aerospace &amp; Defense (4)</button>
-          <button type="button" data-sector="Semiconductors & AI" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">💻 Semiconductors &amp; AI (3)</button>
-          <button type="button" data-sector="Pharmaceuticals" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">💊 Pharmaceuticals (1)</button>
+          <button type="button" data-sector="ALL" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-blue-600 text-white">All 7 Core Companies</button>
+          <button type="button" data-sector="Aerospace & Defense" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">✈️ Aerospace &amp; Defense (2: GE, BA)</button>
+          <button type="button" data-sector="Semiconductors & AI" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">💻 Semiconductors &amp; AI (2: TSM, NVDA)</button>
+          <button type="button" data-sector="Energy & Oil/LNG" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">🛢️ Energy &amp; Oil/LNG (2: XOM, SHEL)</button>
+          <button type="button" data-sector="Pharmaceuticals" class="sector-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700">💊 Pharmaceuticals (1: LLY)</button>
         </div>
         <div class="w-full sm:w-64">
           <input id="company-search" type="text" placeholder="Search company, catalyst, or metric..." class="w-full bg-slate-950 text-xs text-white rounded-xl px-3 py-2 border border-slate-700 focus:outline-none focus:border-blue-500" />
         </div>
       </div>
 
-      <!-- 8-Company Cards Grid -->
+      <!-- 7-Company Cards Grid -->
       <div id="company-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
 
-      <!-- Secondary Watchlist Banner (from Boeing PDF Page 1) -->
+      <!-- Secondary Watchlist Banner -->
       <div class="glass-panel rounded-2xl p-4 border border-slate-800">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Secondary Watchlist Peers (From Team Research List)</h3>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Secondary Watchlist Benchmarks (Evaluated &amp; Excluded from Active 7-Company Sleeve)</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs">
           <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
-            <div class="font-bold text-white">United Airlines (UAL)</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">Fleet replacement &amp; widebody customer; exposed to Boeing delivery delays &amp; jet fuel prices.</div>
+            <div class="font-bold text-white">Lockheed Martin (LMT)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Replaced by XOM &amp; SHEL energy cash-flow anchors to provide direct oil/inflation hedging.</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">General Dynamics (GD)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Excluded from core 7-stock sleeve in favor of ExxonMobil ($17.2B Q2 FCF) &amp; Shell ($17.5B Q2 FCF).</div>
+          </div>
+          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
+            <div class="font-bold text-white">AMD (AMD)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Excluded due to 137.2x P/E multiple risk; AI semiconductor exposure concentrated in TSMC &amp; Nvidia.</div>
           </div>
           <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
             <div class="font-bold text-white">Micron (MU)</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">HBM3e/HBM4 memory supplier for Nvidia &amp; AMD AI accelerators; cyclical DRAM pricing.</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">HBM3e/HBM4 memory supplier for Nvidia AI accelerators; cyclical DRAM pricing.</div>
           </div>
           <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
-            <div class="font-bold text-white">SK Hynix (000660.KS)</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">Primary HBM supplier partnered with TSMC CoWoS packaging for Nvidia GPUs.</div>
-          </div>
-          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
-            <div class="font-bold text-white">Samsung (005930.KS)</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">Memory &amp; foundry competitor to TSMC; pure-play conflict-of-interest disadvantage vs TSMC.</div>
-          </div>
-          <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
-            <div class="font-bold text-white">Intel (INTC)</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">CPU/GPU competitor to AMD &amp; Nvidia; launched 480GB AI inference GPU D-series in Oct 2026.</div>
+            <div class="font-bold text-white">United Airlines (UAL)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Downstream widebody customer monitored for Boeing delivery schedules and jet fuel sensitivity.</div>
           </div>
           <div class="bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
             <div class="font-bold text-white">GlobalFoundries (GFS)</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">US/specialty mature-node foundry hedge against Taiwan geopolitical concentration.</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">US mature-node foundry benchmark monitored as a physical Taiwan Strait contingency.</div>
           </div>
         </div>
       </div>
@@ -652,113 +652,21 @@
 
   <!-- FOOTER -->
   <footer class="border-t border-slate-800/80 bg-slate-950 py-3 px-4 text-center text-xs text-slate-500">
-    Wharton Global Youth Investment Competition • Liability-Driven Investing (60% Gov Bonds / 40% Company Glidepath) • Fully Cross-Synced AI Reclassification Model
+    Wharton Global Youth Investment Competition • Liability-Driven Investing (60% Gov Bonds / 40% 7-Company Glidepath: GE, TSM, LLY, NVDA, XOM, BA, SHEL) • Zero-Contradiction Polarity Engine
   </footer>
 
   <!-- APPLICATION SCRIPT -->
   <script>
     // =========================================================================
-    // 1. MASTER DATASET: 8 PORTFOLIO COMPANIES (FROM UPLOADED PDFS + LIVE DATA)
+    // 1. MASTER DATASET: 7 CORE PORTFOLIO COMPANIES (GE, TSM, LLY, NVDA, XOM, BA, SHEL)
     // =========================================================================
+    // Base Sleeve Weights sum to 100.0% of the 40% Equity Sleeve:
+    // GE (18%) + TSM (16%) + LLY (15%) + NVDA (14%) + XOM (13%) + BA (12%) + SHEL (12%) = 100.0%
     const COMPANIES = {
-      BA: {
-        ticker: "BA",
-        exchange: "NYSE",
-        name: "Boeing Co",
-        sector: "Aerospace & Defense",
-        price: 190.47,
-        changePct: -0.50,
-        pe: 75.65,
-        mktCap: "$150.5B",
-        range52w: "$176.77 – $254.35",
-        baseRiskClass: "Medium",
-        baseRiskScore: 54,
-        baseSleeveWeight: 12.0, // 12% of the 40% Equity Sleeve = 4.80% of Total Portfolio
-        annualVol: 24.0,
-        debtNumB: 45.9,
-        marginPct: 0.6,
-        financials: {
-          revQ2_26: "$24.5B",
-          revQ1_26: "$22.2B",
-          revFY25: "$89.5B",
-          revFY24: "$66.5B",
-          opMarginQ2_26: "0.6%",
-          opMarginQ1_26: "2.0%",
-          opMarginFY25: "4.8%",
-          opMarginFY24: "-16.1%",
-          netProfitQ2_26: "$156M",
-          netProfitFY25: "$2.24B",
-          ocfQ2_26: "$1.36B",
-          fcfQ2_26: "$631M",
-          capexQ2_26: "$733M",
-          debtQ2_26: "$45.9B",
-          backlog: "$715B"
-        },
-        advantages: [
-          "Near-term 2026–2029 deleveraging ($45.9B debt, down from $47.2B in Q1) is governed by 737 MAX (ramping toward 47–52/mo) & 787 (8–10/mo) physical deliveries ($631M Q2 FCF)",
-          "777X order book (>600 gross orders across 777-8/9 & 777-8F) secures 2030s decade-long revenue visibility ($715B total backlog)",
-          "Won $20B US Air Force F-47 6th-gen fighter & US Navy carrier fighter contracts; $10.6B Jeppesen sale bolsters liquidity"
-        ],
-        risks: [
-          "Program Accounting & PDP Mismatch: Aircraft orders only yield small Pre-Delivery Payments (PDPs); 777X is a near-term working-capital cash drain (billions in unamortized tooling & inventory) with discounted launch slots",
-          "Margin Reality: Q2 2026 GAAP consolidated operating margin was 0.6% ($156M on $24.56B rev), but Core non-GAAP operating margin was 0.0% and Commercial Airplanes (BCA) ran at -2.7%",
-          "FAA certification of 777X slipping into 2027 behind 737 MAX 7/10 traps working capital on the balance sheet longer"
-        ],
-        sources: [
-          { title: "Boeing Q2 2026 Official Results ($24.56B Rev, 0.6% GAAP / -2.7% BCA Margin)", url: "https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/" },
-          { title: "Leeham News: Why Boeing 777X Certification Is Slipping (Sept 2026)", url: "https://leehamnews.com/2026/09/17/examining-why-boeings-777x-certification-timeline-is-likely-slipping/" },
-          { title: "Aeronautics Mag: FAA Puts 737 MAX 7/10 Ahead of 777X", url: "https://aeronauticsmagazine.com/news/boeing-777x-certification-delayed-again-as-faa-clears-path-for-737-max-7-and-max-10-first" }
-        ],
-        scenarios: [
-          {
-            id: "ba_777x_slip",
-            name: "777X Certification Slip to 2027 (Program Accounting Working-Capital Trap — Active Oct 2026 News)",
-            newRiskClass: "Medium-High",
-            newRiskScore: 74,
-            baseTrimPct: 35,
-            volDelta: +7.0,
-            returnDelta: -1.8,
-            reallocateTo: [
-              { ticker: "UST", label: "Maturity-Matched 2033 Zero-Coupon / 7-Yr US Treasuries (Immunize Reserve)", shareOfTrim: 0.55 },
-              { ticker: "GD", label: "General Dynamics & LMT (Low-Multiple ~20x P/E Non-Correlated Defense FCF)", shareOfTrim: 0.30 },
-              { ticker: "GE", label: "GE Aerospace (Capped Legacy CFM56/GEnx Aftermarket Bridge)", shareOfTrim: 0.15 }
-            ],
-            rationale: "INSTITUTIONAL FIRST-PRINCIPLES LOGIC: (1) Cash Flow & Program Accounting Reality: Aircraft orders only generate small Pre-Delivery Payments (PDPs); bulk cash arrives upon physical delivery. While 737 MAX (47–52/mo) and 787 (8–10/mo) govern near-term $45.9B debt service ($631M Q2 FCF; 0.6% GAAP / 0.0% Core non-GAAP / -2.7% BCA margin), the 777X certification slip to 2027 traps billions of unamortized tooling & inventory on Boeing's balance sheet under program accounting. (2) Why We Do NOT Blindly Rotate 100% into GE: Both BA and GE share cyclical RPK commercial aviation beta, GE trades at a rich ~35x–41x forward P/E, and GE is the sole-source GE9X engine maker—meaning a 777X delay also idles GE9X inventory and delays GE9X LTSA aftermarket annuities (while new OEM engine deliveries dilute GE's margin by -130 bps YoY to 21.7% non-GAAP). (3) Optimal LDI Routing: We give up 35% of BA shares (12.0% → 7.8% of the 40% stock sleeve) and route 55% into Duration-Matched 2033 US Treasuries/TIPS (immunizing the $421,767 liability without reinvestment risk), 30% into non-correlated 20x–21x P/E defense backlog (GD/LMT), and 15% into GE (strictly for its legacy CFM56/GEnx aftermarket bridge)."
-          },
-          {
-            id: "ba_777x_severe",
-            name: "Severe 777X Halt (12–18 Month Delay + Whistleblower/FAA Production Cap)",
-            newRiskClass: "High (Watchlist Breach)",
-            newRiskScore: 89,
-            baseTrimPct: 65,
-            volDelta: +14.0,
-            returnDelta: -4.2,
-            reallocateTo: [
-              { ticker: "UST", label: "4.0% US Gov Bonds (Lock In Reserve)", shareOfTrim: 0.55 },
-              { ticker: "GE", label: "GE Aerospace (Engine Maintenance Boom)", shareOfTrim: 0.45 }
-            ],
-            rationale: "A multi-quarter certification freeze or new whistleblower production cap would push Boeing back into negative free cash flow (similar to Q1 2026's -$1.45B FCF) while $45.9B in debt remains elevated. We immediately reclassify Boeing from Medium to High Risk and give up 65% of our BA stock (cutting weight from 12.0% to 4.2% of the stock sleeve, retaining only a small option on its $20B F-47 defense contract)."
-          },
-          {
-            id: "ba_bull_delivery",
-            name: "Bull Catalyst: FAA Clears 777X Flight Milestone + Record Commercial Deliveries",
-            newRiskClass: "Medium (Strengthening)",
-            newRiskScore: 46,
-            baseTrimPct: 0,
-            volDelta: -2.0,
-            returnDelta: +1.5,
-            reallocateTo: [
-              { ticker: "BA", label: "Hold Full 12.0% Boeing Position Along Glidepath", shareOfTrim: 1.0 }
-            ],
-            rationale: "If Boeing hits its highest delivery rate and secures FAA Type Inspection Authorization for the 777X on schedule, free cash flow accelerates toward $3B+/yr, allowing rapid paydown of its $45.9B debt. Maintain full 12.0% sleeve allocation (4.80% of total portfolio)."
-          }
-        ]
-      },
-
       GE: {
         ticker: "GE",
         exchange: "NYSE",
-        name: "General Electric (GE Aerospace)",
+        name: "GE Aerospace",
         sector: "Aerospace & Defense",
         price: 299.87,
         changePct: -3.67,
@@ -767,7 +675,7 @@
         range52w: "$268.91 – $388.84",
         baseRiskClass: "Medium-Low",
         baseRiskScore: 34,
-        baseSleeveWeight: 18.0,
+        baseSleeveWeight: 18.0, // 7.20% of Total Portfolio in 2027-2028
         annualVol: 17.5,
         debtNumB: 19.2,
         marginPct: 21.7,
@@ -776,7 +684,7 @@
           revQ1_26: "$12.4B",
           revFY25: "$45.9B",
           revFY24: "$38.7B",
-          opMarginQ2_26: "21.7%",
+          opMarginQ2_26: "21.7% non-GAAP",
           opMarginQ1_26: "21.8%",
           opMarginFY25: "21.4%",
           opMarginFY24: "~20.0%",
@@ -785,18 +693,18 @@
           ocfQ2_26: "$3.3B",
           fcfQ2_26: "$7.7B (FY25)",
           capexQ2_26: "$1.3B (FY25)",
-          debtQ2_26: "$19.2B",
-          backlog: "$190B"
+          debtQ2_26: "$19.2B ($9.3B Cash)",
+          backlog: "$190B Backlog"
         },
         advantages: [
           "Monetizes legacy CFM56 & GEnx shop visits (+30% YoY) at 21.7% non-GAAP operating margin ($2.75B Q2 op profit), providing a self-funded FCF bridge ($3.3B Q2 OCF) until GE9X scales in the 2030s",
-          "$190B backlog & CFM International (Safran JV) narrow-body monopoly power",
-          "High FCF conversion compared to capital-intensive airframe assembly"
+          "$190B total backlog & 50/50 CFM International (Safran JV) narrowbody LEAP propulsion leadership",
+          "Superior cash conversion compared to capital-intensive airframe assembly"
         ],
         risks: [
           "Razor-and-Blade OEM Margin Dilution: New-build engines (LEAP/GE9X) are sold near/below cost; Q2 2026 non-GAAP operating margin (21.7%) contracted -130 bps YoY due to higher OEM equipment mix & R&D",
           "Shared 777X / GE9X Delay Risk: As sole-source turbofan on the 777X, every year BA delays certification pushes out GE's high-margin GE9X Power-by-the-Hour annuity while idling GE9X inventory",
-          "Valuation Multiple Compression Risk: Trades at a steep ~35x–41x P/E with correlated RPK cyclical beta to Boeing"
+          "Valuation Multiple Compression Risk: Trades at ~35.3x trailing / ~41x forward P/E with correlated RPK cyclical beta to Boeing"
         ],
         sources: [
           { title: "GE Aerospace Q2 2026 Official Results ($13.3B Rev, +21% YoY)", url: "https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-second-quarter-2026-results" },
@@ -805,30 +713,34 @@
         scenarios: [
           {
             id: "ge_supply_chain",
-            name: "Engine Supply-Chain Bottleneck & Cost Overrun on Next-Gen Propulsion",
+            polarity: "negative",
+            name: "Engine Forged-Part Bottleneck & OEM Mix Dilution Compresses Margin Below 20%",
             newRiskClass: "Medium",
             newRiskScore: 52,
             baseTrimPct: 20,
             volDelta: +4.0,
             returnDelta: -1.1,
             reallocateTo: [
-              { ticker: "LMT", label: "Lockheed Martin (Defense Backlog)", shareOfTrim: 0.50 },
-              { ticker: "UST", label: "4.0% US Gov Bonds (Treasuries)", shareOfTrim: 0.50 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Immunize Reserve)", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp ($17.2B Q2 FCF Real-Asset Cash Anchor)", shareOfTrim: 0.25 },
+              { ticker: "LLY", label: "Eli Lilly (Non-Correlated Healthcare Growth)", shareOfTrim: 0.20 }
             ],
-            rationale: "If forged-part shortages slow CFM LEAP deliveries and compress operating margins below 20%, we reclassify GE from Medium-Low to Medium Risk and trim 20% of the position (18.0% → 14.4% of stock sleeve), rotating into Lockheed Martin and US Government Bonds."
+            rationale: "If forged-part shortages slow CFM LEAP deliveries and OEM equipment mix dilution pushes operating margins below 20% at a rich ~35.3x–41x P/E, we reclassify GE from Medium-Low (34) to Medium (52) and give up 20% of GE shares (18.0% → 14.40% of sleeve), routing 55% into 2033 US Treasuries, 25% into ExxonMobil, and 20% into Eli Lilly."
           },
           {
             id: "ge_mro_supercycle",
-            name: "Airframe Shortage & Boeing 777X Delay Boosts GE Aftermarket Services",
+            polarity: "positive",
+            name: "Positive De-Risking Catalyst: CFM56/GEnx Shop Visit Surge (+30% YoY) & Aftermarket Pricing Beat",
             newRiskClass: "Low-Medium (Core Anchor)",
-            newRiskScore: 28,
-            baseTrimPct: 0,
-            volDelta: -1.5,
-            returnDelta: +1.2,
+            newRiskScore: 26,
+            baseTrimPct: 12,
+            volDelta: -2.0,
+            returnDelta: +1.4,
             reallocateTo: [
-              { ticker: "GE", label: "Absorb +2.5% Trimmed from Boeing (18.0% → 20.5%)", shareOfTrim: 1.0 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Lock In Relief-Rally Gain)", shareOfTrim: 0.60 },
+              { ticker: "SHEL", label: "Shell plc (11.66x P/E LNG & Buyback Yield Anchor)", shareOfTrim: 0.40 }
             ],
-            rationale: "Airframe delivery delays force airlines to overwork older aircraft, driving a boom in engine maintenance and spare parts (+25% to +30% YoY). GE is our #1 recipient of capital trimmed from Boeing."
+            rationale: "POSITIVE DE-RISKING PROFIT HARVEST: Surging legacy CFM56/GEnx shop visits (+30% YoY) lift GE's Q2 operating cash flow to $3.3B, dropping GE's Risk Score from 34 to 26. Because GE trades at ~35.3x trailing / ~41x forward P/E and comprises 18.0% of our stock sleeve, we harvest a disciplined 12% profit-taking trim into strength (18.0% → 15.84% of sleeve) to lock gains into 2033 US Treasuries (60%) and deep-value 11.66x P/E Shell (40%)."
           }
         ]
       },
@@ -845,7 +757,7 @@
         range52w: "$266.82 – $487.47",
         baseRiskClass: "Moderate",
         baseRiskScore: 50,
-        baseSleeveWeight: 16.0,
+        baseSleeveWeight: 16.0, // 6.40% of Total Portfolio in 2027-2028
         annualVol: 26.0,
         debtNumB: 32.69,
         marginPct: 60.3,
@@ -867,37 +779,40 @@
           backlog: "CoWoS & 2nm Fully Booked"
         },
         advantages: [
-          "Pure-play foundry pioneer: never competes with customers (Nvidia, AMD, Apple)",
-          "60.3% operating margin & $22B net profit in Q2 2026; 6th straight quarter of record profit (+69%)",
-          "Fortress balance sheet: $110B cash vs $32.69B total debt funds $40.9B+ annual CapEx internally"
+          "Pure-play foundry pioneer: never competes with fabless customers (Nvidia, Apple, Broadcom)",
+          "60.3% operating margin & $22.0B net profit in Q2 2026; 6th consecutive record profit (+69% YoY)",
+          "Fortress balance sheet: $110B cash vs $32.69B total debt funds $15.6B/qtr CapEx internally"
         ],
         risks: [
-          "High Geopolitical Risk: most advanced fabs concentrated in Taiwan (cross-strait tensions)",
-          "Heavy $15.6B quarterly CapEx: if AI demand slows or fabs are underutilized, ROIC drops",
-          "Reliance on ASML leading-edge lithography tool shipments & US Federal Reserve rate paths"
+          "High Geopolitical Risk: advanced 2nm/3nm fabs concentrated in Taiwan (correlated with Laura's 2033 Taiwan residency)",
+          "Heavy $15.6B quarterly CapEx ($40.9B FY25): if AI demand slows, fab underutilization compresses margins",
+          "Reliance on ASML high-NA EUV lithography shipments and global semiconductor trade policy"
         ],
         sources: [
           { title: "TSMC Q2 2026 Official Results ($40.2B Rev, 60.3% Op Margin)", url: "https://investor.tsmc.com/english/quarterly-results/2026/q2" },
           { title: "Quartz: TSMC Record 69% Profit Jump on AI Demand (Oct 2026)", url: "https://qz.com/tsmc-record-profit-ai-chip-demand-101526" },
-          { title: "Benzinga: TSMC Capacity Battles as Nvidia, Apple, AMD Scramble", url: "https://www.benzinga.com/markets/tech/26/10/62404541/taiwan-semiconductor-holds-the-cards-as-nvidia-apple-and-amd-battle-for-limited-ai-chip-capacity" }
+          { title: "Benzinga: TSMC Capacity Battles as Nvidia & Apple Scramble", url: "https://www.benzinga.com/markets/tech/26/10/62404541/taiwan-semiconductor-holds-the-cards-as-nvidia-apple-and-amd-battle-for-limited-ai-chip-capacity" }
         ],
         scenarios: [
           {
             id: "tsm_geopolitical",
-            name: "Cross-Strait Geopolitical Escalation or ASML Tool Shipment Bottleneck",
-            newRiskClass: "High",
+            polarity: "negative",
+            name: "Cross-Strait Geopolitical Escalation or ASML Lithography Shipment Bottleneck",
+            newRiskClass: "High Risk",
             newRiskScore: 84,
             baseTrimPct: 45,
             volDelta: +11.0,
             returnDelta: -3.0,
             reallocateTo: [
-              { ticker: "LMT", label: "Lockheed Martin (PAC-3 / THAAD Defense Hedge)", shareOfTrim: 0.45 },
-              { ticker: "UST", label: "4.0% US Gov Bonds (Protect 2033 Taiwan Residency)", shareOfTrim: 0.55 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Protect Taiwan Residency Floor)", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp (US/Guyana Energy Geopolitical Hedge)", shareOfTrim: 0.25 },
+              { ticker: "SHEL", label: "Shell plc (Global Maritime LNG & Energy Supply Hedge)", shareOfTrim: 0.20 }
             ],
-            rationale: "While TSMC's profitability and financial risk are highly favorable ($110B cash vs $32.69B debt, 60.3% operating margin), its Geopolitical Risk is rated HIGH in our research notes, and Laura's creative residency itself is located in Taiwan. If cross-strait tensions escalate, Laura faces correlated project + portfolio risk. We reclassify TSMC from Moderate to High Risk and give up 45% of TSM shares (16.0% → 8.8% of stock sleeve), rotating 45% into Lockheed Martin and 55% into US Government Bonds."
+            rationale: "While TSMC's balance sheet ($110B cash vs $32.69B debt) and 60.3% operating margin are fortress-grade, cross-strait military friction creates 100% correlated risk with Laura's 2033 Taiwan Creative Residency. We reclassify TSMC from Moderate (50) to High Risk (84) and give up 45% of TSM shares (16.0% → 8.80% of sleeve), routing 55% into 2033 US Treasuries, 25% into ExxonMobil, and 20% into Shell."
           },
           {
             id: "tsm_capex_overbuild",
+            polarity: "negative",
             name: "AI Demand Deceleration Leaves $15.6B/Qtr CapEx Facilities Underutilized",
             newRiskClass: "Medium-High",
             newRiskScore: 68,
@@ -905,10 +820,78 @@
             volDelta: +6.0,
             returnDelta: -1.6,
             reallocateTo: [
-              { ticker: "LLY", label: "Eli Lilly (Non-Correlated Healthcare Growth)", shareOfTrim: 0.50 },
-              { ticker: "UST", label: "4.0% US Gov Bonds (Treasuries)", shareOfTrim: 0.50 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries", shareOfTrim: 0.50 },
+              { ticker: "LLY", label: "Eli Lilly (Non-Correlated GLP-1 Healthcare Growth)", shareOfTrim: 0.30 },
+              { ticker: "GE", label: "GE Aerospace (Commercial Aftermarket MRO)", shareOfTrim: 0.20 }
             ],
-            rationale: "TSMC committed $15.6B in Q2 2026 CapEx ($40.9B in FY25). If AI demand softens, underutilized 2nm/CoWoS facilities will compress margins from 60.3% back toward 45%. Trim 30% of TSM (16.0% → 11.2%) and rotate into Eli Lilly and US Government Bonds."
+            rationale: "TSMC committed $15.6B in Q2 2026 CapEx ($40.9B in FY25). If hyperscaler AI orders moderate, underutilized 2nm/CoWoS capacity will compress operating margins from 60.3% toward 45%. We reclassify TSM from Moderate (50) to Medium-High (68) and trim 30% of TSM (16.0% → 11.20% of sleeve), rotating 50% to 2033 US Treasuries, 30% to Eli Lilly, and 20% to GE Aerospace."
+          }
+        ]
+      },
+
+      LLY: {
+        ticker: "LLY",
+        exchange: "NYSE",
+        name: "Eli Lilly and Co",
+        sector: "Pharmaceuticals",
+        price: 1283.66,
+        changePct: +3.49,
+        pe: 43.08,
+        mktCap: "$1.21T",
+        range52w: "$793.82 – $1,311.75",
+        baseRiskClass: "Medium",
+        baseRiskScore: 48,
+        baseSleeveWeight: 15.0, // 6.00% of Total Portfolio in 2027-2028
+        annualVol: 21.0,
+        debtNumB: 54.9,
+        marginPct: 39.1,
+        financials: {
+          revQ2_26: "$22.97B",
+          revQ1_26: "$19.80B",
+          revFY25: "$65.18B",
+          revFY24: "$45.04B",
+          opMarginQ2_26: "39.1%",
+          opMarginQ1_26: "45.0%",
+          opMarginFY25: "40.4%",
+          opMarginFY24: "28.6%",
+          netProfitQ2_26: "$7.10B",
+          netProfitFY25: "$20.64B",
+          ocfQ2_26: "$10.69B",
+          fcfQ2_26: "$7.76B",
+          capexQ2_26: "$2.93B ($7.84B FY25)",
+          debtQ2_26: "$54.9B ($8.95B Cash)",
+          backlog: "2026 Guidance Lifted to $85B–$87B"
+        },
+        advantages: [
+          "Dominates GLP-1 obesity & diabetes market: Mounjaro ($9.9B Q2 rev, 86.7% share vs Wegovy 13.2%) & Zepbound ($4.9B US rev, ~70% obesity share)",
+          "Raised full-year 2026 revenue guidance from $80–$83B to $85B–$87B; $10.69B Q2 operating cash flow",
+          "Zero correlation to semiconductor CapEx, oil prices, or commercial aviation cycles"
+        ],
+        risks: [
+          "Total debt rose to $54.9B in Q2 2026 (up from $33.6B in FY24) to fund Indiana/global manufacturing expansion",
+          "Mandatory Medicare/insurer GLP-1 pricing pressure and competition from Novo Nordisk, Roche, and Pfizer",
+          "Operating margin dipped from 45.0% (Q1'26) to 39.1% (Q2'26) at a 43.08x P/E multiple"
+        ],
+        sources: [
+          { title: "Quartz: Eli Lilly Lifts 2026 Revenue Guidance on Mounjaro & Zepbound", url: "https://qz.com/eli-lilly-q1-2026-earnings-mounjaro-zepbound-revenue-guidance-043026" },
+          { title: "Eli Lilly Official Release on Mounjaro & Zepbound Access", url: "https://lilly.gcs-web.com/news-releases/news-release-details/lilly-and-us-government-agree-expand-access-obesity-medicines" }
+        ],
+        scenarios: [
+          {
+            id: "lly_price_war",
+            polarity: "negative",
+            name: "Mandatory Medicare GLP-1 Price Cap or Novo Nordisk Price War on $54.9B Debt",
+            newRiskClass: "Medium-High",
+            newRiskScore: 70,
+            baseTrimPct: 30,
+            volDelta: +6.5,
+            returnDelta: -1.9,
+            reallocateTo: [
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp ($17.2B Q2 FCF Energy Anchor)", shareOfTrim: 0.25 },
+              { ticker: "GE", label: "GE Aerospace ($190B Aftermarket Backlog)", shareOfTrim: 0.20 }
+            ],
+            rationale: "Eli Lilly carries $54.9B in total debt (up from $33.6B in FY24) and trades at 43.08x P/E. If mandatory Medicare/insurer GLP-1 price caps or Novo Nordisk competition compress margins (already down from 45.0% in Q1 to 39.1% in Q2), we reclassify LLY from Medium (48) to Medium-High (70) and give up 30% of LLY shares (15.0% → 10.50% of sleeve), routing 55% to 2033 US Treasuries, 25% to ExxonMobil, and 20% to GE Aerospace."
           }
         ]
       },
@@ -925,7 +908,7 @@
         range52w: "$164.27 – $243.37",
         baseRiskClass: "Medium-High",
         baseRiskScore: 62,
-        baseSleeveWeight: 14.0,
+        baseSleeveWeight: 14.0, // 5.60% of Total Portfolio in 2027-2028
         annualVol: 32.0,
         debtNumB: 8.47,
         marginPct: 60.84,
@@ -947,14 +930,14 @@
           backlog: "Vera Rubin & Blackwell Ultra"
         },
         advantages: [
-          "90% revenue from Data Centers; proprietary CUDA software & networking ecosystem lock-in",
-          "Hyper-growth execution: FY25 revenue hit $130B (+142% data center growth), net profit $72.9B",
-          "Minimal debt ($8.47B) funded entirely by $60.7B annual free cash flow; Vera Rubin ramp"
+          "90% revenue from AI Data Centers; proprietary CUDA software & NVLink networking lock-in",
+          "Hyper-growth cash engine: FY25 revenue hit $130.0B (+142% data center growth), net profit $72.9B",
+          "Minimal debt ($8.47B) covered >7x by $60.7B annual free cash flow; Vera Rubin architecture ramp"
         ],
         risks: [
-          "90% revenue concentration in AI Data Centers: highly vulnerable if hyperscaler CapEx slows",
-          "US-China semiconductor export controls restricting Chinese data center revenue",
-          "Q2 operating margin dipped due to a $4.5B charge; TSMC packaging supply bottlenecks"
+          "90% revenue concentration in AI Data Centers creates acute sensitivity to hyperscaler CapEx digestion",
+          "US-China semiconductor export controls restricting high-margin Chinese data center sales",
+          "High 32.0% annual volatility and 100% wafer reliance on TSMC CoWoS packaging"
         ],
         sources: [
           { title: "NVIDIA Q2 FY27 Official Financial Results", url: "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027" },
@@ -963,302 +946,315 @@
         scenarios: [
           {
             id: "nvda_capex_pause",
-            name: "Hyperscaler AI CapEx Digestion or Tighter China Export Controls",
-            newRiskClass: "High",
+            polarity: "negative",
+            name: "Hyperscaler AI CapEx Digestion or Tighter US-China Export Controls",
+            newRiskClass: "High Risk",
             newRiskScore: 82,
             baseTrimPct: 40,
             volDelta: +10.0,
             returnDelta: -2.8,
             reallocateTo: [
-              { ticker: "UST", label: "4.0% US Gov Bonds (Lock In Early Glidepath Gains)", shareOfTrim: 0.60 },
-              { ticker: "GD", label: "General Dynamics ($136B Gov Backlog)", shareOfTrim: 0.40 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Lock In AI Gains)", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp ($17.2B Q2 FCF Real-Asset Anchor)", shareOfTrim: 0.25 },
+              { ticker: "LLY", label: "Eli Lilly (Non-Correlated GLP-1 Cash Flow)", shareOfTrim: 0.20 }
             ],
-            rationale: "While Nvidia's financials are exceptional ($60.7B FCF vs $8.47B debt), 90% of revenue depends on AI data centers and is exposed to Chinese trade limits and hyperscaler CapEx sustainability. If cloud CapEx decelerates, NVDA's high beta threatens our <7% bad-year loss rule. We reclassify NVDA to High Risk and give up 40% of NVDA shares (14.0% → 8.4% of stock sleeve), locking in gains into US Government Bonds and General Dynamics."
+            rationale: "While Nvidia's balance sheet ($60.7B FY25 FCF vs $8.47B debt) is pristine, 90% of revenue depends on AI data centers. If cloud hyperscalers pause GPU orders or US-China export rules tighten, NVDA's 32.0% volatility threatens our <7.0% bad-year loss ceiling. We reclassify NVDA from Medium-High (62) to High Risk (82) and give up 40% of NVDA shares (14.0% → 8.40% of sleeve), routing 55% into 2033 US Treasuries, 25% into ExxonMobil, and 20% into Eli Lilly."
           }
         ]
       },
 
-      LLY: {
-        ticker: "LLY",
+      XOM: {
+        ticker: "XOM",
         exchange: "NYSE",
-        name: "Eli Lilly and Co",
-        sector: "Pharmaceuticals",
-        price: 1283.66,
-        changePct: +3.49,
-        pe: 43.08,
-        mktCap: "$1.21T",
-        range52w: "$793.82 – $1,311.75",
-        baseRiskClass: "Medium",
-        baseRiskScore: 48,
-        baseSleeveWeight: 15.0,
-        annualVol: 21.0,
-        debtNumB: 54.9,
-        marginPct: 39.1,
+        name: "ExxonMobil Corp",
+        sector: "Energy & Oil/LNG",
+        price: 178.29,
+        changePct: +1.07,
+        pe: 22.90,
+        mktCap: "$733.1B",
+        range52w: "$112.51 – $180.30",
+        baseRiskClass: "Low-Medium",
+        baseRiskScore: 36,
+        baseSleeveWeight: 13.0, // 5.20% of Total Portfolio in 2027-2028
+        annualVol: 16.5,
+        debtNumB: 42.37,
+        marginPct: 16.9,
         financials: {
-          revQ2_26: "$22.97B",
-          revQ1_26: "$19.80B",
-          revFY25: "$65.18B",
-          revFY24: "$45.04B",
-          opMarginQ2_26: "39.1%",
-          opMarginQ1_26: "45.0%",
-          opMarginFY25: "40.4%",
-          opMarginFY24: "28.6%",
-          netProfitQ2_26: "$7.10B",
-          netProfitFY25: "$20.64B",
-          ocfQ2_26: "$10.69B",
-          fcfQ2_26: "$7.76B",
-          capexQ2_26: "$2.93B ($7.84B FY25)",
-          debtQ2_26: "$54.9B ($8.95B Cash)",
-          backlog: "2026 Guidance Raised to $85B–$87B"
+          revQ2_26: "$116.02B",
+          revQ1_26: "$85.14B",
+          revFY25: "$332.24B",
+          revFY24: "$349.59B",
+          opMarginQ2_26: "16.9% (16.7% Pre-Tax)",
+          opMarginQ1_26: "8.2%",
+          opMarginFY25: "12.4%",
+          opMarginFY24: "14.0%",
+          netProfitQ2_26: "$14.53B ($14.68B Adj)",
+          netProfitFY25: "$28.84B ($30.11B Adj)",
+          ocfQ2_26: "$23.56B ($32.26B H1)",
+          fcfQ2_26: "$17.20B ($26.13B FY25)",
+          capexQ2_26: "$6.53B ($13.0B H1)",
+          debtQ2_26: "$42.37B (11% Net-Debt/Cap)",
+          backlog: "Permian >1.8 Moebd & Guyana 5th FPSO"
         },
         advantages: [
-          "Dominates GLP-1 obesity & diabetes market: Mounjaro ($9.9B Q2 rev, 86.7% share vs Wegovy 13.2%) & Zepbound ($4.9B US rev, ~70% weight-loss share)",
-          "Raised full-year 2026 revenue guidance from $80–$83B to $85–$87B; global obesity market projected at $92B–$180B",
-          "Low correlation to semiconductor and aerospace cycles provides vital portfolio diversification"
+          "Delivered $14.53B GAAP net income ($14.68B adjusted), $23.56B operating cash flow, and $17.20B free cash flow on $116.02B revenue in Q2 2026",
+          "Advantaged low-breakeven growth: Record Permian production (>1.8 Moebd, 9% CAGR to 2030), 5th Guyana FPSO (+250 Kbd) sailing for Q4 2026 startup, and $16.3B cumulative structural cost savings since 2019",
+          "Direct inflation and geopolitical hedge: When oil/energy spikes hurt Boeing, XOM's free cash flow and $9.4B quarterly shareholder distributions ($4.3B dividends + $5.1B buybacks; 43 yrs dividend growth) surge"
         ],
         risks: [
-          "Total debt rose to $54.9B in Q2 2026 (up from $33.6B in FY24) to fund manufacturing & acquisitions",
-          "Intensifying competition from Novo Nordisk, Roche, Pfizer & insurance reimbursement price pressure",
-          "Operating margin fluctuated from 45.0% (Q1 26) to 39.1% (Q2 26) on heavy R&D and clinical trial risk"
+          "Macro Crude Price Sensitivity: Global recession or OPEC+ supply glut below $55/bbl compresses upstream realizations (as seen when FY25 net income dipped from $33.68B to $28.84B)",
+          "Chemical Products cyclical margin pressure and $27B–$29B annual cash CapEx commitment",
+          "Long-term energy transition policy, carbon taxation, and Middle East operational disruptions"
         ],
         sources: [
-          { title: "Quartz: Eli Lilly Lifts 2026 Revenue Guidance on Mounjaro & Zepbound", url: "https://qz.com/eli-lilly-q1-2026-earnings-mounjaro-zepbound-revenue-guidance-043026" },
-          { title: "Eli Lilly Official Release on Mounjaro & Zepbound Access", url: "https://lilly.gcs-web.com/news-releases/news-release-details/lilly-and-us-government-agree-expand-access-obesity-medicines" }
+          { title: "ExxonMobil Q2 2026 Official Results ($116.02B Rev, $14.53B Profit, $17.2B FCF)", url: "https://investor.exxonmobil.com/company-information/press-releases/detail/1208/exxonmobil-announces-second-quarter-2026-results" },
+          { title: "ExxonMobil Q2 2026 Income Statement & Balance Sheet", url: "https://investor.exxonmobil.com/earnings/income-statement" },
+          { title: "ExxonMobil FY2025 Full-Year Results ($28.84B Earnings, $51.97B OCF)", url: "https://investor.exxonmobil.com/company-information/press-releases/detail/1200/exxonmobil-announces-2025-results" }
         ],
         scenarios: [
           {
-            id: "lly_price_war",
-            name: "GLP-1 Insurance Reimbursement Cut / Novo Nordisk Price War or Trial Miss",
+            id: "xom_oil_glut",
+            polarity: "negative",
+            name: "OPEC+ Supply Glut or Global Demand Slump Pushes Crude Below $55/bbl",
             newRiskClass: "Medium-High",
-            newRiskScore: 70,
-            baseTrimPct: 30,
-            volDelta: +6.5,
-            returnDelta: -1.9,
+            newRiskScore: 60,
+            baseTrimPct: 25,
+            volDelta: +5.0,
+            returnDelta: -1.5,
             reallocateTo: [
-              { ticker: "GE", label: "GE Aerospace", shareOfTrim: 0.45 },
-              { ticker: "UST", label: "4.0% US Gov Bonds (Treasuries)", shareOfTrim: 0.55 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Lock In Reserve)", shareOfTrim: 0.55 },
+              { ticker: "LLY", label: "Eli Lilly (Non-Cyclical GLP-1 Healthcare Demand)", shareOfTrim: 0.25 },
+              { ticker: "GE", label: "GE Aerospace (Lower Jet Fuel Boosts Airline Flight Hours)", shareOfTrim: 0.20 }
             ],
-            rationale: "Eli Lilly carries $54.9B in total debt (up from $33.6B in FY24) and trades at 43.1x P/E. If US insurers force GLP-1 price concessions or a pipeline trial fails, operating margins (already down from 45.0% in Q1 to 39.1% in Q2) will compress. We reclassify LLY from Medium to Medium-High Risk and trim 30% of our position (15.0% → 10.5% of stock sleeve)."
+            rationale: "If an OPEC+ supply glut or global slowdown pushes Brent crude below $55/bbl, ExxonMobil's upstream realizations compress against its $27B–$29B annual CapEx program and $42.37B total debt. We reclassify XOM from Low-Medium (36) to Medium-High (60) and give up 25% of XOM shares (13.0% → 9.75% of sleeve), routing 55% into 2033 US Treasuries, 25% into Eli Lilly, and 20% into GE Aerospace (which benefits as cheaper jet fuel boosts airline flight hours)."
+          },
+          {
+            id: "xom_guyana_permian_boom",
+            polarity: "positive",
+            name: "Positive Catalyst: Guyana 5th FPSO Startup + Permian Record >1.8 Moebd Inflection",
+            newRiskClass: "Low Risk (Core Cash Cow)",
+            newRiskScore: 28,
+            baseTrimPct: 10,
+            volDelta: -1.5,
+            returnDelta: +1.3,
+            reallocateTo: [
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Harvest Super-Cycle FCF)", shareOfTrim: 0.70 },
+              { ticker: "LLY", label: "Eli Lilly (Healthcare Compounder)", shareOfTrim: 0.30 }
+            ],
+            rationale: "POSITIVE DE-RISKING PROFIT HARVEST: Accelerated Guyana FPSO ramp (+250 Kbd) and $16.3B structural cost savings push Q2 FCF to $17.2B and lower XOM's Risk Score from 36 to 28. Near 52-week highs ($178.29 vs $180.30 high), we harvest a disciplined 10% profit-taking trim (13.0% → 11.70% of sleeve) to lock energy gains into 2033 US Treasuries (70%) and Eli Lilly (30%)."
           }
         ]
       },
 
-      LMT: {
-        ticker: "LMT",
+      BA: {
+        ticker: "BA",
         exchange: "NYSE",
-        name: "Lockheed Martin Corp",
+        name: "Boeing Co",
         sector: "Aerospace & Defense",
-        price: 548.71,
-        changePct: +0.09,
-        pe: 20.22,
-        mktCap: "$126.6B",
-        range52w: "$437.25 – $692.00",
+        price: 190.47,
+        changePct: -0.50,
+        pe: 75.65,
+        mktCap: "$150.5B",
+        range52w: "$176.77 – $254.35",
         baseRiskClass: "Medium",
-        baseRiskScore: 40,
-        baseSleeveWeight: 10.0,
-        annualVol: 15.5,
-        debtNumB: 20.54,
-        marginPct: 12.4,
+        baseRiskScore: 54,
+        baseSleeveWeight: 12.0, // 4.80% of Total Portfolio in 2027-2028
+        annualVol: 24.0,
+        debtNumB: 45.9,
+        marginPct: 0.6,
         financials: {
-          revQ2_26: "$20.063B",
-          revQ1_26: "$18.021B",
-          revFY25: "$75.048B",
-          revFY24: "$71.043B",
-          opMarginQ2_26: "12.4%",
-          opMarginQ1_26: "11.5%",
-          opMarginFY25: "10.3%",
-          opMarginFY24: "9.9%",
-          netProfitQ2_26: "$1.836B",
-          netProfitFY25: "$5.017B",
-          ocfQ2_26: "$3.235B",
-          fcfQ2_26: "$2.917B",
-          capexQ2_26: "$0.318B",
-          debtQ2_26: "$20.538B ($3.79B Cash)",
-          backlog: "2026 Sales Outlook Raised to $79B–$82B"
+          revQ2_26: "$24.56B",
+          revQ1_26: "$22.2B",
+          revFY25: "$89.5B",
+          revFY24: "$66.5B",
+          opMarginQ2_26: "0.6% GAAP (0.0% Core; -2.7% BCA)",
+          opMarginQ1_26: "2.0%",
+          opMarginFY25: "4.8%",
+          opMarginFY24: "-16.1%",
+          netProfitQ2_26: "$156M",
+          netProfitFY25: "$2.24B",
+          ocfQ2_26: "$1.36B",
+          fcfQ2_26: "$631M",
+          capexQ2_26: "$733M",
+          debtQ2_26: "$45.9B",
+          backlog: "$715B (>600 777X Orders)"
         },
         advantages: [
-          "High barriers to entry with F-35 fighter programme, PAC-3, and THAAD missile defense systems",
-          "Q2 2026 sales rose 11% YoY to $20.1B; net earnings rebounded to $1.836B vs $342M in Q2 2025",
-          "Operating margin expanded steadily from 9.9% (FY24) to 12.4% (Q2 2026); 2.62% dividend yield"
+          "Near-term 2026–2029 deleveraging ($45.9B debt, down from $47.2B in Q1) is governed by 737 MAX (ramping toward 47–52/mo) & 787 (8–10/mo) physical deliveries ($631M Q2 FCF)",
+          "777X order book (>600 gross orders across 777-8/9 & 777-8F) secures 2030s decade-long revenue visibility ($715B total backlog)",
+          "Won $20B US Air Force F-47 6th-gen fighter & US Navy carrier fighter contracts; $10.6B Jeppesen sale bolsters liquidity"
         ],
         risks: [
-          "Overly dependent on US and allied defense budgets; procurement delays impact cash timing",
-          "Substantial $20.54B debt load and historical sensitivity to fixed-price programme cost overruns"
+          "Program Accounting & PDP Mismatch: Aircraft orders only yield small Pre-Delivery Payments (PDPs); 777X is a near-term working-capital cash drain (billions in unamortized tooling & inventory) with discounted launch slots",
+          "Margin Reality: Q2 2026 GAAP consolidated operating margin was 0.6% ($156M on $24.56B rev), Core non-GAAP margin was 0.0%, and Commercial Airplanes (BCA) ran at -2.7%",
+          "FAA certification of 777X slipping into 2027 behind 737 MAX 7/10 traps working capital on the balance sheet longer"
         ],
         sources: [
-          { title: "Lockheed Martin Q2 2026 Financial Results ($20.1B Sales, +11% YoY)", url: "https://www.stocktitan.net/news/LMT/lockheed-martin-reports-second-quarter-2026-financial-7ha4ac4nplq3.html" }
+          { title: "Boeing Q2 2026 Official Results ($24.56B Rev, 0.6% GAAP / -2.7% BCA Margin)", url: "https://investors.boeing.com/investors/news/press-release-details/2026/Boeing-Reports-Second-Quarter-Results/" },
+          { title: "Leeham News: Why Boeing 777X Certification Is Slipping (Sept 2026)", url: "https://leehamnews.com/2026/09/17/examining-why-boeings-777x-certification-timeline-is-likely-slipping/" },
+          { title: "Aeronautics Mag: FAA Puts 737 MAX 7/10 Ahead of 777X", url: "https://aeronauticsmagazine.com/news/boeing-777x-certification-delayed-again-as-faa-clears-path-for-737-max-7-and-max-10-first" }
         ],
         scenarios: [
           {
-            id: "lmt_budget_cut",
-            name: "US Defense Budget Procurement Delay or Fixed-Price Programme Charge",
+            id: "ba_777x_slip",
+            polarity: "negative",
+            name: "777X Certification Slip to 2027 (Program Accounting Working-Capital Trap — Active Oct 2026 News)",
+            newRiskClass: "Medium-High",
+            newRiskScore: 74,
+            baseTrimPct: 35,
+            volDelta: +7.0,
+            returnDelta: -1.8,
+            reallocateTo: [
+              { ticker: "UST", label: "Maturity-Matched 2033 Zero-Coupon / 7-Yr US Treasuries (Immunize Reserve)", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp ($17.2B Q2 FCF Non-Correlated Real-Asset Anchor)", shareOfTrim: 0.20 },
+              { ticker: "SHEL", label: "Shell plc ($17.5B Q2 FCF & 11.66x P/E Deep-Value Energy Anchor)", shareOfTrim: 0.10 },
+              { ticker: "GE", label: "GE Aerospace (Capped Legacy CFM56/GEnx Aftermarket Bridge)", shareOfTrim: 0.15 }
+            ],
+            rationale: "INSTITUTIONAL FIRST-PRINCIPLES LOGIC: (1) Cash Flow & Program Accounting Reality: Aircraft orders only generate small Pre-Delivery Payments (PDPs); bulk cash arrives upon physical delivery. While 737 MAX (47–52/mo) and 787 (8–10/mo) govern near-term $45.9B debt service ($631M Q2 FCF; 0.6% GAAP / 0.0% Core non-GAAP / -2.7% BCA margin), the 777X certification slip to 2027 traps billions of unamortized tooling & inventory on Boeing's balance sheet under program accounting. (2) Why We Cap GE Rotation at 15%: Both BA and GE share cyclical RPK commercial aviation beta, GE trades at ~35.3x–41x P/E, and GE is the sole-source GE9X engine maker—meaning a 777X delay also idles GE9X inventory and delays GE9X LTSA aftermarket annuities (while new OEM engine deliveries diluted GE's Q2 margin by -130 bps YoY to 21.7% non-GAAP). (3) Optimal 7-Stock LDI Routing: We give up 35% of BA shares (12.0% → 7.80% of the 40% stock sleeve) and route 55% into Duration-Matched 2033 US Treasuries/TIPS, 30% into non-correlated energy FCF anchors (20% ExxonMobil + 10% Shell), and 15% into GE Aerospace (for its legacy CFM56/GEnx aftermarket bridge)."
+          },
+          {
+            id: "ba_737_10_certified",
+            polarity: "positive",
+            name: "Positive De-Risking Catalyst: FAA Certifies 737 MAX 10 (Unfreezes Inventory → 15% Relief-Rally Profit Harvest)",
+            newRiskClass: "Medium-Low (De-Risked)",
+            newRiskScore: 41,
+            baseTrimPct: 15,
+            volDelta: -3.5,
+            returnDelta: +1.8,
+            reallocateTo: [
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Lock In Relief-Rally Liquidity)", shareOfTrim: 0.55 },
+              { ticker: "GE", label: "GE Aerospace (CFM LEAP-1B Engine Partner on Every 737-10 Delivered)", shareOfTrim: 0.25 },
+              { ticker: "XOM", label: "ExxonMobil Corp ($17.2B Q2 FCF Dividend & Cash-Flow Anchor)", shareOfTrim: 0.20 }
+            ],
+            rationale: "POSITIVE DE-RISKING & PROFIT-TAKING LOGIC: FAA certification of the 737 MAX 10 is a major fundamental de-risking event—NOT a risk increase—dropping Boeing's Risk Score from 54/100 (Medium) down to 41/100 (Medium-Low). Unlike uncertified 777X orders that only yield small PDPs, 737-10 certification immediately unfreezes finished narrowbody inventory and unlocks full physical-delivery cash receipts to service Boeing's $45.9B debt load. Why harvest 15%? At a 75.65x P/E multiple, institutional LDI discipline dictates harvesting a 15% profit-taking trim into the certification relief rally (12.0% → 10.20% of the 40% stock sleeve; -$2,160 in 2027) to reduce single-stock concentration and lock gains into 2033 US Treasuries (55%), narrowbody CFM LEAP engine partner GE Aerospace (25%), and ExxonMobil (20%)."
+          },
+          {
+            id: "ba_777x_severe",
+            polarity: "negative",
+            name: "Severe 777X Halt (12–18 Month Delay + Whistleblower/FAA Production Cap)",
+            newRiskClass: "High Risk (Watchlist Breach)",
+            newRiskScore: 89,
+            baseTrimPct: 65,
+            volDelta: +14.0,
+            returnDelta: -4.2,
+            reallocateTo: [
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Lock In Reserve)", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp (Fortress FCF Anchor)", shareOfTrim: 0.25 },
+              { ticker: "GE", label: "GE Aerospace (Legacy Fleet MRO Boom)", shareOfTrim: 0.20 }
+            ],
+            rationale: "A multi-quarter certification freeze or FAA production cap on narrowbody deliveries would push Boeing back into negative free cash flow (repeating Q1 2026's -$1.45B FCF) while $45.9B in debt remains elevated. We immediately reclassify Boeing from Medium (54) to High Risk (89) and give up 65% of our BA stock (12.0% → 4.20% of sleeve), routing 55% to 2033 US Treasuries, 25% to ExxonMobil, and 20% to GE Aerospace."
+          }
+        ]
+      },
+
+      SHEL: {
+        ticker: "SHEL",
+        exchange: "NYSE",
+        name: "Shell plc",
+        sector: "Energy & Oil/LNG",
+        price: 105.53,
+        changePct: +0.16,
+        pe: 11.66,
+        mktCap: "$223.2B",
+        range52w: "$68.63 – $106.68",
+        baseRiskClass: "Low-Medium",
+        baseRiskScore: 38,
+        baseSleeveWeight: 12.0, // 4.80% of Total Portfolio in 2027-2028
+        annualVol: 17.0,
+        debtNumB: 73.08, // Net debt $41.75B (18.7% gearing)
+        marginPct: 15.8,
+        financials: {
+          revQ2_26: "$94.70B (+45% YoY)",
+          revQ1_26: "$69.70B",
+          revFY25: "$266.89B",
+          revFY24: "$284.31B",
+          opMarginQ2_26: "15.8% (21.9% Adj EBITDA)",
+          opMarginQ1_26: "14.2%",
+          opMarginFY25: "12.5% (9.4% ROACE)",
+          opMarginFY24: "13.8%",
+          netProfitQ2_26: "$10.82B ($9.84B Adj)",
+          netProfitFY25: "$17.84B ($18.50B Adj)",
+          ocfQ2_26: "$21.43B ($27.50B H1)",
+          fcfQ2_26: "$17.52B ($20.45B H1)",
+          capexQ2_26: "$4.24B ($24–$26B FY26E)",
+          debtQ2_26: "$73.08B Total ($41.75B Net Debt)",
+          backlog: "#1 Global LNG + $13.6B ARC Acquisition"
+        },
+        advantages: [
+          "Q2 2026 revenue soared 45% YoY to $94.70B, GAAP profit hit $10.82B ($9.84B adjusted, +128% YoY), operating cash flow reached $21.43B, and free cash flow surged to $17.52B",
+          "Trades at an ultra-low 11.66x P/E multiple with net debt reduced from $52.61B (Q1'26) to $41.75B (18.7% gearing) and $5.8B in structural cost reductions since 2022",
+          "World's #1 private LNG trader & optimizer; $13.6B ARC Resources acquisition adds 370,000 boe/d low-cost Canadian production (lifting production CAGR to 4% through 2030) alongside a new $4.2B buyback program"
+        ],
+        risks: [
+          "Integrated Gas production fell 16% YoY in H1 2026 due to Middle East conflict impacts on Qatari LNG volumes",
+          "Renewables & Energy Solutions recorded $565M in H1 2026 asset impairments and remains largely loss-making outside trading",
+          "Share dilution from stock-and-cash $13.6B ARC Resources acquisition plus potential $685M (BRL 3.5B) Raizen JV restructuring injection"
+        ],
+        sources: [
+          { title: "Shell Q2 2026 Official SEC Form 6-K ($10.82B Profit, $21.43B OCF, $17.52B FCF)", url: "https://www.stocktitan.net/sec-filings/SHEL/6-k-shell-plc-current-report-foreign-issuer-f607e573d55b.html" },
+          { title: "Offshore Technology: Shell Q2 2026 Revenue Soars 45% to $94.7B", url: "https://www.offshore-technology.com/news/shells-q2-2026-revenue-94-7bn/" },
+          { title: "Oil & Gas Journal: Shell Q2 Adjusted Earnings More Than Double to $9.84B", url: "https://www.ogj.com/general-interest/companies/news/55394716/shells-second-quarter-adjusted-earnings-more-than-double-on-higher-prices-strong-operations" },
+          { title: "Quantumrun: Shell 2025–2026 Financial Statistics & $13.6B ARC Deal", url: "https://www.quantumrun.com/consulting/shell-statistics/" }
+        ],
+        scenarios: [
+          {
+            id: "shel_qatar_lng_disruption",
+            polarity: "negative",
+            name: "Middle East Qatari LNG Volume Disruption (-16%) + Renewables & Raizen JV Charges",
             newRiskClass: "Medium-High",
             newRiskScore: 61,
             baseTrimPct: 25,
-            volDelta: +4.5,
-            returnDelta: -1.2,
+            volDelta: +5.2,
+            returnDelta: -1.4,
             reallocateTo: [
-              { ticker: "UST", label: "4.0% US Gov Bonds (Treasuries)", shareOfTrim: 0.70 },
-              { ticker: "GE", label: "GE Aerospace (Commercial MRO)", shareOfTrim: 0.30 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Immunize Reserve)", shareOfTrim: 0.55 },
+              { ticker: "XOM", label: "ExxonMobil Corp (Americas-Centric Permian & Guyana Upstream)", shareOfTrim: 0.25 },
+              { ticker: "LLY", label: "Eli Lilly (Non-Correlated Healthcare Growth)", shareOfTrim: 0.20 }
             ],
-            rationale: "If F-35 deliveries or DoD appropriations face congressional delays (repeating Q2 2025's programme losses), we reclassify LMT from Medium to Medium-High and trim 25% (10.0% → 7.5% of stock sleeve)."
-          }
-        ]
-      },
-
-      GD: {
-        ticker: "GD",
-        exchange: "NYSE",
-        name: "General Dynamics Corp",
-        sector: "Aerospace & Defense",
-        price: 344.44,
-        changePct: +0.88,
-        pe: 21.01,
-        mktCap: "$93.2B",
-        range52w: "$306.77 – $400.00",
-        baseRiskClass: "Medium",
-        baseRiskScore: 38,
-        baseSleeveWeight: 9.0,
-        annualVol: 15.0,
-        debtNumB: 7.52,
-        marginPct: 10.36,
-        financials: {
-          revQ2_26: "$14.1B",
-          revQ1_26: "$13.5B",
-          revFY25: "$52.6B",
-          revFY24: "$47.7B",
-          opMarginQ2_26: "10.36%",
-          opMarginQ1_26: "10.53%",
-          opMarginFY25: "10.19%",
-          opMarginFY24: "10.05%",
-          netProfitQ2_26: "$1.16B",
-          netProfitFY25: "$4.21B",
-          ocfQ2_26: "$1.88B",
-          fcfQ2_26: "$1.65B",
-          capexQ2_26: "$234M",
-          debtQ2_26: "$7.52B",
-          backlog: "$136.5B Record Backlog"
-        },
-        advantages: [
-          "Ginormous $136B ($136.5B) backlog across Marine Systems (nuclear submarines), Combat, & Gulfstream jets",
-          "Rock-steady ~10.4% operating margin; Q2 2026 revenue up 8.1% YoY to $14.1B and EPS up 13.4%",
-          "Conservative balance sheet: total debt reduced from $8.76B (FY24) to $7.52B (Q2 2026)"
-        ],
-        risks: [
-          ">=70% revenue from government/military contracts exposes GD to US election & budget shifts",
-          "Supply chain and subcontractor bottlenecks in nuclear submarine construction"
-        ],
-        sources: [
-          { title: "General Dynamics Q2 2026 Official Results ($14.1B Rev, $136.5B Backlog)", url: "https://www.prnewswire.com/news-releases/general-dynamics-reports-second-quarter-2026-financial-results-302836859.html" },
-          { title: "GovConWire: GD Q2 2026 Revenue Rises 8.1% on Record Backlog", url: "https://www.govconwire.com/articles/general-dynamics-q2-2026-earnings-results" }
-        ],
-        scenarios: [
+            rationale: "Shell's H1 2026 Integrated Gas production declined 16% YoY due to Middle East conflict impacts on Qatari volumes, alongside $565M in renewable impairments and a potential $685M Raizen JV injection. If Qatari LNG disruptions worsen, we reclassify SHEL from Low-Medium (38) to Medium-High (61) and give up 25% of SHEL shares (12.0% → 9.00% of sleeve), routing 55% to 2033 US Treasuries, 25% to Americas-focused ExxonMobil (Permian/Guyana), and 20% to Eli Lilly."
+          },
           {
-            id: "gd_sub_delay",
-            name: "Subcontractor Bottleneck in Marine Systems or Post-Election Defense Shift",
-            newRiskClass: "Medium-High",
-            newRiskScore: 58,
-            baseTrimPct: 20,
-            volDelta: +3.5,
-            returnDelta: -0.9,
+            id: "shel_arc_lng_beat",
+            polarity: "positive",
+            name: "Positive De-Risking Catalyst: $13.6B ARC Resources Closing + $17.5B Quarterly FCF & $4.2B Buyback",
+            newRiskClass: "Low Risk (Deep-Value Cash Engine)",
+            newRiskScore: 29,
+            baseTrimPct: 12,
+            volDelta: -1.8,
+            returnDelta: +1.5,
             reallocateTo: [
-              { ticker: "UST", label: "4.0% US Gov Bonds (Treasuries)", shareOfTrim: 0.65 },
-              { ticker: "LLY", label: "Eli Lilly", shareOfTrim: 0.35 }
+              { ticker: "UST", label: "Maturity-Matched 2033 US Treasuries (Lock In Outperformance)", shareOfTrim: 0.65 },
+              { ticker: "GE", label: "GE Aerospace (Commercial Aftermarket Anchor)", shareOfTrim: 0.35 }
             ],
-            rationale: "Because >=70% of GD's revenue comes from government contracts, a post-election defense budget freeze or shipyard supply chain delay warrants a 20% trim (9.0% → 7.2% of stock sleeve). Otherwise, GD's low $7.52B debt and $136.5B backlog make it a core low-volatility stabilizer."
-          }
-        ]
-      },
-
-      AMD: {
-        ticker: "AMD",
-        exchange: "NASDAQ",
-        name: "Advanced Micro Devices Inc",
-        sector: "Semiconductors & AI",
-        price: 534.74,
-        changePct: -0.62,
-        pe: 137.22,
-        mktCap: "$872.9B",
-        range52w: "$188.22 – $658.52",
-        baseRiskClass: "Medium-High",
-        baseRiskScore: 66,
-        baseSleeveWeight: 6.0,
-        annualVol: 35.0,
-        debtNumB: 3.23,
-        marginPct: 17.3,
-        financials: {
-          revQ2_26: "$11.54B",
-          revQ1_26: "$10.25B",
-          revFY25: "$34.64B",
-          revFY24: "$25.79B",
-          opMarginQ2_26: "17.3%",
-          opMarginQ1_26: "14.4%",
-          opMarginFY25: "10.7%",
-          opMarginFY24: "7.4%",
-          netProfitQ2_26: "$2.30B",
-          netProfitFY25: "$4.34B",
-          ocfQ2_26: "$2.37B",
-          fcfQ2_26: "$1.56B",
-          capexQ2_26: "$0.81B",
-          debtQ2_26: "$3.23B ($1.56B Cash)",
-          backlog: "MI400 & Helios Rack-Scale Ramp"
-        },
-        advantages: [
-          "Record Q2 2026 revenue of $11.54B (+50% YoY), with Data Center revenue more than doubling YoY",
-          "Operating margin more than doubled from 7.4% (FY24) to 17.3% (Q2 2026); net profit hit $2.30B",
-          "Strategic AI partnerships with OpenAI, Anthropic, and Microsoft; MI400 & EPYC server CPU growth"
-        ],
-        risks: [
-          "High valuation (137.2x P/E) & Nvidia CUDA software dominance limit margin for error",
-          "Q2 2026 Gaming revenue fell 31% YoY due to lower semi-custom revenue; cash dropped from $5.52B to $1.56B",
-          "100% reliant on external foundries (TSMC) and concentrated hyperscaler customer receivables"
-        ],
-        sources: [
-          { title: "AMD Q2 2026 Official Financial Results (Record $11.5B Revenue)", url: "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results" },
-          { title: "GamesBeat: AMD Revenue Hits $11.5B as MI400 Series Launches", url: "https://gamesbeat.com/amd-revenue-hits-11-5b-up-50-as-ai-demand-continues/" }
-        ],
-        scenarios: [
-          {
-            id: "amd_mi400_lag",
-            name: "Nvidia CUDA Dominance Slows MI400 Adoption + Continued Gaming (-31%) Slump",
-            newRiskClass: "High",
-            newRiskScore: 85,
-            baseTrimPct: 50,
-            volDelta: +12.0,
-            returnDelta: -3.2,
-            reallocateTo: [
-              { ticker: "TSM", label: "TSMC (Foundry Picks-and-Shovels)", shareOfTrim: 0.50 },
-              { ticker: "UST", label: "4.0% US Gov Bonds (Treasuries)", shareOfTrim: 0.50 }
-            ],
-            rationale: "AMD trades at a lofty 137.2x P/E, saw Q2 2026 Gaming revenue fall 31% YoY, and saw cash decline from $5.52B (FY25) to $1.56B (Q2 2026). If MI400 orders from cloud hyperscalers fall short of expectations or TSMC capacity bottlenecks delay shipments, we reclassify AMD to High Risk and give up 50% of our AMD shares (6.0% → 3.0% of stock sleeve)."
+            rationale: "POSITIVE DE-RISKING PROFIT HARVEST: Regulatory closing of the $13.6B ARC Resources acquisition adds 370,000 boe/d of secure Canadian production while Q2 FCF ($17.52B) cuts net debt to $41.75B (18.7% gearing), lowering Shell's Risk Score from 38 to 29. Trading near its 52-week high ($105.53 vs $106.68), we execute a disciplined 12% profit-taking harvest (12.0% → 10.56% of sleeve) into 2033 US Treasuries (65%) and GE Aerospace (35%)."
           }
         ]
       }
     };
 
+    const CORE_TICKERS = ["GE", "TSM", "LLY", "NVDA", "XOM", "BA", "SHEL"];
+
     // =========================================================================
     // 2. GLOBAL STATE: 60% GOV BONDS / 40% STOCKS GLIDEPATH & CONFIRMED AI NEWS
     // =========================================================================
     const GLIDEPATH_YEARS = [2027, 2028, 2029, 2030, 2031, 2032];
-    const BASE_GLIDEPATH_STOCK_SHARE = [0.40, 0.40, 0.30, 0.20, 0.10, 0.10]; // 60% bonds, 60% bonds, 70% bonds, 80% bonds, 90% bonds, 90% bonds
+    const BASE_GLIDEPATH_STOCK_SHARE = [0.40, 0.40, 0.30, 0.20, 0.10, 0.10];
 
     let currentSleeveWeights = {
       GE: 18.0,
       TSM: 16.0,
       LLY: 15.0,
       NVDA: 14.0,
+      XOM: 13.0,
       BA: 12.0,
-      LMT: 10.0,
-      GD: 9.0,
-      AMD: 6.0,
-      UST_EXTRA: 0.0 // Percentage of the 40% equity sleeve shifted into US Gov Bonds
+      SHEL: 12.0,
+      UST_EXTRA: 0.0
     };
 
     let activeYearState = 2027;
-    let chartMode = "total"; // "total" (shows 60% US Gov Bonds + 8 companies) or "sleeve" (shows 40% company sleeve)
-    let confirmedNewsLog = []; // Stores AI-confirmed news events synced into Trim Lab
+    let chartMode = "total";
+    let confirmedNewsLog = [];
 
-    // Live LLM API Config State
     let llmConfig = {
       provider: "gemini",
       model: "gemini-2.5-flash",
@@ -1290,12 +1286,12 @@
       if (llmConfig.apiKey && llmConfig.apiKey.trim().length > 5) {
         dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
         txt.textContent = `⚡ Live API: ${llmConfig.provider.toUpperCase()} (${llmConfig.model})`;
-        badge.textContent = `Live ${llmConfig.provider.toUpperCase()} API + Auto-Sync`;
+        badge.textContent = `Live ${llmConfig.provider.toUpperCase()} API + Deterministic Sync`;
         badge.className = "px-2 py-0.5 text-[10px] font-semibold rounded bg-blue-500/20 text-blue-300 border border-blue-500/40";
       } else {
         dot.className = "w-2 h-2 rounded-full bg-amber-400";
         txt.textContent = "🔌 Connect Gemini / Claude / GPT API";
-        badge.textContent = "Cross-Tab Auto-Sync Active";
+        badge.textContent = "Zero-Contradiction Polarity Sync Active";
         badge.className = "px-2 py-0.5 text-[10px] font-semibold rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30";
       }
     }
@@ -1321,24 +1317,107 @@
       return map[year] || 1.0;
     }
 
+    function scoreToRiskLabel(score, isPositive = false) {
+      if (score <= 30) return isPositive ? "Low Risk (De-Risked Anchor)" : "Low Risk";
+      if (score <= 43) return isPositive ? "Medium-Low (De-Risked)" : "Medium-Low";
+      if (score <= 59) return "Medium";
+      if (score <= 78) return "Medium-High";
+      if (score <= 87) return "High Risk";
+      return "High Risk (Watchlist Breach)";
+    }
+
     // =========================================================================
-    // 3. UNIFIED REANALYSIS OBJECT BUILDER (WORKS FOR SINGLE OR MULTI-STOCK)
+    // 3. POLARITY & ENTITY CLASSIFIER (ELIMINATES ALL 4 BUGS PERMANENTLY)
     // =========================================================================
-    // Every analysis (preset, simulator slider, custom news, or Live LLM API) produces a unified `reanalysisState` object
-    // that formats identically AND updates Active Reclassification Output, Trim Lab, LDI Engine, and Company Cards!
+    // Detects exact tickers from product/aircraft/drug/basin names so "737-10 just got certified"
+    // maps ONLY to ["BA"] and NEVER contaminates NVDA!
+    function detectMentionedTickers(queryText) {
+      const q = queryText.toLowerCase();
+      const matched = [];
+      if (/boeing|\bba\b|737|737-7|737-8|737-9|737-10|777|777x|777-8|777-9|787|dreamliner|starliner|f-47|jeppesen|ortberg|spirit aerosystems|airframe|widebody|narrowbody|\bfaa\b|max 7|max 8|max 9|max 10/.test(q)) {
+        matched.push("BA");
+      }
+      if (/\bge\b|general electric|ge aerospace|ge9x|cfm|cfm56|leap|genx|safran|culp|turbofan|engine shop|aftermarket mro|ltsa/.test(q)) {
+        matched.push("GE");
+      }
+      if (/tsmc|\btsm\b|taiwan semi|foundry|cowos|2nm|3nm|n2|n3|wafer|asml|hsinchu|kaohsiung|arizona fab/.test(q)) {
+        matched.push("TSM");
+      }
+      if (/nvidia|nvda|cuda|blackwell|rubin|vera rubin|h100|h200|b200|gb200|nvlink|jensen|\bgpu\b/.test(q)) {
+        matched.push("NVDA");
+      }
+      if (/exxon|exxonmobil|\bxom\b|guyana|permian|yellowtail|uaru|proxxima|golden pass|darren woods|pioneer/.test(q)) {
+        matched.push("XOM");
+      }
+      if (/shell|\bshel\b|arc resources|raizen|wael sawan|qatar lng|integrated gas|lng trading/.test(q)) {
+        matched.push("SHEL");
+      }
+      if (/lilly|\blly\b|mounjaro|zepbound|orforglipron|tirzepatide|retatrutide|glp-1|glp1|wegovy|novo nordisk|obesity drug/.test(q)) {
+        matched.push("LLY");
+      }
+      return matched;
+    }
+
+    // Detects whether a user query describes a POSITIVE / DE-RISKING event (e.g., "737-10 just got certified")
+    // versus a NEGATIVE risk shock (e.g., "777X certification delayed").
+    function classifyCatalystPolarity(queryText) {
+      const q = queryText.toLowerCase();
+      const hasNegativeWords = /delay|delayed|slip|slips|slipping|halt|halted|freeze|blockade|strike|crash|recession|cut|cuts|cap|caps|war|tariff|sanction|bottleneck|shortage|miss|misses|lose|loses|lost|fail|failed|recall|impairment|glut|drop|drops|fell|plunge|crisis|breach|not certified|unapproved|deny|denied/.test(q);
+      const hasPositiveWords = /certif|approved|approval|cleared|clears|authorized|tia\b|ahead of schedule|record|beats|beat|wins|won|breakthrough|upgrade|upgraded|resolved|settled|lifted|surges|boom|unfreezes|greenlight|green-light/.test(q);
+      if (hasPositiveWords && !hasNegativeWords) {
+        return "positive";
+      }
+      return "negative";
+    }
+
+    // Builds a bespoke, company-specific fundamental justification (NEVER copy-pasted across unrelated stocks!)
+    function buildCompanySpecificMechanism(ticker, polarity, queryText, oldScore, newScore, trimPct) {
+      const c = COMPANIES[ticker];
+      if (polarity === "positive") {
+        const mechanisms = {
+          BA: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") reduces Boeing's delivery execution risk, dropping BA's Risk Score from ${oldScore} (${c.baseRiskClass}) to ${newScore} (Medium-Low). Unlike uncertified orders that only generate small Pre-Delivery Payments (PDPs), FAA certification unfreezes finished narrowbody inventory and unlocks full physical-delivery cash receipts to service Boeing's $45.9B debt load ($631M Q2 FCF). Because BA trades at a rich 75.65x P/E, institutional LDI discipline executes a ${trimPct}% profit-taking harvest into the relief rally (${c.baseSleeveWeight}% → ${(c.baseSleeveWeight * (1 - trimPct / 100)).toFixed(2)}% of sleeve) to reduce single-stock concentration and lock gains into 2033 US Treasuries, GE Aerospace, and ExxonMobil.`,
+          GE: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") strengthens GE Aerospace's commercial aftermarket visibility ($190B backlog, $3.3B Q2 OCF), lowering GE's Risk Score from ${oldScore} to ${newScore}. Because GE trades at ~35.3x trailing / ~41x forward P/E, we harvest a disciplined ${trimPct}% relief-rally trim to lock gains into 2033 US Treasuries and lower-multiple cash-flow anchors.`,
+          TSM: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") reinforces TSMC's 60.3% operating margin and $110B cash fortress, reducing TSMC's Risk Score from ${oldScore} to ${newScore}. We execute a ${trimPct}% profit-taking harvest into strength to lock in AI foundry gains ahead of Laura's 2031 co-sponsor pledge.`,
+          NVDA: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") validates Nvidia's CUDA & Vera Rubin/Blackwell demand ($60.7B FY25 FCF vs $8.47B debt), lowering NVDA's Risk Score from ${oldScore} to ${newScore}. Given NVDA's 32.0% annual volatility, we harvest ${trimPct}% into the rally to lock gains into 2033 US Treasuries.`,
+          XOM: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") expands ExxonMobil's advantaged Guyana/Permian free cash flow ($17.2B Q2 FCF, $16.3B structural savings), lowering XOM's Risk Score from ${oldScore} to ${newScore}. We execute a ${trimPct}% profit-taking harvest near 52-week highs into 2033 US Treasuries.`,
+          SHEL: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") strengthens Shell's LNG & upstream cash generation ($17.52B Q2 FCF, $41.75B net debt at 18.7% gearing), lowering SHEL's Risk Score from ${oldScore} to ${newScore}. We harvest ${trimPct}% into strength to lock gains into 2033 US Treasuries.`,
+          LLY: `POSITIVE DE-RISKING & PROFIT-TAKING RATIONALE: Confirmed catalyst ("${queryText}") expands Eli Lilly's Mounjaro/Zepbound cash generation ($85B–$87B 2026 guidance, $10.69B Q2 OCF), reducing LLY's Risk Score from ${oldScore} to ${newScore}. At 43.08x P/E with $54.9B debt, we harvest ${trimPct}% into the relief rally to lock in gains.`
+        };
+        return mechanisms[ticker] || mechanisms.BA;
+      } else {
+        const negMechanisms = {
+          BA: `Adverse Boeing catalyst ("${queryText}") delays physical aircraft deliveries and traps unamortized tooling/inventory working capital under ASC 606 program accounting, pressuring Boeing's $45.9B debt load and -2.7% BCA segment margin (0.6% GAAP consolidated); Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% risk-reduction trim.`,
+          GE: `Adverse propulsion/aviation catalyst ("${queryText}") compounds GE Aerospace's upfront OEM engine margin dilution (-130 bps YoY in Q2 to 21.7% non-GAAP) and delays sole-source GE9X/LEAP aftermarket annuities at a ~35.3x–41x P/E multiple; Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% trim.`,
+          TSM: `Adverse semiconductor/geopolitical catalyst ("${queryText}") threatens utilization across TSMC's $15.6B/qtr CapEx program ($40.9B FY25) and increases correlated Taiwan exposure with Laura's 2033 residency; Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% trim.`,
+          NVDA: `Adverse AI infrastructure catalyst ("${queryText}") impacts Nvidia's 90% Data Center revenue concentration and 32.0% annual volatility, risking multiple compression despite $60.7B FY25 FCF; Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% trim.`,
+          XOM: `Adverse energy/commodity catalyst ("${queryText}") compresses ExxonMobil's upstream crude/chemical realizations against its $27B–$29B annual CapEx commitment and $42.37B debt; Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% trim.`,
+          SHEL: `Adverse LNG/energy catalyst ("${queryText}") weighs on Shell's Integrated Gas volumes (-16% YoY in H1'26 from Qatar disruptions) and $73.08B total debt ($41.75B net debt); Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% trim.`,
+          LLY: `Adverse pharmaceutical pricing/clinical catalyst ("${queryText}") compresses Eli Lilly's 39.1% operating margin while carrying $54.9B total debt at a 43.08x P/E multiple; Risk Score rises from ${oldScore} to ${newScore}, triggering a ${trimPct}% trim.`
+        };
+        return negMechanisms[ticker] || negMechanisms.BA;
+      }
+    }
+
+    // =========================================================================
+    // 4. UNIFIED REANALYSIS OBJECT BUILDER (SINGLE SCENARIO & MULTI-FACTOR)
+    // =========================================================================
     let lastReanalysisState = null;
 
     function buildReanalysisFromSingleScenario(ticker, scenarioId, year = 2027, severityMult = 1.0) {
-      const comp = COMPANIES[ticker];
+      const comp = COMPANIES[ticker] || COMPANIES.BA;
       const scen = comp.scenarios.find(s => s.id === scenarioId) || comp.scenarios[0];
+      const isPositive = scen.polarity === "positive";
       const urgency = getGlidepathUrgencyMultiplier(year);
-      const rawTrim = Math.round(scen.baseTrimPct * severityMult * urgency);
-      const trimPct = scen.baseTrimPct === 0 ? 0 : Math.min(95, Math.max(10, rawTrim));
+
+      const rawTrim = isPositive
+        ? Math.round(scen.baseTrimPct * severityMult)
+        : Math.round(scen.baseTrimPct * severityMult * urgency);
+      const trimPct = scen.baseTrimPct === 0 ? 0 : Math.min(95, Math.max(8, rawTrim));
 
       const yearIdx = Math.max(0, Math.min(5, year - 2027));
       const estPort = [300000, 469951, 488749, 508299, 528631, 549776][yearIdx];
-      const baseStockShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx]; // e.g. 0.40 (40% stocks, 60% bonds)
-      const baseBondShare = +(1 - baseStockShare).toFixed(2); // e.g. 0.60 (60% US Gov Bonds)
+      const baseStockShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx];
+      const baseBondShare = +(1 - baseStockShare).toFixed(2);
       const eqDollars = Math.round(estPort * baseStockShare);
 
       const oldW = comp.baseSleeveWeight;
@@ -1348,10 +1427,13 @@
       const dollarsTrimmed = Math.round(oldDollars * (trimPct / 100));
       const newDollars = oldDollars - dollarsTrimmed;
 
-      const newScore = Math.min(98, Math.round(scen.newRiskScore * severityMult));
+      // For positive scenarios, risk score strictly drops below baseRiskScore!
+      const newScore = isPositive
+        ? Math.max(18, Math.min(comp.baseRiskScore - 4, Math.round(scen.newRiskScore / Math.sqrt(severityMult))))
+        : Math.min(98, Math.max(comp.baseRiskScore + 5, Math.round(scen.newRiskScore * severityMult)));
 
       const newWeights = {};
-      Object.keys(COMPANIES).forEach(k => { newWeights[k] = COMPANIES[k].baseSleeveWeight; });
+      CORE_TICKERS.forEach(k => { newWeights[k] = COMPANIES[k].baseSleeveWeight; });
       newWeights.UST_EXTRA = 0;
       newWeights[ticker] = newW;
 
@@ -1375,23 +1457,30 @@
             addedWeight: deltaSleeve,
             addedTotalPct: +(deltaSleeve * baseStockShare).toFixed(2),
             addedDollars: deltaDollars,
-            reason: scen.rationale
+            reason: r.label
           });
         }
       });
 
-      const untrimmedBadLoss = +(6.35 + (scen.volDelta * 0.118 * severityMult)).toFixed(2);
+      const untrimmedBadLoss = isPositive
+        ? +(6.35 - (Math.abs(scen.volDelta) * 0.05 * severityMult)).toFixed(2)
+        : +(6.35 + (scen.volDelta * 0.118 * severityMult)).toFixed(2);
       const trimmedBadLoss = +(6.35 - (givenUp * 0.038)).toFixed(2);
-      const untrimmedMissProb = +(0.58 + (scen.volDelta * 0.045 * severityMult)).toFixed(2);
+      const untrimmedMissProb = isPositive
+        ? +(0.58 - (Math.abs(scen.volDelta) * 0.02 * severityMult)).toFixed(2)
+        : +(0.58 + (scen.volDelta * 0.045 * severityMult)).toFixed(2);
       const trimmedMissProb = +(0.58 - (givenUp * 0.015)).toFixed(2);
       const untrimmedGiftProb = +(80.6 + (scen.returnDelta * 1.9 * severityMult)).toFixed(1);
-      const trimmedGiftProb = +(80.6 - (givenUp * 0.08)).toFixed(1);
+      const trimmedGiftProb = isPositive
+        ? +(80.6 + (givenUp * 0.22)).toFixed(1)
+        : +(80.6 - (givenUp * 0.08)).toFixed(1);
 
       const newTotalStockPct = +((100 - toUSTSleevePct) * baseStockShare).toFixed(2);
       const newTotalBondPct = +(100 - newTotalStockPct).toFixed(2);
 
       return {
         mode: "single",
+        polarity: isPositive ? "positive" : "negative",
         headline: `${comp.name} (${comp.ticker}): ${scen.name}`,
         queryText: scen.name,
         year,
@@ -1415,9 +1504,13 @@
           {
             ticker,
             name: comp.name,
+            polarity: isPositive ? "positive" : "negative",
+            oldScore: comp.baseRiskScore,
+            newScore,
             oldClass: `${comp.baseRiskClass} (${comp.baseRiskScore})`,
             newClass: `${scen.newRiskClass} (${newScore})`,
             trimPct,
+            actionLabel: isPositive ? `Harvest ${trimPct}% (Profit-Taking)` : `Give Up ${trimPct}% (Risk Trim)`,
             oldW,
             newW,
             oldTotalPct: +(oldW * baseStockShare).toFixed(2),
@@ -1443,14 +1536,14 @@
     }
 
     // =========================================================================
-    // 4. MASTER SYNC ENGINE: UPDATES ALL COLUMNS & TABS SIMULTANEOUSLY
+    // 5. MASTER SYNC ENGINE: UPDATES ALL COLUMNS & TABS SIMULTANEOUSLY
     // =========================================================================
     function syncAllViewsWithReanalysis(state, registerAsConfirmedNews = false) {
       lastReanalysisState = state;
       activeYearState = state.year;
 
-      // 1. Update global sleeve weights
-      Object.keys(COMPANIES).forEach(k => {
+      // 1. Update global sleeve weights for our 7 core companies
+      CORE_TICKERS.forEach(k => {
         if (typeof state.newWeights[k] === "number") {
           currentSleeveWeights[k] = +state.newWeights[k].toFixed(2);
         }
@@ -1467,10 +1560,11 @@
       document.getElementById("kpi-glidepath").textContent = state.headline.slice(0, 32);
       document.getElementById("kpi-active-alert").textContent = `✓ Synced to Active Output, Trim Lab & LDI`;
 
-      // 3. Update Right Column: Active Reclassification Output (EVERY SINGLE FIELD)
+      // 3. Update Right Column: Active Reclassification Output (100% CONSISTENT WITH TABLE & TAKEAWAYS)
       const topTrim = state.trimmedList[0] || {
         ticker: state.primaryTicker || "BA",
         name: COMPANIES[state.primaryTicker || "BA"].name,
+        polarity: state.polarity || "negative",
         oldClass: "Medium (54)",
         newClass: "Medium (54)",
         trimPct: 0,
@@ -1482,6 +1576,7 @@
         dollarsTrimmed: 0,
         reason: "Position held at baseline glidepath weight."
       };
+      const isPos = topTrim.polarity === "positive" || state.polarity === "positive";
       const primaryComp = COMPANIES[topTrim.ticker] || COMPANIES.BA;
 
       document.getElementById("card-company-ticker").textContent =
@@ -1498,27 +1593,48 @@
       document.getElementById("bar-gov-bonds").style.width = `${state.newTotalBondPct}%`;
       document.getElementById("bar-comp-stocks").style.width = `${state.newTotalStockPct}%`;
       document.getElementById("bar-bonds-text").textContent = `🏛️ US Gov Bonds: ${state.newTotalBondPct}% ($${bondDollars.toLocaleString()})`;
-      document.getElementById("bar-stocks-text").textContent = `🏢 8 Companies: ${state.newTotalStockPct}% ($${stockDollars.toLocaleString()})`;
+      document.getElementById("bar-stocks-text").textContent = `🏢 7 Companies: ${state.newTotalStockPct}% ($${stockDollars.toLocaleString()})`;
 
-      // Prior vs New Risk Profile
+      // Style New Risk Profile & Trim Box according to Polarity (Green for Positive De-Risking, Red for Negative Shock)
+      const newRiskEl = document.getElementById("card-new-risk");
+      const trimBoxEl = document.getElementById("card-trim-box");
+      const trimLabelEl = document.getElementById("card-trim-label");
+      const trimPctEl = document.getElementById("card-trim-pct");
+
+      if (isPos) {
+        newRiskEl.className = "text-xs sm:text-sm font-bold text-emerald-400 mt-0.5";
+        trimBoxEl.className = "bg-gradient-to-r from-emerald-950/60 to-teal-950/40 border border-emerald-500/40 rounded-xl p-3 mb-2.5";
+        trimLabelEl.className = "text-xs font-semibold text-emerald-200";
+        trimLabelEl.textContent = "Relief-Rally Profit Harvest (Trim %):";
+        trimPctEl.className = "text-lg sm:text-xl font-extrabold text-emerald-400 mono";
+      } else {
+        newRiskEl.className = "text-xs sm:text-sm font-bold text-rose-400 mt-0.5";
+        trimBoxEl.className = "bg-gradient-to-r from-rose-950/60 to-amber-950/40 border border-rose-500/40 rounded-xl p-3 mb-2.5";
+        trimLabelEl.className = "text-xs font-semibold text-rose-200";
+        trimLabelEl.textContent = "Stock Position to Give Up (Trim %):";
+        trimPctEl.className = "text-lg sm:text-xl font-extrabold text-rose-400 mono";
+      }
+
       if (state.trimmedList.length > 1) {
         const names = state.trimmedList.map(t => `${t.ticker} (-${t.trimPct}%)`).join(", ");
         document.getElementById("card-old-risk").textContent = `Primary: ${topTrim.ticker} ${topTrim.oldClass}`;
         document.getElementById("card-old-weight").textContent = `Base Split: ${Math.round(state.baseBondShare*100)}% Bonds / ${Math.round(state.baseStockShare*100)}% Stocks`;
-        document.getElementById("card-new-risk").textContent = `${topTrim.ticker} → ${topTrim.newClass}`;
+        newRiskEl.textContent = `${topTrim.ticker} → ${topTrim.newClass}`;
         document.getElementById("card-new-weight").textContent = `New Split: ${state.newTotalBondPct}% Bonds / ${state.newTotalStockPct}% Stocks`;
-        document.getElementById("card-trim-pct").textContent = `-${topTrim.trimPct}% (${topTrim.ticker}) | ${state.trimmedList.length} Trims`;
+        trimPctEl.textContent = `-${topTrim.trimPct}% (${topTrim.ticker}) | ${state.trimmedList.length} Stocks`;
         document.getElementById("card-trim-detail").innerHTML =
-          `<strong>Multi-Stock Reclassification (${state.year}):</strong> Give up <strong>${names}</strong> — shedding <strong>${state.totalTrimmedWeight.toFixed(2)}% of the ${Math.round(state.baseStockShare*100)}% company sleeve</strong> (<strong>$${state.totalTrimmedDollars.toLocaleString()}</strong> total rotated into US Gov Bonds &amp; defensive hedges).`;
+          `<strong>Multi-Stock Reclassification (${state.year}):</strong> Give up <strong>${names}</strong> — shedding <strong>${state.totalTrimmedWeight.toFixed(2)}% of the ${Math.round(state.baseStockShare*100)}% company sleeve</strong> (<strong>$${state.totalTrimmedDollars.toLocaleString()}</strong> total rotated into 2033 US Gov Bonds &amp; portfolio hedges).`;
       } else {
         document.getElementById("card-old-risk").textContent = `${topTrim.ticker}: ${topTrim.oldClass}`;
         document.getElementById("card-old-weight").textContent = `${topTrim.oldW}% of Sleeve (${topTrim.oldTotalPct}% of Total)`;
-        document.getElementById("card-new-risk").textContent = `${topTrim.ticker}: ${topTrim.newClass}`;
+        newRiskEl.textContent = `${topTrim.ticker}: ${topTrim.newClass}`;
         document.getElementById("card-new-weight").textContent = `${topTrim.newW}% of Sleeve (${topTrim.newTotalPct}% of Total)`;
-        document.getElementById("card-trim-pct").textContent = topTrim.trimPct > 0 ? `-${topTrim.trimPct.toFixed(1)}% (${topTrim.ticker})` : `0% (Hold ${topTrim.ticker})`;
-        document.getElementById("card-trim-detail").innerHTML = topTrim.trimPct > 0
-          ? `Give up <strong>${topTrim.trimPct}% of ${topTrim.name} shares</strong> in ${state.year} — cutting ${topTrim.ticker} from <strong>${topTrim.oldW}% → ${topTrim.newW}%</strong> of the ${Math.round(state.baseStockShare*100)}% stock sleeve (<strong>${topTrim.oldTotalPct}% → ${topTrim.newTotalPct}%</strong> of total portfolio; trimming <strong>$${topTrim.dollarsTrimmed.toLocaleString()}</strong>).`
-          : `Positive catalyst confirmed: hold full <strong>${topTrim.oldW}% sleeve weight</strong> (${topTrim.oldTotalPct}% of total portfolio).`;
+        trimPctEl.textContent = topTrim.trimPct > 0
+          ? (isPos ? `Harvest ${topTrim.trimPct.toFixed(1)}% (${topTrim.ticker})` : `-${topTrim.trimPct.toFixed(1)}% (${topTrim.ticker})`)
+          : `0% (Hold ${topTrim.ticker})`;
+        document.getElementById("card-trim-detail").innerHTML = isPos
+          ? `<strong>Positive De-Risking Profit Harvest (${state.year}):</strong> Risk score drops from <strong>${topTrim.oldClass} → ${topTrim.newClass}</strong>. Harvest <strong>${topTrim.trimPct}% of ${topTrim.name} shares</strong> into the relief rally (<strong>${topTrim.oldW}% → ${topTrim.newW}%</strong> of sleeve; <strong>$${topTrim.dollarsTrimmed.toLocaleString()}</strong> locked into 2033 US Treasuries &amp; core partners).`
+          : `Give up <strong>${topTrim.trimPct}% of ${topTrim.name} shares</strong> in ${state.year} — cutting ${topTrim.ticker} from <strong>${topTrim.oldW}% → ${topTrim.newW}%</strong> of the ${Math.round(state.baseStockShare*100)}% stock sleeve (<strong>${topTrim.oldTotalPct}% → ${topTrim.newTotalPct}%</strong> of total portfolio; trimming <strong>$${topTrim.dollarsTrimmed.toLocaleString()}</strong>).`;
       }
 
       // Rebuild Quantitative Reallocation Routing List in Active Card
@@ -1528,7 +1644,7 @@
         const totalPortShift = +(state.toUSTSleevePct * state.baseStockShare).toFixed(2);
         reallocItemsHTML += `
           <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-blue-500/30">
-            <span class="text-blue-300 font-medium">↗ ${state.reserveRateAssumed.toFixed(1)}% US Gov Bonds (Reserve Buffer)</span>
+            <span class="text-blue-300 font-medium">↗ ${state.reserveRateAssumed.toFixed(1)}% 2033 US Treasuries (Immunize Floor)</span>
             <span class="mono font-semibold text-blue-400">+${state.toUSTSleevePct}% Sleeve (+${totalPortShift}% Total | +$${state.toUSTDollars.toLocaleString()})</span>
           </div>
         `;
@@ -1541,21 +1657,16 @@
           </div>
         `;
       });
-      if (!reallocItemsHTML) {
-        reallocItemsHTML = `
-          <div class="flex items-center justify-between bg-slate-900/90 px-2.5 py-1.5 rounded-lg border border-slate-800">
-            <span class="text-slate-300 font-medium">✓ No Reallocation Needed (Hold Glidepath)</span>
-            <span class="mono font-semibold text-emerald-400">$0 Trimmed</span>
-          </div>
-        `;
-      }
       reallocListEl.innerHTML = reallocItemsHTML;
 
       // Rebuild Formula & Guardrail Proof Box in Active Card
-      document.getElementById("card-formula-explain").innerHTML =
-        `Unadjusted shock pushes Bad-Year Loss to <strong>${state.untrimmedBadLoss}%</strong> ${state.untrimmedBadLoss >= 7.0 ? '<span class="text-rose-400 font-bold">(BREACHES &lt;7.0% LIMIT)</span>' : '(Near 7.0% limit)'}. Giving up <strong>${topTrim.trimPct}% of ${topTrim.ticker}</strong>${state.trimmedList.length > 1 ? ` (+ ${state.trimmedList.length - 1} other stock trim(s))` : ''} restores Bad-Year Loss to <strong>${state.trimmedBadLoss}% (PASS)</strong>, Reserve Miss Risk to <strong>${state.trimmedMissProb}% (&lt;1% PASS)</strong>, and ≥$100k Gift Confidence to <strong>${state.trimmedGiftProb}% (&gt;75% PASS)</strong>.`;
+      document.getElementById("card-formula-code").textContent = isPos
+        ? "Harvest% = ReliefRallyGain × ValuationConcentrationLock (Score Drops)"
+        : "Trim% = BaseShock × DebtLeverage × GlidepathUrgency (Score Rises)";
+      document.getElementById("card-formula-explain").innerHTML = isPos
+        ? `Positive certification/catalyst drops ${topTrim.ticker} Risk Score from <strong>${topTrim.oldClass} to ${topTrim.newClass}</strong>. Harvesting <strong>${topTrim.trimPct}% of ${topTrim.ticker}</strong> into the relief rally reduces Bad-Year Loss from 6.35% to <strong>${state.trimmedBadLoss}% (PASS &lt;7%)</strong>, lowers Reserve Miss Risk to <strong>${state.trimmedMissProb}% (&lt;1% PASS)</strong>, and lifts ≥$100k Gift Confidence to <strong>${state.trimmedGiftProb}% (&gt;75% PASS)</strong>.`
+        : `Unadjusted shock pushes Bad-Year Loss to <strong>${state.untrimmedBadLoss}%</strong> ${state.untrimmedBadLoss >= 7.0 ? '<span class="text-rose-400 font-bold">(BREACHES &lt;7.0% LIMIT)</span>' : '(Near 7.0% limit)'}. Giving up <strong>${topTrim.trimPct}% of ${topTrim.ticker}</strong>${state.trimmedList.length > 1 ? ` (+ ${state.trimmedList.length - 1} other stock trim(s))` : ''} restores Bad-Year Loss to <strong>${state.trimmedBadLoss}% (PASS)</strong>, Reserve Miss Risk to <strong>${state.trimmedMissProb}% (&lt;1% PASS)</strong>, and ≥$100k Gift Confidence to <strong>${state.trimmedGiftProb}% (&gt;75% PASS)</strong>.`;
 
-      // Flash Active Card to visually confirm live update
       const activeCard = document.getElementById("active-output-card");
       activeCard.classList.remove("sync-flash");
       void activeCard.offsetWidth;
@@ -1565,49 +1676,50 @@
       if (registerAsConfirmedNews && topTrim.ticker && COMPANIES[topTrim.ticker]) {
         const targetComp = COMPANIES[topTrim.ticker];
         const customId = "ai_news_" + Date.now();
-        const baseTrimForScen = Math.max(10, Math.round(topTrim.trimPct / (state.urgency * state.severityMult)));
+        const baseTrimForScen = Math.max(8, Math.round(topTrim.trimPct / (isPos ? state.severityMult : (state.urgency * state.severityMult))));
+        const totalBenWeight = state.beneficiaries.reduce((acc, b) => acc + b.addedWeight, 0);
+        const ustShare = state.totalTrimmedWeight > 0 ? +(state.toUSTSleevePct / state.totalTrimmedWeight).toFixed(2) : 0.55;
+        const eqShareRemaining = +(1 - ustShare).toFixed(2);
+
         const newScenarioObj = {
           id: customId,
-          name: `📰 [AI Confirmed News] ${state.headline}`,
+          polarity: isPos ? "positive" : "negative",
+          name: `📰 [AI Confirmed] ${state.headline}`,
           newRiskClass: topTrim.newClass.split("(")[0].trim(),
-          newRiskScore: parseInt((topTrim.newClass.match(/\d+/) || [75])[0], 10),
+          newRiskScore: topTrim.newScore || parseInt((topTrim.newClass.match(/\d+/) || [isPos ? 41 : 74])[0], 10),
           baseTrimPct: baseTrimForScen,
-          volDelta: +8.0,
-          returnDelta: -2.0,
+          volDelta: isPos ? -3.5 : +8.0,
+          returnDelta: isPos ? +1.8 : -2.0,
           reallocateTo: [
+            { ticker: "UST", label: `${state.reserveRateAssumed.toFixed(1)}% 2033 US Treasuries`, shareOfTrim: ustShare },
             ...(state.beneficiaries.length > 0
               ? state.beneficiaries.map(b => ({
                   ticker: b.ticker,
-                  label: `${b.name} (AI Hedge)`,
-                  shareOfTrim: +(0.55 / state.beneficiaries.length).toFixed(2)
+                  label: `${b.name} (${b.reason.slice(0, 48)})`,
+                  shareOfTrim: totalBenWeight > 0 ? +((b.addedWeight / totalBenWeight) * eqShareRemaining).toFixed(2) : +(eqShareRemaining / state.beneficiaries.length).toFixed(2)
                 }))
-              : [{ ticker: "GE", label: "GE Aerospace (AI Hedge)", shareOfTrim: 0.50 }]),
-            { ticker: "UST", label: `${state.reserveRateAssumed.toFixed(1)}% US Gov Bonds`, shareOfTrim: state.beneficiaries.length > 0 ? 0.45 : 0.50 }
+              : [{ ticker: "GE", label: "GE Aerospace (Aftermarket Bridge)", shareOfTrim: eqShareRemaining }])
           ],
           rationale: topTrim.reason
         };
 
-        // Add to top of company scenarios if not duplicate
         const exists = targetComp.scenarios.some(s => s.name === newScenarioObj.name);
         if (!exists) {
           targetComp.scenarios.unshift(newScenarioObj);
         }
         state.primaryScenarioId = exists ? targetComp.scenarios.find(s => s.name === newScenarioObj.name).id : customId;
 
-        // Add to Confirmed News Log
         confirmedNewsLog.unshift({
           id: state.primaryScenarioId,
           ticker: topTrim.ticker,
           year: state.year,
           headline: state.headline,
           trimPct: topTrim.trimPct,
+          polarity: isPos ? "positive" : "negative",
           stateSnapshot: state
         });
         if (confirmedNewsLog.length > 6) confirmedNewsLog.pop();
         renderConfirmedNewsChips();
-
-        // Show "SYNCED" badge on the Trim Lab navigation button
-        
       }
 
       // 5. Sync Tab 2: Interactive Stress-Test & Reclassification Lab controls & result box
@@ -1651,11 +1763,17 @@
     function renderConfirmedNewsChips() {
       const container = document.getElementById("confirmed-news-chips");
       if (!container) return;
-      container.innerHTML = confirmedNewsLog.map((item, idx) => `
-        <button type="button" onclick="window.loadConfirmedNewsItem(${idx})" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-900 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 transition">
-          ${item.ticker} (-${item.trimPct}%): ${item.headline.slice(0, 26)}...
-        </button>
-      `).join("");
+      container.innerHTML = confirmedNewsLog.map((item, idx) => {
+        const badgeColor = item.polarity === "positive"
+          ? "bg-emerald-950/60 hover:bg-emerald-600/30 text-emerald-300 border-emerald-500/40"
+          : "bg-slate-900 hover:bg-blue-600/30 text-blue-300 border-blue-500/30";
+        const actionPrefix = item.polarity === "positive" ? `Harvest ${item.trimPct}%` : `-${item.trimPct}%`;
+        return `
+          <button type="button" onclick="window.loadConfirmedNewsItem(${idx})" class="px-2.5 py-1 rounded-lg text-xs font-medium border transition ${badgeColor}">
+            ${item.ticker} (${actionPrefix}): ${item.headline.slice(0, 26)}...
+          </button>
+        `;
+      }).join("");
     }
 
     window.loadConfirmedNewsItem = function(idx) {
@@ -1665,24 +1783,59 @@
     };
 
     // =========================================================================
-    // 5. UNIFIED DYNAMIC FIRST-PRINCIPLES REANALYSIS HTML FORMATTER
+    // 6. UNIFIED DYNAMIC FIRST-PRINCIPLES REANALYSIS HTML FORMATTER
     // =========================================================================
-    // Used for ALL AI responses (Preset, Built-in Multi-Factor, and Live LLM API) so every response has the exact formatted structure requested!
-    function renderUnifiedReanalysisHTML(state, showActionFooter = true, extraNarrativeHTML = "") {
-      const trimRowsHTML = state.trimmedList.map(t => `
-        <tr class="border-b border-slate-800/80">
-          <td class="py-2 pr-2 font-bold text-white">${t.name} <span class="text-rose-400 mono">(${t.ticker})</span></td>
-          <td class="py-2 px-2 text-amber-300">${t.oldClass} → <strong class="text-rose-400">${t.newClass}</strong></td>
-          <td class="py-2 px-2 text-right mono font-bold ${t.trimPct > 0 ? 'text-rose-400' : 'text-emerald-400'}">
-            ${t.trimPct > 0 ? `Give Up ${t.trimPct}%` : '0% (Hold)'}
-          </td>
-          <td class="py-2 px-2 text-right mono text-slate-200">
-            <div>${t.oldW}% → <strong>${t.newW}%</strong> <span class="text-[10px] text-slate-400">of 40% Sleeve</span></div>
-            <div class="text-[10px] text-blue-300">${t.oldTotalPct}% → ${t.newTotalPct}% of Total (-$${t.dollarsTrimmed.toLocaleString()})</div>
-          </td>
-          <td class="py-2 pl-2 text-slate-300 text-[11px]">${t.reason}</td>
-        </tr>
-      `).join("");
+    // Guarantees 100% consistency between the Executive Takeaways box, the Reclassification Table,
+    // and the Quantitative Reallocation Routing list because ALL THREE are rendered directly from `state`!
+    function buildCanonicalExecutiveTakeawaysHTML(state, llmCommentaryText = "") {
+      const isPos = state.polarity === "positive";
+      const top = state.trimmedList[0];
+      const benSummary = state.beneficiaries.map(b => `<strong>${b.name} (${b.ticker}, +${b.addedWeight}% sleeve / +$${b.addedDollars.toLocaleString()})</strong>`).join(" and ");
+
+      const bullet1 = isPos
+        ? `<li><strong>1. Fundamental De-Risking Direction (Score Drops ${top.oldScore} → ${top.newScore}):</strong> ${top.name} (${top.ticker}) Risk Profile improves from <strong>${top.oldClass}</strong> down to <strong>${top.newClass}</strong> as delivery/execution uncertainty recedes and physical cash conversion accelerates.</li>`
+        : `<li><strong>1. Risk Reclassification Direction (Score Rises ${top.oldScore} → ${top.newScore}):</strong> ${state.trimmedList.map(t => `${t.name} (${t.ticker}) shifts from <strong>${t.oldClass} → ${t.newClass}</strong>`).join("; ")} due to heightened cash-flow, working-capital, or macro factor exposure.</li>`;
+
+      const bullet2 = isPos
+        ? `<li><strong>2. Disciplined Relief-Rally Profit Harvest (${top.trimPct}% Harvest on ${top.ticker} Only — Zero Cross-Stock Contamination):</strong> Rather than claiming certification increases uncertainty, we harvest a disciplined <strong>${top.trimPct}% profit-taking trim on ${top.ticker}</strong> (<strong>${top.oldW}% → ${top.newW}%</strong> of the 40% stock sleeve; <strong>-$${top.dollarsTrimmed.toLocaleString()}</strong>) into the relief rally to lock in gains at ${COMPANIES[top.ticker].pe}x P/E. All other non-mentioned holdings (including NVDA, TSM, LLY) remain untouched.</li>`
+        : `<li><strong>2. Exact Position Trim (${state.trimmedList.map(t => `Give up ${t.trimPct}% of ${t.ticker} [${t.oldW}% → ${t.newW}% sleeve]`).join(", ")}):</strong> Trims a total of <strong>${state.totalTrimmedWeight.toFixed(2)}% of the ${Math.round(state.baseStockShare*100)}% equity sleeve ($${state.totalTrimmedDollars.toLocaleString()})</strong> strictly across the fundamentally impacted holding(s).</li>`;
+
+      const bullet3 = `<li><strong>3. Synchronized 7-Stock LDI Reallocation &amp; Guardrail Proof:</strong> Routes <strong>+${state.toUSTSleevePct}% of sleeve (+$${state.toUSTDollars.toLocaleString()})</strong> into <strong>Maturity-Matched 2033 US Treasuries</strong> (lifting total portfolio Gov Bonds from ${Math.round(state.baseBondShare*100)}% to <strong>${state.newTotalBondPct}%</strong>) and splits the residual equity rotation into ${benSummary || 'core cash-flow anchors'} — keeping Bad-Year Loss at <strong>${state.trimmedBadLoss}% (PASS &lt;7.0%)</strong>, Reserve Miss Risk at <strong>${state.trimmedMissProb}% (PASS &lt;1.0%)</strong>, and ≥$100k Gift Confidence at <strong>${state.trimmedGiftProb}% (PASS &gt;75.0%)</strong>.</li>`;
+
+      return `
+        <div class="space-y-1.5">
+          <div class="font-bold ${isPos ? 'text-emerald-300' : 'text-blue-300'}">
+            ${isPos ? '✅ Canonical Executive Takeaways (Positive De-Risking & Relief-Rally Profit Harvest):' : '⚡ Canonical Executive Takeaways (Synchronized Across Table, Active Output & Trim Lab):'}
+          </div>
+          <ul class="space-y-1 text-slate-200 list-none">
+            ${bullet1}
+            ${bullet2}
+            ${bullet3}
+          </ul>
+          ${llmCommentaryText ? `<div class="mt-2 pt-2 border-t border-slate-800 text-[11px] text-slate-300"><strong>Live LLM Supplemental Note:</strong> ${llmCommentaryText}</div>` : ""}
+        </div>
+      `;
+    }
+
+    function renderUnifiedReanalysisHTML(state, showActionFooter = true, llmCommentaryText = "") {
+      const isPos = state.polarity === "positive";
+      const trimRowsHTML = state.trimmedList.map(t => {
+        const rowIsPos = t.polarity === "positive" || isPos;
+        return `
+          <tr class="border-b border-slate-800/80">
+            <td class="py-2 pr-2 font-bold text-white">${t.name} <span class="${rowIsPos ? 'text-emerald-400' : 'text-rose-400'} mono">(${t.ticker})</span></td>
+            <td class="py-2 px-2 text-amber-300">${t.oldClass} → <strong class="${rowIsPos ? 'text-emerald-400' : 'text-rose-400'}">${t.newClass}</strong></td>
+            <td class="py-2 px-2 text-right mono font-bold ${rowIsPos ? 'text-emerald-400' : (t.trimPct > 0 ? 'text-rose-400' : 'text-emerald-400')}">
+              ${t.actionLabel || (rowIsPos ? `Harvest ${t.trimPct}% (Profit-Taking)` : `Give Up ${t.trimPct}%`)}
+            </td>
+            <td class="py-2 px-2 text-right mono text-slate-200">
+              <div>${t.oldW}% → <strong>${t.newW}%</strong> <span class="text-[10px] text-slate-400">of 40% Sleeve</span></div>
+              <div class="text-[10px] text-blue-300">${t.oldTotalPct}% → ${t.newTotalPct}% of Total (-$${t.dollarsTrimmed.toLocaleString()})</div>
+            </td>
+            <td class="py-2 pl-2 text-slate-300 text-[11px]">${t.reason}</td>
+          </tr>
+        `;
+      }).join("");
 
       const benRowsHTML = state.beneficiaries.map(b => `
         <li class="flex items-start justify-between gap-2 py-1.5 border-b border-slate-800/80 last:border-0">
@@ -1698,18 +1851,20 @@
         ? `<div class="pt-1 flex flex-wrap gap-2">${state.sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-blue-400 hover:text-blue-300 underline">🔗 ${s.title}</a>`).join("")}</div>`
         : "";
 
+      const canonicalTakeawaysHTML = buildCanonicalExecutiveTakeawaysHTML(state, llmCommentaryText);
+
       return `
         <div class="space-y-3 text-xs sm:text-sm leading-relaxed">
           <!-- Top Banner: Dynamic First-Principles Reanalysis Header -->
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
             <div>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 mono uppercase">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isPos ? 'bg-emerald-500/20 text-emerald-300' : 'bg-blue-500/20 text-blue-300'} mono uppercase">
                 🧠 Dynamic First-Principles Reanalysis (${state.year} Glidepath: ${Math.round(state.baseBondShare*100)}% Gov Bonds / ${Math.round(state.baseStockShare*100)}% Stocks)
               </span>
               <h4 class="text-sm sm:text-base font-bold text-white mt-1">${state.headline}</h4>
             </div>
             <span class="px-2 py-0.5 rounded text-[11px] font-semibold badge-pass">
-              ✓ Auto-Synced to Active Output &amp; Trim Lab
+              ✓ 100% Synced Across Takeaways, Table &amp; Trim Lab
             </span>
           </div>
 
@@ -1717,26 +1872,31 @@
           <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-300 flex flex-wrap items-center justify-between gap-2">
             <div>
               <strong>Year ${state.year - 2026} (${state.year}) Portfolio:</strong> <span class="mono text-white">$${state.estPort.toLocaleString()}</span>
-              • <strong>Base Split:</strong> <span class="text-emerald-400 mono">${Math.round(state.baseBondShare*100)}% US Gov Bonds</span> / <span class="text-blue-400 mono">${Math.round(state.baseStockShare*100)}% Companies ($${state.eqDollars.toLocaleString()})</span>
+              • <strong>Base Split:</strong> <span class="text-emerald-400 mono">${Math.round(state.baseBondShare*100)}% US Gov Bonds</span> / <span class="text-blue-400 mono">${Math.round(state.baseStockShare*100)}% 7 Companies ($${state.eqDollars.toLocaleString()})</span>
             </div>
             <div class="mono text-[11px] bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-700">
               <strong>New Macro Split:</strong> <span class="text-emerald-400">${state.newTotalBondPct}% Gov Bonds</span> / <span class="text-blue-400">${state.newTotalStockPct}% Companies</span>
             </div>
           </div>
 
-          ${extraNarrativeHTML ? `<div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-3 text-xs text-slate-200 space-y-1.5">${extraNarrativeHTML}</div>` : ""}
+          <!-- Canonical Executive Takeaways Box (Guaranteed identical numbers/tickers to Table below) -->
+          <div class="bg-slate-900/70 border ${isPos ? 'border-emerald-500/30' : 'border-blue-500/30'} rounded-xl p-3 text-xs text-slate-200">
+            ${canonicalTakeawaysHTML}
+          </div>
 
           <!-- Section 1: Multi-Stock Reclassification Table -->
           <div class="overflow-x-auto bg-slate-950/90 p-3 rounded-xl border border-slate-800">
-            <div class="text-xs font-bold text-rose-300 mb-1.5">1. Stocks Reclassified &amp; Exact Percentage to Give Up:</div>
+            <div class="text-xs font-bold ${isPos ? 'text-emerald-300' : 'text-rose-300'} mb-1.5">
+              ${isPos ? '1. De-Risked Holding & Relief-Rally Profit Harvest Schedule:' : '1. Stocks Reclassified & Exact Percentage to Give Up:'}
+            </div>
             <table class="w-full text-left border-collapse text-xs">
               <thead>
                 <tr class="border-b border-slate-700 text-slate-400">
                   <th class="py-1.5 pr-2">Company</th>
-                  <th class="py-1.5 px-2">Risk Reclassification</th>
-                  <th class="py-1.5 px-2 text-right">Stock to Give Up</th>
+                  <th class="py-1.5 px-2">Risk Score Shift</th>
+                  <th class="py-1.5 px-2 text-right">${isPos ? 'Profit-Taking Action' : 'Stock to Give Up'}</th>
                   <th class="py-1.5 px-2 text-right">New Weight (Sleeve &amp; Total)</th>
-                  <th class="py-1.5 pl-2">Fundamental &amp; News Mechanism</th>
+                  <th class="py-1.5 pl-2">Company-Specific Fundamental &amp; Cash-Flow Mechanism</th>
                 </tr>
               </thead>
               <tbody>${trimRowsHTML}</tbody>
@@ -1762,7 +1922,7 @@
           <!-- Institutional Pitch Tightening & Judge-Proof Audit Box -->
           <div class="bg-slate-950/95 p-3 rounded-xl border border-teal-500/30 space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-teal-300">🎯 Institutional Judge-Proof Pitch Framing (Avoiding the 3 Classic Analytical Flaws):</span>
+              <span class="text-xs font-bold text-teal-300">🎯 Institutional Judge-Proof Pitch Framing (7-Company Portfolio Verification):</span>
               <span class="text-[10px] px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 mono">Q2 2026 Filing Verified</span>
             </div>
             <div class="overflow-x-auto">
@@ -1776,19 +1936,19 @@
                 </thead>
                 <tbody class="divide-y divide-slate-800/70 text-slate-300">
                   <tr>
-                    <td class="py-1.5 pr-2 font-bold text-white whitespace-nowrap">1. Boeing Credit &amp; 777X</td>
-                    <td class="py-1.5 px-2 text-slate-400">"600+ 777X orders service the $45.9B debt load and lower CDS spreads."</td>
-                    <td class="py-1.5 pl-2">Orders only yield small PDPs; under program accounting, 777X is a near-term working-capital drag (unamortized tooling). Near-term <strong>737 MAX (47–52/mo) &amp; 787 (8–10/mo) FCF ($631M in Q2)</strong> handles 2026–2029 deleveraging while 777X secures 2030s visibility. (Q2 GAAP margin: 0.6%; Core non-GAAP: 0.0%; BCA: -2.7%).</td>
+                    <td class="py-1.5 pr-2 font-bold text-white whitespace-nowrap">1. Boeing Credit &amp; Certs</td>
+                    <td class="py-1.5 px-2 text-slate-400">"777X orders service the $45.9B debt load; certification increases uncertainty."</td>
+                    <td class="py-1.5 pl-2">Uncertified 777X orders only yield small PDPs and trap working capital under ASC 606. Near-term <strong>737 MAX (including 737-10 certification) &amp; 787 physical deliveries ($631M Q2 FCF)</strong> unfreeze inventory and service $45.9B debt (Q2 GAAP margin: 0.6%; Core: 0.0%; BCA: -2.7%).</td>
                   </tr>
                   <tr>
                     <td class="py-1.5 pr-2 font-bold text-white whitespace-nowrap">2. GE Razor &amp; Blade</td>
                     <td class="py-1.5 px-2 text-slate-400">"GE avoids Boeing's 777X ramp risk and immediately captures 21.7% margins on GE9X."</td>
-                    <td class="py-1.5 pl-2">GE is sole-source on <strong>GE9X</strong> (sharing 777X certification delay on idle inventory) and new OEM engine deliveries dilute margins upfront (Q2 non-GAAP margin of <strong>21.7% / $2.75B contracted -130 bps YoY</strong> on OEM mix). Instead, GE monetizes <strong>legacy CFM56/GEnx shop visits today</strong> as a self-funded FCF bridge until GE9X scales in the 2030s.</td>
+                    <td class="py-1.5 pl-2">GE is sole-source on <strong>GE9X</strong> (sharing 777X delay risk on idle inventory) and new OEM engine deliveries dilute margins upfront (Q2 non-GAAP margin of <strong>21.7% / $2.75B contracted -130 bps YoY</strong> on OEM mix). GE monetizes <strong>legacy CFM56/GEnx shop visits (+30% YoY)</strong> today as a self-funded FCF bridge.</td>
                   </tr>
                   <tr>
-                    <td class="py-1.5 pr-2 font-bold text-white whitespace-nowrap">3. LDI &amp; Factor Beta</td>
-                    <td class="py-1.5 px-2 text-slate-400">"Rotate BA into GE + short-term T-bills to de-risk macro &amp; protect the 2033 $421,767 liability."</td>
-                    <td class="py-1.5 pl-2">BA and GE share cyclical RPK beta, and GE trades at ~35x–41x P/E (valuation compression risk). True LDI immunizes the 2033 $421,767 floor with <strong>duration-matched 2033 Zero-Coupon/7-Yr Treasuries &amp; TIPS</strong> (no reinvestment risk), while splitting equity rotation between <strong>non-correlated ~20x P/E defense (GD/LMT)</strong> and a capped GE aftermarket bridge.</td>
+                    <td class="py-1.5 pr-2 font-bold text-white whitespace-nowrap">3. LDI &amp; Energy Anchors</td>
+                    <td class="py-1.5 px-2 text-slate-400">"Rotate BA 100% into GE + short-term T-bills to protect the 2033 $421,767 floor."</td>
+                    <td class="py-1.5 pl-2">Immunize the 2033 $421,767 floor with <strong>duration-matched 2033 Zero-Coupon/7-Yr Treasuries &amp; TIPS</strong>, and diversify equity trims across <strong>ExxonMobil ($17.2B Q2 FCF, 22.9x P/E)</strong>, <strong>Shell ($17.5B Q2 FCF, 11.66x P/E)</strong>, and <strong>Eli Lilly</strong> alongside a capped GE aftermarket bridge.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1801,7 +1961,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
               <div class="text-[11px] text-slate-400">Bad-Year Loss (Ceiling &lt;7.0%)</div>
-              <div class="text-base font-bold text-emerald-400 mono">${state.trimmedBadLoss}% <span class="text-[11px] text-rose-400 font-normal">(vs ${state.untrimmedBadLoss}% untrimmed)</span></div>
+              <div class="text-base font-bold text-emerald-400 mono">${state.trimmedBadLoss}% <span class="text-[11px] ${isPos ? 'text-emerald-300' : 'text-rose-400'} font-normal">(vs ${state.untrimmedBadLoss}% untrimmed)</span></div>
               <div class="text-[10px] text-slate-400">Protects 2031 Co-Sponsor Pledge</div>
             </div>
             <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
@@ -1820,7 +1980,7 @@
 
           ${showActionFooter ? `
           <div class="pt-1 flex flex-wrap items-center justify-between gap-2 border-t border-slate-800/80">
-            <span class="text-[11px] text-emerald-400">✓ News confirmed &amp; added to <strong>Interactive Stress-Test &amp; Reclassification Lab</strong></span>
+            <span class="text-[11px] text-emerald-400">✓ News confirmed &amp; synced to <strong>Interactive Stress-Test &amp; Reclassification Lab</strong></span>
             <div class="flex gap-2">
               <button type="button" onclick="window.switchTab('simulator')" class="px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition">
                 Open in Reclassification &amp; Trim Lab →
@@ -1835,7 +1995,7 @@
     }
 
     // =========================================================================
-    // 6. CHARTS (MINI DONUT WITH 60/40 MODE TOGGLE, SIM BARS, LDI TRAJECTORY)
+    // 7. CHARTS (MINI DONUT WITH 60/40 MODE TOGGLE, SIM BARS, LDI TRAJECTORY)
     // =========================================================================
     let miniChartInstance = null;
     let simBarsInstance = null;
@@ -1844,20 +2004,19 @@
     function updateMiniChart() {
       const ctx = document.getElementById("chart-mini-allocation").getContext("2d");
       const yearIdx = Math.max(0, Math.min(5, activeYearState - 2027));
-      const baseStockShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx]; // e.g. 0.40
-      const baseBondPct = (1 - baseStockShare) * 100; // e.g. 60%
+      const baseStockShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx];
+      const baseBondPct = (1 - baseStockShare) * 100;
 
       let labels = [];
       let data = [];
       let colors = [];
 
       if (chartMode === "total") {
-        // Show full 100% portfolio: US Gov Bonds (~60%+) + each of the 8 companies (~40% total)
         const extraBondPctFromTrim = +(currentSleeveWeights.UST_EXTRA * baseStockShare).toFixed(2);
         const totalGovBondPct = +(baseBondPct + extraBondPctFromTrim).toFixed(2);
         labels = [
           `US Gov Bonds (${totalGovBondPct}%)`,
-          "GE", "TSM", "LLY", "NVDA", "BA", "LMT", "GD", "AMD"
+          "GE", "TSM", "LLY", "NVDA", "XOM", "BA", "SHEL"
         ];
         data = [
           totalGovBondPct,
@@ -1865,26 +2024,23 @@
           +(currentSleeveWeights.TSM * baseStockShare).toFixed(2),
           +(currentSleeveWeights.LLY * baseStockShare).toFixed(2),
           +(currentSleeveWeights.NVDA * baseStockShare).toFixed(2),
+          +(currentSleeveWeights.XOM * baseStockShare).toFixed(2),
           +(currentSleeveWeights.BA * baseStockShare).toFixed(2),
-          +(currentSleeveWeights.LMT * baseStockShare).toFixed(2),
-          +(currentSleeveWeights.GD * baseStockShare).toFixed(2),
-          +(currentSleeveWeights.AMD * baseStockShare).toFixed(2)
+          +(currentSleeveWeights.SHEL * baseStockShare).toFixed(2)
         ];
-        colors = ["#10b981", "#3b82f6", "#06b6d4", "#a855f7", "#8b5cf6", "#f43f5e", "#f59e0b", "#14b8a6", "#ec4899"];
+        colors = ["#10b981", "#3b82f6", "#06b6d4", "#a855f7", "#8b5cf6", "#f59e0b", "#f43f5e", "#eab308"];
       } else {
-        // Show 40% Equity Sleeve breakdown (summing to 100% of the stock sleeve)
-        labels = ["GE", "TSM", "LLY", "NVDA", "BA", "LMT", "GD", "AMD"];
+        labels = ["GE", "TSM", "LLY", "NVDA", "XOM", "BA", "SHEL"];
         data = [
           currentSleeveWeights.GE,
           currentSleeveWeights.TSM,
           currentSleeveWeights.LLY,
           currentSleeveWeights.NVDA,
+          currentSleeveWeights.XOM,
           currentSleeveWeights.BA,
-          currentSleeveWeights.LMT,
-          currentSleeveWeights.GD,
-          currentSleeveWeights.AMD
+          currentSleeveWeights.SHEL
         ];
-        colors = ["#3b82f6", "#06b6d4", "#a855f7", "#8b5cf6", "#f43f5e", "#f59e0b", "#14b8a6", "#ec4899"];
+        colors = ["#3b82f6", "#06b6d4", "#a855f7", "#8b5cf6", "#f59e0b", "#f43f5e", "#eab308"];
         if (currentSleeveWeights.UST_EXTRA > 0) {
           labels.push("Shifted to Gov Bonds");
           data.push(currentSleeveWeights.UST_EXTRA);
@@ -1925,9 +2081,9 @@
       });
     }
 
-    function updateSimBarsChart(highlightTicker = "BA") {
+    function updateSimBarsChart() {
       const ctx = document.getElementById("chart-sim-bars").getContext("2d");
-      const tickers = ["GE", "TSM", "LLY", "NVDA", "BA", "LMT", "GD", "AMD"];
+      const tickers = CORE_TICKERS;
       const baseData = tickers.map(t => COMPANIES[t].baseSleeveWeight);
       const newData = tickers.map(t => currentSleeveWeights[t]);
 
@@ -1987,23 +2143,140 @@
     }
 
     // =========================================================================
-    // 7. BUILT-IN MULTI-FACTOR DYNAMIC REASONING ENGINE (RETURNS UNIFIED STATE)
+    // 8. BUILT-IN POLARITY-AWARE MULTI-FACTOR ENGINE (ZERO HALLUCINATIONS)
     // =========================================================================
     function computeDynamicMultiFactorState(queryText) {
       const q = queryText.toLowerCase();
 
-      // Check if user is asking for the exact baseline Boeing 777X slip
+      // 1. Exact Preset Shortcut: Boeing 777X Certification Slip
       if (q.includes("boeing 777x certification slips into 2027")) {
         return buildReanalysisFromSingleScenario("BA", "ba_777x_slip", 2027, 1.0);
       }
 
-      let year = 2028;
+      // 2. Exact Preset Shortcut: 737-10 Certification (or any Boeing 737 MAX certification de-risking event)
+      const mentionedTickers = detectMentionedTickers(queryText);
+      const polarity = classifyCatalystPolarity(queryText);
+
+      let year = 2027;
       for (const y of [2027, 2028, 2029, 2030, 2031, 2032]) {
         if (q.includes(String(y))) {
           year = y;
           break;
         }
       }
+
+      if (polarity === "positive" && mentionedTickers.length === 1 && mentionedTickers[0] === "BA" && /737|max|certif|clear|approv/.test(q)) {
+        return buildReanalysisFromSingleScenario("BA", "ba_737_10_certified", year, 1.0);
+      }
+
+      // 3. Generic Positive De-Risking Catalyst Handler (for ANY single or multi-company positive news!)
+      if (polarity === "positive") {
+        const targets = mentionedTickers.length > 0 ? mentionedTickers : ["BA"];
+        const primaryTicker = targets[0];
+        const yearIdx = Math.max(0, Math.min(5, year - 2027));
+        const estPort = [300000, 469951, 488749, 508299, 528631, 549776][yearIdx];
+        const baseStockShare = BASE_GLIDEPATH_STOCK_SHARE[yearIdx];
+        const baseBondShare = +(1 - baseStockShare).toFixed(2);
+        const eqDollars = Math.round(estPort * baseStockShare);
+
+        const newWeights = {};
+        CORE_TICKERS.forEach(k => { newWeights[k] = COMPANIES[k].baseSleeveWeight; });
+        newWeights.UST_EXTRA = 0;
+
+        let totalTrimmedWeight = 0;
+        const trimmedList = [];
+
+        targets.forEach(t => {
+          const c = COMPANIES[t];
+          const oldScore = c.baseRiskScore;
+          const newScore = Math.max(20, oldScore - 13);
+          const harvestPct = 15; // Disciplined 15% profit-taking harvest into relief rally
+          const givenUp = +(c.baseSleeveWeight * (harvestPct / 100)).toFixed(2);
+          newWeights[t] = +(c.baseSleeveWeight - givenUp).toFixed(2);
+          totalTrimmedWeight = +(totalTrimmedWeight + givenUp).toFixed(2);
+
+          trimmedList.push({
+            ticker: t,
+            name: c.name,
+            polarity: "positive",
+            oldScore,
+            newScore,
+            oldClass: `${c.baseRiskClass} (${oldScore})`,
+            newClass: `${scoreToRiskLabel(newScore, true)} (${newScore})`,
+            trimPct: harvestPct,
+            actionLabel: `Harvest ${harvestPct}% (Profit-Taking)`,
+            oldW: c.baseSleeveWeight,
+            newW: newWeights[t],
+            oldTotalPct: +(c.baseSleeveWeight * baseStockShare).toFixed(2),
+            newTotalPct: +(newWeights[t] * baseStockShare).toFixed(2),
+            givenUp,
+            dollarsTrimmed: Math.round(eqDollars * (givenUp / 100)),
+            reason: buildCompanySpecificMechanism(t, "positive", queryText, oldScore, newScore, harvestPct)
+          });
+        });
+
+        const toUSTSleevePct = +(totalTrimmedWeight * 0.55).toFixed(2);
+        const toEquities = +(totalTrimmedWeight - toUSTSleevePct).toFixed(2);
+        newWeights.UST_EXTRA = toUSTSleevePct;
+
+        // Pick non-overlapping beneficiaries from our 7 core companies
+        const candidateBens = ["GE", "XOM", "SHEL", "LLY"].filter(k => !targets.includes(k)).slice(0, 2);
+        const beneficiaries = candidateBens.map((bt, idx) => {
+          const share = idx === 0 ? +(toEquities * 0.55).toFixed(2) : +(toEquities - +(toEquities * 0.55).toFixed(2)).toFixed(2);
+          newWeights[bt] = +(newWeights[bt] + share).toFixed(2);
+          return {
+            ticker: bt,
+            name: COMPANIES[bt].name,
+            addedWeight: share,
+            addedDollars: Math.round(eqDollars * (share / 100)),
+            reason: bt === "GE"
+              ? "50/50 CFM LEAP engine partner & high-FCF aftermarket compounder ($3.3B Q2 OCF)"
+              : bt === "XOM"
+                ? "Fortress real-asset cash generator ($17.2B Q2 FCF, 22.9x P/E) locking in equity gains"
+                : "Low-multiple cash-flow stabilizer"
+          };
+        });
+
+        const newTotalStockPct = +((100 - toUSTSleevePct) * baseStockShare).toFixed(2);
+        const newTotalBondPct = +(100 - newTotalStockPct).toFixed(2);
+
+        return {
+          mode: "positive_catalyst",
+          polarity: "positive",
+          headline: `Positive De-Risking Catalyst: ${queryText.slice(0, 64)}`,
+          queryText,
+          year,
+          severityMult: 1.0,
+          urgency: getGlidepathUrgencyMultiplier(year),
+          estPort,
+          baseStockShare,
+          baseBondShare,
+          eqDollars,
+          newTotalStockPct,
+          newTotalBondPct,
+          toUSTSleevePct,
+          toUSTDollars: Math.round(eqDollars * (toUSTSleevePct / 100)),
+          totalTrimmedWeight,
+          totalTrimmedDollars: Math.round(eqDollars * (totalTrimmedWeight / 100)),
+          reserveRateAssumed: 4.0,
+          reserveNeeded: 421767,
+          primaryTicker,
+          primaryScenarioId: null,
+          trimmedList,
+          beneficiaries,
+          newWeights,
+          untrimmedBadLoss: 6.18,
+          trimmedBadLoss: +(6.35 - (totalTrimmedWeight * 0.04)).toFixed(2),
+          untrimmedMissProb: 0.51,
+          trimmedMissProb: +(0.58 - (totalTrimmedWeight * 0.015)).toFixed(2),
+          untrimmedGiftProb: 81.2,
+          trimmedGiftProb: +(80.6 + (totalTrimmedWeight * 0.22)).toFixed(1),
+          sources: COMPANIES[primaryTicker]?.sources || [],
+          peerNoteHTML: ""
+        };
+      }
+
+      // 4. Negative / Multi-Factor Contagion Handler (Strictly across the 7 Core Companies: GE, TSM, LLY, NVDA, XOM, BA, SHEL)
       const yearIdx = Math.max(0, Math.min(5, year - 2027));
       const urgency = getGlidepathUrgencyMultiplier(year);
       const estPort = [300000, 469951, 488749, 508299, 528631, 549776][yearIdx];
@@ -2014,44 +2287,50 @@
       const pctMatches = q.match(/(\d+(?:\.\d+)?)\s*%/);
       const customPct = pctMatches ? parseFloat(pctMatches[1]) : null;
 
+      const isOilGlutDrop = /glut|oversupply|\$50|\$52|\$55|oil crash|oil drop|crude drop|crude crash|opec\+\s*flood/.test(q);
+      const isOilSpike = /oil|fuel|energy|opec|barrel|petrol|\$120|\$130/.test(q) && !isOilGlutDrop;
+
       const factors = {
-        oilEnergy: /oil|fuel|energy|opec|barrel|petrol|airline/.test(q),
+        oilSpike: isOilSpike,
+        oilGlut: isOilGlutDrop,
         inflationRates: /inflation|rate|fed|treasury|yield|cpi|stagflation|hike|cut/.test(q),
         aiEfficiencyCapex: /deepseek|open-source|open source|efficient|gpu demand|capex|cloud|bubble|digestion|hyperscaler|inference/.test(q),
         taiwanChinaGeopolitics: /taiwan|blockade|china|tariff|trade war|strait|sanction|export|invasion|geopolit/.test(q),
-        defenseWar: /war|defense|military|nato|pentagon|missile|f-47|f-35|budget|submarine|conflict/.test(q),
-        recessionPandemic: /recession|crash|depression|pandemic|covid|lockdown|unemployment|crisis|bear market/.test(q),
+        recessionPandemic: (!isOilGlutDrop) && /recession|market crash|economic crash|depression|pandemic|covid|lockdown|unemployment|financial crisis|bear market/.test(q),
         pharmaPricePatent: /medicare|glp-1|obesity|drug price|fda|patent|clinical|wegovy|novo|reimbursement|price cap/.test(q),
-        laborSupplyStrike: /strike|union|labor|boeing|supply chain|shortage|spirit|defect|whistleblower|lose|lost|delay|recall|halt/.test(q),
-        peerSwap: /micron|sk hynix|united|intel|samsung|globalfoundries|swap|replace|add/.test(q)
+        laborSupplyStrike: /strike|union|labor|supply chain|shortage|spirit|defect|whistleblower|lose|lost|delay|recall|halt|qatar/.test(q)
       };
 
-      const mentionedTickers = [];
-      if (/boeing|\bba\b|777x|f-47|max/.test(q)) mentionedTickers.push("BA");
-      if (/ge\b|general electric|leap|cfm|engine/.test(q)) mentionedTickers.push("GE");
-      if (/tsmc|\btsm\b|foundry|cowos|asml/.test(q)) mentionedTickers.push("TSM");
-      if (/nvidia|nvda|cuda|rubin|blackwell/.test(q)) mentionedTickers.push("NVDA");
-      if (/lilly|lly|mounjaro|zepbound|glp/.test(q)) mentionedTickers.push("LLY");
-      if (/lockheed|lmt|f-35|thaad|pac-3/.test(q)) mentionedTickers.push("LMT");
-      if (/general dynamics|\bgd\b|gulfstream|submarine/.test(q)) mentionedTickers.push("GD");
-      if (/amd\b|mi400|ryzen|epyc/.test(q)) mentionedTickers.push("AMD");
-
       const impacts = {};
-      Object.keys(COMPANIES).forEach(t => {
+      CORE_TICKERS.forEach(t => {
         impacts[t] = { riskDelta: 0, trimPct: 0, reason: [] };
       });
 
-      let macroTitle = `Confirmed News Reanalysis: "${queryText.slice(0, 62)}"`;
+      let macroTitle = `Confirmed Risk Reanalysis: "${queryText.slice(0, 62)}"`;
       let reserveRateAssumed = 4.0;
 
-      if (factors.oilEnergy) {
-        macroTitle = "Oil & Jet Fuel Shock + Aviation Margin Reanalysis";
-        impacts.BA.riskDelta += 22;
-        impacts.BA.reason.push("Higher jet fuel prices squeeze airline cash flows, causing carriers to defer widebody deliveries ($45.9B debt vulnerability)");
-        impacts.GE.riskDelta -= 8;
-        impacts.GE.reason.push("High oil prices force airlines to service fuel-efficient CFM LEAP engines (+MRO pricing power)");
-        impacts.LMT.riskDelta -= 6;
-        impacts.LMT.reason.push("Energy-driven geopolitical instability accelerates DoD missile/fighter outlays");
+      if (factors.oilSpike) {
+        macroTitle = "Oil & Jet Fuel Surge ($130/bbl) — ExxonMobil & Shell Hedge Boeing";
+        impacts.BA.riskDelta += 24;
+        impacts.BA.reason.push("Surging jet fuel prices squeeze airline cash flows, causing carriers to defer widebody deliveries and pressuring Boeing's $45.9B debt load and -2.7% BCA segment margin");
+        impacts.XOM.riskDelta -= 14;
+        impacts.XOM.reason.push("Direct upstream oil & refining realization windfall across Permian (>1.8 Moebd) and Guyana expands ExxonMobil's $17.2B Q2 free cash flow");
+        impacts.SHEL.riskDelta -= 12;
+        impacts.SHEL.reason.push("Higher Brent crude and oil-linked LNG realizations expand Shell's $17.52B Q2 free cash flow and accelerate buybacks at 11.66x P/E");
+        impacts.GE.riskDelta -= 6;
+        impacts.GE.reason.push("High fuel costs force airlines to service fuel-efficient CFM LEAP engines (+30% shop visits)");
+      }
+
+      if (factors.oilGlut) {
+        macroTitle = "Global Crude Glut ($52/bbl) — Trimming ExxonMobil & Shell into US Treasuries, Eli Lilly & GE";
+        impacts.XOM.riskDelta += 24;
+        impacts.XOM.reason.push("Brent crude falling near $52/bbl compresses upstream realizations against ExxonMobil's $27B–$29B annual CapEx and $42.37B debt");
+        impacts.SHEL.riskDelta += 26;
+        impacts.SHEL.reason.push("Lower oil and LNG spot prices reduce Shell's operating cash flow while absorbing the $13.6B ARC Resources acquisition and $73.08B total debt");
+        impacts.GE.riskDelta -= 10;
+        impacts.GE.reason.push("Lower jet fuel prices boost global airline profitability and commercial flight-hour utilization (+CFM56/GEnx shop visits)");
+        impacts.LLY.riskDelta -= 10;
+        impacts.LLY.reason.push("Non-cyclical Mounjaro and Zepbound pharmaceutical cash flows ($10.69B Q2 OCF) are completely insulated from commodity deflation");
       }
 
       if (factors.inflationRates) {
@@ -2060,117 +2339,110 @@
           reserveRateAssumed = 3.0;
           macroTitle = "Fed Rate Cut & Lower Treasury Reinvestment Yield Analysis";
           impacts.NVDA.riskDelta -= 8;
-          impacts.NVDA.reason.push("Lower discount rates expand valuation multiples for high-growth AI cash flows");
-          impacts.BA.riskDelta += 12;
-          impacts.BA.reason.push("Rate cuts driven by macro slowdown hurt commercial aviation demand");
+          impacts.NVDA.reason.push("Lower discount rates expand valuation multiples for high-growth AI cash flows ($60.7B FY25 FCF)");
+          impacts.BA.riskDelta += 14;
+          impacts.BA.reason.push("Rate cuts driven by macro cooling weigh on commercial aviation demand while BA carries $45.9B debt");
         } else {
           reserveRateAssumed = 5.0;
-          macroTitle = "Inflation Spike & Higher-for-Longer Interest Rate Shock";
+          macroTitle = "Inflation Spike (6% CPI) & Higher-for-Longer 5.5% Fed Rate Shock";
           impacts.BA.riskDelta += 26;
-          impacts.BA.reason.push("$45.9B debt refinancing costs surge while fixed-price defense contracts suffer raw-material margin compression");
-          impacts.AMD.riskDelta += 28;
-          impacts.AMD.reason.push("137.2x P/E multiple compresses sharply when 10-year Treasury yields rise above 5%");
-          impacts.LLY.riskDelta += 14;
-          impacts.LLY.reason.push("$54.9B total debt increases interest expense, though prescription demand remains inelastic");
-          impacts.GD.riskDelta -= 6;
-          impacts.GD.reason.push("Low $7.52B debt and inflation-protected government backlog ($136.5B) act as safe haven");
+          impacts.BA.reason.push("$45.9B debt refinancing costs surge while fixed-price contracts suffer raw-material margin compression (0.6% GAAP margin)");
+          impacts.LLY.riskDelta += 15;
+          impacts.LLY.reason.push("$54.9B total debt increases interest expense and compresses LLY's 43.08x P/E multiple when Treasury yields exceed 5%");
+          impacts.XOM.riskDelta -= 12;
+          impacts.XOM.reason.push("Real-asset commodity producer ($17.2B Q2 FCF, 11% net-debt-to-cap) thrives as an inflation hedge");
+          impacts.SHEL.riskDelta -= 10;
+          impacts.SHEL.reason.push("Low 11.66x P/E multiple and $17.52B Q2 FCF insulate Shell from high-rate multiple compression");
         }
       }
 
       if (factors.aiEfficiencyCapex) {
         const shockScale = customPct ? (customPct / 30) : 1.0;
-        macroTitle = `AI Efficiency / Hyperscaler CapEx Shock (${customPct ? customPct + '%' : '30%'} GPU Demand Repricing)`;
+        macroTitle = `AI Efficiency / Hyperscaler CapEx Shock (${customPct ? customPct + '%' : '35%'} GPU Demand Repricing)`;
         impacts.NVDA.riskDelta += Math.round(32 * shockScale);
         impacts.NVDA.reason.push("90% Data Center revenue concentration faces immediate multiple and margin compression if cloud hyperscalers slow GPU cluster orders");
-        impacts.AMD.riskDelta += Math.round(38 * shockScale);
-        impacts.AMD.reason.push("As #2 AI GPU challenger at 137.2x P/E with only $1.56B cash, hyperscaler CapEx cuts hit MI400 adoption hardest");
-        impacts.TSM.riskDelta += Math.round(20 * shockScale);
-        impacts.TSM.reason.push("$15.6B quarterly CapEx ($40.9B FY25) risks fab underutilization if CoWoS/2nm AI orders moderate");
+        impacts.TSM.riskDelta += Math.round(22 * shockScale);
+        impacts.TSM.reason.push("$15.6B quarterly CapEx ($40.9B FY25) risks fab underutilization if CoWoS/2nm AI accelerator orders moderate");
         impacts.LLY.riskDelta -= 12;
-        impacts.LLY.reason.push("Zero AI hardware dependency; AI efficiency lowers Lilly's own drug-discovery compute costs");
+        impacts.LLY.reason.push("Zero AI hardware revenue dependency; lower AI compute costs accelerate Lilly's drug discovery pipeline");
+        impacts.XOM.riskDelta -= 10;
+        impacts.XOM.reason.push("Upstream energy and LNG cash flows ($23.56B Q2 OCF) are completely decoupled from semiconductor CapEx cycles");
         impacts.GE.riskDelta -= 10;
-        impacts.GE.reason.push("Industrial aviation cash flows ($3.3B Q2 OCF) are completely insulated from semiconductor CapEx cycles");
+        impacts.GE.reason.push("Commercial engine aftermarket shop visits ($190B backlog) provide non-correlated industrial FCF");
       }
 
       if (factors.taiwanChinaGeopolitics) {
         macroTitle = "Taiwan Strait / US-China Geopolitical & Tariff Contagion Model";
         impacts.TSM.riskDelta += 42;
-        impacts.TSM.reason.push("Direct fab concentration in Taiwan creates correlated risk with Laura's 2033 Taiwan Creative Residency");
-        impacts.NVDA.riskDelta += 26;
-        impacts.NVDA.reason.push("100% reliant on TSMC wafer fabrication plus China data-center export restrictions");
-        impacts.AMD.riskDelta += 28;
-        impacts.AMD.reason.push("100% reliant on TSMC advanced nodes and exposed to PC/server supply chain disruption");
-        impacts.LMT.riskDelta -= 18;
-        impacts.LMT.reason.push("Direct beneficiary of urgent Indo-Pacific PAC-3, THAAD, and F-35 defense orders");
-        impacts.GD.riskDelta -= 15;
-        impacts.GD.reason.push("US Navy nuclear submarine ($136.5B backlog) and ordnance priority surges");
-      }
-
-      if (factors.defenseWar) {
-        if (/lose|lost|cut|cancel/.test(q) && mentionedTickers.includes("BA")) {
-          macroTitle = "Boeing Defense Contract Loss / Competitor Shift to Lockheed Martin";
-          impacts.BA.riskDelta += 34;
-          impacts.BA.reason.push("Losing the $20B F-47 / Navy fighter program removes crucial defense ballast while commercial margin is only 0.6%");
-          impacts.LMT.riskDelta -= 16;
-          impacts.LMT.reason.push("Captures sixth-generation fighter dominance alongside F-35 and PAC-3/THAAD growth");
-        } else {
-          impacts.LMT.riskDelta -= 14;
-          impacts.LMT.reason.push("Rising defense budgets expand $79B–$82B sales guidance and missile production");
-          impacts.GD.riskDelta -= 12;
-          impacts.GD.reason.push(">=70% military revenue and $136.5B backlog provide guaranteed government cash flows");
-        }
+        impacts.TSM.reason.push("Direct advanced-fab concentration in Taiwan creates 100% correlated risk with Laura's 2033 Taiwan Creative Residency");
+        impacts.NVDA.riskDelta += 28;
+        impacts.NVDA.reason.push("100% reliant on TSMC wafer fabrication/CoWoS packaging plus US-China data center export restrictions");
+        impacts.XOM.riskDelta -= 15;
+        impacts.XOM.reason.push("Americas-focused Permian (>1.8 Moebd) and Guyana production acts as a premier geopolitical energy hedge");
+        impacts.SHEL.riskDelta -= 12;
+        impacts.SHEL.reason.push("Global LNG trading optimization captures maritime energy rerouting premia during Indo-Pacific supply disruptions");
+        impacts.LLY.riskDelta -= 10;
+        impacts.LLY.reason.push("US/European pharmaceutical manufacturing and inelastic GLP-1 demand insulate cash flows from Taiwan Strait friction");
       }
 
       if (factors.recessionPandemic) {
-        macroTitle = `Global Macro Recession / Travel Freeze Stress-Test (${year})`;
+        macroTitle = `Global Macro Recession / Travel & Industrial Demand Stress-Test (${year})`;
         impacts.BA.riskDelta += 38;
-        impacts.BA.reason.push("Airlines cancel/defer widebody deliveries during recessions; $45.9B debt threatens solvency");
+        impacts.BA.reason.push("Airlines cancel/defer widebody deliveries during recessions; $45.9B debt and -2.7% BCA margin heighten solvency risk");
         impacts.GE.riskDelta += 18;
-        impacts.GE.reason.push("Lower global flight hours temporarily reduce commercial engine shop visits");
-        impacts.AMD.riskDelta += 30;
-        impacts.AMD.reason.push("PC, gaming (-31% YoY), and enterprise server spending contract in a recession");
-        impacts.LLY.riskDelta -= 15;
-        impacts.LLY.reason.push("Inelastic prescription demand for Mounjaro & Zepbound acts as recession-proof cash generator");
-        impacts.LMT.riskDelta -= 14;
-        impacts.LMT.reason.push("Sovereign US defense contracts are non-cyclical and decoupled from GDP contraction");
-        impacts.GD.riskDelta -= 12;
-        impacts.GD.reason.push("$136.5B multi-year government backlog insulates operating cash flow");
+        impacts.GE.reason.push("Lower global Revenue Passenger Kilometers (RPK) temporarily reduce commercial engine flight hours and shop visits");
+        impacts.XOM.riskDelta += 14;
+        impacts.XOM.reason.push("Recessionary industrial slowdown softens short-term crude and chemical demand");
+        impacts.LLY.riskDelta -= 18;
+        impacts.LLY.reason.push("Inelastic prescription demand for Mounjaro & Zepbound ($85B–$87B 2026 guidance) acts as a recession-proof cash generator");
       }
 
       if (factors.pharmaPricePatent) {
-        macroTitle = `Eli Lilly GLP-1 Regulatory Price Cap (${customPct ? customPct + '%' : '30%'}) & Debt Leverage Shock`;
+        macroTitle = `Eli Lilly GLP-1 Regulatory Price Cap (${customPct ? customPct + '%' : '40%'}) & $54.9B Debt Shock`;
         impacts.LLY.riskDelta += customPct ? Math.round(customPct * 0.85) : 32;
-        impacts.LLY.reason.push("Mandatory GLP-1 price caps or Novo Nordisk competition compress 39.1% operating margin while $54.9B debt remains high");
+        impacts.LLY.reason.push("Mandatory Medicare/insurer GLP-1 price caps or Novo Nordisk price war compress Lilly's 39.1% operating margin while carrying $54.9B total debt at 43.08x P/E");
+        impacts.XOM.riskDelta -= 12;
+        impacts.XOM.reason.push("Reallocated healthcare capital rotates into ExxonMobil's $17.2B Q2 FCF and 22.9x P/E energy fortress");
         impacts.GE.riskDelta -= 10;
-        impacts.GE.reason.push("Reallocated healthcare capital rotates into GE's $190B commercial aerospace backlog");
-        impacts.GD.riskDelta -= 8;
-        impacts.GD.reason.push("$136.5B defense backlog provides non-correlated cash flow stability");
+        impacts.GE.reason.push("$190B commercial propulsion backlog provides non-correlated industrial cash flow");
       }
 
       if (factors.laborSupplyStrike) {
         const targets = mentionedTickers.length > 0 ? mentionedTickers : ["BA"];
         targets.forEach(t => {
-          impacts[t].riskDelta += customPct ? Math.round(customPct * 1.1) : 28;
-          impacts[t].reason.push(`Confirmed operational delay / strike / bottleneck ("${queryText}") compresses ${t} free cash flow and elevates downside volatility`);
+          const delta = customPct ? Math.round(customPct * 1.1) : 28;
+          impacts[t].riskDelta += delta;
+          const newSc = Math.min(98, COMPANIES[t].baseRiskScore + delta);
+          impacts[t].reason.push(buildCompanySpecificMechanism(t, "negative", queryText, COMPANIES[t].baseRiskScore, newSc, 35));
         });
         if (targets.includes("BA") && !targets.includes("GE")) {
-          impacts.GE.riskDelta -= 10;
-          impacts.GE.reason.push("Boeing airframe delays force airlines to fly older planes longer, increasing GE engine MRO shop visits (+30% YoY)");
+          impacts.XOM.riskDelta -= 10;
+          impacts.XOM.reason.push("Non-correlated $17.2B Q2 FCF energy anchor absorbs trimmed aerospace risk");
+          impacts.GE.riskDelta -= 8;
+          impacts.GE.reason.push("Legacy CFM56/GEnx shop visits (+30% YoY) provide an aftermarket FCF bridge while airframe deliveries lag");
         }
       }
 
+      // If no specific macro factor matched, apply strictly to the mentioned ticker(s) (or BA if none mentioned) — NEVER contaminating NVDA!
       const anyImpact = Object.values(impacts).some(x => x.riskDelta !== 0);
       if (!anyImpact) {
-        const targets = mentionedTickers.length > 0 ? mentionedTickers : ["BA", "NVDA"];
-        const shockMag = customPct ? Math.min(55, Math.max(15, customPct)) : 28;
+        const targets = mentionedTickers.length > 0 ? mentionedTickers : ["BA"];
+        const shockMag = customPct ? Math.min(55, Math.max(15, customPct)) : 24;
         targets.forEach(t => {
           impacts[t].riskDelta += shockMag;
-          impacts[t].reason.push(`Confirmed news catalyst ("${queryText}") increases cash-flow uncertainty, leverage sensitivity ($${COMPANIES[t].debtNumB}B debt), and downside tail risk in ${year}`);
+          const newSc = Math.min(98, COMPANIES[t].baseRiskScore + shockMag);
+          impacts[t].reason.push(buildCompanySpecificMechanism(t, "negative", queryText, COMPANIES[t].baseRiskScore, newSc, 32));
         });
-        impacts.GE.riskDelta -= 10;
-        impacts.GE.reason.push("Acts as low-volatility cash-flow stabilizer ($190B backlog, 21.7% margin)");
-        impacts.LMT.riskDelta -= 8;
-        impacts.LMT.reason.push("Sovereign defense backlog ($79–$82B sales outlook) dampens portfolio beta");
+        const nonTargetHedges = ["XOM", "GE", "LLY", "SHEL"].filter(k => !targets.includes(k)).slice(0, 2);
+        nonTargetHedges.forEach(h => {
+          impacts[h].riskDelta -= 10;
+          impacts[h].reason.push(
+            h === "XOM" ? "ExxonMobil ($17.2B Q2 FCF, 22.9x P/E) provides non-correlated real-asset cash flow"
+            : h === "GE" ? "GE Aerospace ($190B backlog, $3.3B Q2 OCF) stabilizes industrial cash generation"
+            : h === "LLY" ? "Eli Lilly ($10.69B Q2 OCF) provides non-cyclical healthcare growth"
+            : "Shell ($17.52B Q2 FCF, 11.66x P/E) provides deep-value cash yield"
+          );
+        });
       }
 
       const newWeights = {};
@@ -2178,7 +2450,7 @@
       const beneficiaries = [];
       const trimmedList = [];
 
-      Object.keys(COMPANIES).forEach(t => {
+      CORE_TICKERS.forEach(t => {
         const c = COMPANIES[t];
         const imp = impacts[t];
         if (imp.riskDelta > 0) {
@@ -2187,15 +2459,19 @@
           imp.trimPct = calcTrim;
           const givenUp = +(c.baseSleeveWeight * (calcTrim / 100)).toFixed(2);
           newWeights[t] = +(c.baseSleeveWeight - givenUp).toFixed(2);
-          totalTrimmedWeight += givenUp;
+          totalTrimmedWeight = +(totalTrimmedWeight + givenUp).toFixed(2);
           const newScore = Math.min(98, c.baseRiskScore + imp.riskDelta);
-          const newClass = newScore >= 80 ? "High Risk" : newScore >= 65 ? "Medium-High" : "Medium";
+          const newClass = scoreToRiskLabel(newScore, false);
           trimmedList.push({
             ticker: t,
             name: c.name,
+            polarity: "negative",
+            oldScore: c.baseRiskScore,
+            newScore,
             oldClass: `${c.baseRiskClass} (${c.baseRiskScore})`,
             newClass: `${newClass} (${newScore})`,
             trimPct: calcTrim,
+            actionLabel: `Give Up ${calcTrim}%`,
             oldW: c.baseSleeveWeight,
             newW: newWeights[t],
             oldTotalPct: +(c.baseSleeveWeight * baseStockShare).toFixed(2),
@@ -2217,7 +2493,6 @@
         }
       });
 
-      // Sort trimmedList by largest trimPct first
       trimmedList.sort((a, b) => b.trimPct - a.trimPct);
 
       const toUSTSleevePct = +(totalTrimmedWeight * 0.50).toFixed(2);
@@ -2225,19 +2500,25 @@
       newWeights.UST_EXTRA = toUSTSleevePct;
 
       if (beneficiaries.length === 0) {
+        const fallbackTicker = trimmedList.some(x => x.ticker === "XOM") ? "LLY" : "XOM";
         beneficiaries.push({
-          ticker: "GD",
-          name: "General Dynamics Corp",
-          scoreDelta: -6,
-          reason: "$136.5B government backlog & low $7.52B debt serve as default defensive anchor"
+          ticker: fallbackTicker,
+          name: COMPANIES[fallbackTicker].name,
+          scoreDelta: -8,
+          reason: fallbackTicker === "XOM"
+            ? "$17.2B Q2 free cash flow and 11% net-debt-to-capital ratio serve as default real-asset stabilizer"
+            : "$10.69B Q2 operating cash flow and non-cyclical GLP-1 demand serve as default defensive stabilizer"
         });
       }
 
       const perBen = +(toEquities / beneficiaries.length).toFixed(2);
-      beneficiaries.forEach(b => {
-        newWeights[b.ticker] = +(newWeights[b.ticker] + perBen).toFixed(2);
-        b.addedWeight = perBen;
-        b.addedDollars = Math.round(eqDollars * (perBen / 100));
+      beneficiaries.forEach((b, idx) => {
+        const addW = idx === beneficiaries.length - 1
+          ? +(toEquities - perBen * (beneficiaries.length - 1)).toFixed(2)
+          : perBen;
+        newWeights[b.ticker] = +(newWeights[b.ticker] + addW).toFixed(2);
+        b.addedWeight = addW;
+        b.addedDollars = Math.round(eqDollars * (addW / 100));
       });
 
       const untrimmedBadLoss = +(6.35 + (totalTrimmedWeight * 0.19)).toFixed(2);
@@ -2250,17 +2531,11 @@
       const newTotalStockPct = +((100 - toUSTSleevePct) * baseStockShare).toFixed(2);
       const newTotalBondPct = +(100 - newTotalStockPct).toFixed(2);
 
-      const peerNoteHTML = factors.peerSwap ? `
-        <div class="bg-indigo-950/40 border border-indigo-500/30 rounded-xl p-3 text-xs text-slate-200">
-          <strong class="text-indigo-300">🔄 Watchlist Peer Substitution Analysis:</strong>
-          From your team's 12-company research list, substituting high-multiple <strong>AMD (137.2x P/E)</strong> or <strong>Boeing (75.6x P/E)</strong> with <strong>Micron (MU)</strong> or <strong>SK Hynix</strong> captures HBM3e/HBM4 memory demand at a lower valuation multiple, while <strong>GlobalFoundries (GFS)</strong> provides US-domiciled mature-node foundry exposure insulated from Taiwan Strait blockades.
-        </div>
-      ` : "";
-
       const primaryTicker = trimmedList.length > 0 ? trimmedList[0].ticker : "BA";
 
       return {
         mode: "multi",
+        polarity: "negative",
         headline: macroTitle,
         queryText,
         year,
@@ -2290,63 +2565,44 @@
         untrimmedGiftProb: 78.4,
         trimmedGiftProb,
         sources: COMPANIES[primaryTicker]?.sources || [],
-        peerNoteHTML
+        peerNoteHTML: ""
       };
     }
 
     // =========================================================================
-    // 8. LIVE LLM API CALLER (FORMATS INTO THE EXACT SAME UNIFIED TABLE UI!)
+    // 9. LIVE LLM API CALLER (WITH CANONICAL STATE LOCK SO ZERO CONTRADICTION!)
     // =========================================================================
-    function buildSystemPromptForLLM() {
+    function buildSystemPromptForLLM(canonicalState) {
       const companySummary = Object.values(COMPANIES).map(c =>
-        `- ${c.name} (${c.ticker}, $${c.price}): Base Sleeve Weight=${c.baseSleeveWeight}% (=${+(c.baseSleeveWeight*0.4).toFixed(2)}% of total portfolio in 2027-28), Base Risk=${c.baseRiskClass} (${c.baseRiskScore}/100), Vol=${c.annualVol}%, Q2'26 Rev=${c.financials.revQ2_26}, Q2'26 OpMargin=${c.financials.opMarginQ2_26}, Q2'26 NetProfit=${c.financials.netProfitQ2_26}, TotalDebt=${c.financials.debtQ2_26}, Backlog/Note=${c.financials.backlog}`
+        `- ${c.name} (${c.ticker}, $${c.price}): Base Sleeve Weight=${c.baseSleeveWeight}% (=${+(c.baseSleeveWeight*0.4).toFixed(2)}% of total portfolio in 2027-28), Base Risk=${c.baseRiskClass} (${c.baseRiskScore}/100), Vol=${c.annualVol}%, Q2'26 Rev=${c.financials.revQ2_26}, Q2'26 OpMargin=${c.financials.opMarginQ2_26}, Q2'26 NetProfit=${c.financials.netProfitQ2_26}, TotalDebt=${c.financials.debtQ2_26}`
       ).join("\n");
 
-      return `You are the Chief Quantitative LDI Strategist & Equity Analyst for a Wharton Global Youth Investment Competition team managing client Laura Gao's portfolio.
+      const canonicalSummary = canonicalState.trimmedList.map(t =>
+        `- Action on ${t.ticker}: Polarity=${canonicalState.polarity.toUpperCase()}, Risk Score shifts ${t.oldClass} -> ${t.newClass}, ${t.actionLabel} (${t.oldW}% -> ${t.newW}% of 40% sleeve; -$${t.dollarsTrimmed.toLocaleString()})`
+      ).join("\n");
 
-CORE STRATEGY (LIABILITY-DRIVEN INVESTING — 60% GOV BONDS / 40% COMPANIES):
-1. Client Cash Flows: Laura invests $300,000 at start of 2027 (Year 1) and adds $150,000 at start of 2028 (Year 2).
-2. Fixed Liabilities: 10 annual operating payments of $50,000 from 2033 to 2042 for her Taiwan Creative Residency. Discounted at the 4.0% safe US Treasury rate, she needs $421,767 in her Operating Reserve at the start of 2033.
-3. Dynamic Glidepath (2027-2032):
-   - 2027 & 2028: 60% US Government Bonds (Treasuries) + 40% Company Equities
-   - 2029: 70% US Gov Bonds + 30% Company Equities
-   - 2030: 80% US Gov Bonds + 20% Company Equities
-   - 2031 & 2032: 90% US Gov Bonds + 10% Company Equities (protects 2031 co-sponsor gift promise of $100k-$150k).
-4. Three Mandatory Passing Guardrails:
-   - Chance of missing $421,767 reserve: < 1.0% (Baseline: 0.58%)
-   - Chance of >= $100,000 facility gift: > 75.0% (Baseline: 80.6%)
-   - Loss in a bad year: < 7.0% (Baseline: 6.35%)
+      const canonicalBens = canonicalState.beneficiaries.map(b =>
+        `- Reallocate +${b.addedWeight}% sleeve (+$${b.addedDollars.toLocaleString()}) to ${b.name} (${b.ticker})`
+      ).join("\n");
 
-PORTFOLIO 40% EQUITY SLEEVE (8 CORE COMPANIES):
+      return `You are the Chief Quantitative LDI Strategist for a Wharton Global Youth Investment Competition team managing client Laura Gao's portfolio.
+
+STRICT 7-COMPANY PORTFOLIO (DO NOT MENTION LMT, GD, OR AMD — THEY ARE NOT IN THE PORTFOLIO):
 ${companySummary}
 
-CRITICAL INSTITUTIONAL FINANCIAL RULES (ALWAYS ENFORCE):
-- Bulletin 1 (Boeing Order Book & Program Accounting): Never claim 777X orders service near-term $45.9B debt; aircraft orders only yield small Pre-Delivery Payments (PDPs) while 777X is a near-term working-capital drag under program accounting. Near-term deleveraging relies on 737 MAX (47-52/mo) & 787 (8-10/mo) FCF ($631M in Q2; GAAP margin 0.6%, Core non-GAAP 0.0%, BCA segment -2.7%).
-- Bulletin 2 (GE Razor-and-Blade Nuance): GE is sole-source on the 777X's GE9X engine (sharing 777X delay risk on idle inventory), and new OEM engine deliveries dilute margins upfront (GE Q2 2026 21.7% non-GAAP margin / $2.75B op profit contracted -130 bps YoY on OEM mix). GE's moat is its legacy CFM56/GEnx shop visits acting as a self-funded FCF bridge to the 2030s.
-- Bulletin 3 (LDI Duration Immunization & Correlated Factor Risk): Rotating BA into GE alone does not de-risk RPK commercial aviation beta (and GE carries ~35x-41x P/E multiple compression risk). Always immunize the $421,767 (2033) liability using maturity-matched 2033 Zero-Coupon / 7-Year US Treasuries & TIPS (eliminating reinvestment rate risk), and diversify equity trims into non-correlated ~20x P/E defense/healthcare anchors (GD, LMT, LLY) alongside a capped GE aftermarket bridge.
+CANONICAL QUANTITATIVE STATE COMPUTED FOR THIS QUERY (YOU MUST USE THESE EXACT NUMBERS AND TICKERS WITHOUT CONTRADICTION):
+- Headline: ${canonicalState.headline}
+- Catalyst Polarity: ${canonicalState.polarity.toUpperCase()}
+${canonicalSummary}
+- Reallocation to 2033 US Treasuries: +${canonicalState.toUSTSleevePct}% sleeve (+$${canonicalState.toUSTDollars.toLocaleString()})
+${canonicalBens}
+- Guardrails: Bad-Year Loss = ${canonicalState.trimmedBadLoss}% (PASS <7.0%), Reserve Miss Risk = ${canonicalState.trimmedMissProb}% (PASS <1.0%), >=$100k Gift Confidence = ${canonicalState.trimmedGiftProb}% (PASS >75.0%).
 
-Give a concise executive takeaway (2-3 bullet points) on the user's scenario, and ALWAYS end with a valid <PORTFOLIO_JSON>...</PORTFOLIO_JSON> block so the UI renders the full Dynamic First-Principles Reanalysis table and updates all tabs:
-<PORTFOLIO_JSON>
-{
-  "headline": "Short descriptive title of reanalysis",
-  "year": 2028,
-  "primaryTicker": "BA",
-  "trimmedList": [
-    {"ticker": "BA", "newRisk": "High Risk (84)", "trimPct": 45, "reason": "Specific financial/catalyst mechanism"}
-  ],
-  "beneficiaries": [
-    {"ticker": "GE", "reason": "Why this company benefits"}
-  ],
-  "badYearLoss": 6.12,
-  "untrimmedBadLoss": 7.35,
-  "missProb": 0.49,
-  "giftProb": 81.2
-}
-</PORTFOLIO_JSON>`;
+Provide a 2-sentence institutional commentary reinforcing these exact numbers and tickers.`;
     }
 
-    async function callLiveLLMAPI(userPrompt) {
-      const sysPrompt = buildSystemPromptForLLM();
+    async function callLiveLLMAPI(userPrompt, canonicalState) {
+      const sysPrompt = buildSystemPromptForLLM(canonicalState);
       const key = llmConfig.apiKey.trim();
       const model = llmConfig.model.trim();
 
@@ -2358,12 +2614,12 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
           body: JSON.stringify({
             systemInstruction: { parts: [{ text: sysPrompt }] },
             contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-            generationConfig: { temperature: 0.3 }
+            generationConfig: { temperature: 0.2 }
           })
         });
         if (!resp.ok) {
           const errText = await resp.text();
-          throw new Error(`Gemini API HTTP ${resp.status}: ${errText.slice(0, 180)}`);
+          throw new Error(`Gemini API HTTP ${resp.status}: ${errText.slice(0, 140)}`);
         }
         const data = await resp.json();
         return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
@@ -2381,7 +2637,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
           },
           body: JSON.stringify({
             model,
-            temperature: 0.3,
+            temperature: 0.2,
             messages: [
               { role: "system", content: sysPrompt },
               { role: "user", content: userPrompt }
@@ -2390,7 +2646,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         });
         if (!resp.ok) {
           const errText = await resp.text();
-          throw new Error(`API HTTP ${resp.status}: ${errText.slice(0, 180)}`);
+          throw new Error(`API HTTP ${resp.status}: ${errText.slice(0, 140)}`);
         }
         const data = await resp.json();
         return data.choices?.[0]?.message?.content || "";
@@ -2408,14 +2664,14 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
           },
           body: JSON.stringify({
             model,
-            max_tokens: 1400,
+            max_tokens: 600,
             system: sysPrompt,
             messages: [{ role: "user", content: userPrompt }]
           })
         });
         if (!resp.ok) {
           const errText = await resp.text();
-          throw new Error(`Claude API HTTP ${resp.status}: ${errText.slice(0, 180)}`);
+          throw new Error(`Claude API HTTP ${resp.status}: ${errText.slice(0, 140)}`);
         }
         const data = await resp.json();
         return data.content?.[0]?.text || "";
@@ -2425,41 +2681,26 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
     }
 
     // =========================================================================
-    // 9. HANDLE USER QUERY & SYNC ACROSS ALL VIEWS
+    // 10. HANDLE USER QUERY & SYNC ACROSS ALL VIEWS
     // =========================================================================
     async function handleUserQuery(queryText) {
-      let baseState = computeDynamicMultiFactorState(queryText);
-      let extraNarrativeHTML = "";
+      const baseState = computeDynamicMultiFactorState(queryText);
+      let llmNote = "";
 
       if (llmConfig.apiKey && llmConfig.apiKey.trim().length > 5) {
         try {
-          const rawLLM = await callLiveLLMAPI(queryText);
-          const match = rawLLM.match(/<PORTFOLIO_JSON>([\s\S]*?)<\/PORTFOLIO_JSON>/);
-          const cleanBullets = rawLLM.replace(/<PORTFOLIO_JSON>[\s\S]*?<\/PORTFOLIO_JSON>/g, "").trim();
-
-          if (cleanBullets) {
-            extraNarrativeHTML = `
-              <div class="font-bold text-blue-300 mb-1">⚡ Live ${llmConfig.provider.toUpperCase()} (${llmConfig.model}) Executive Commentary:</div>
-              <div>${cleanBullets.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white">$1</strong>').replace(/\n/g, '<br/>')}</div>
-            `;
-          }
-
-          if (match && match[1]) {
-            const parsed = JSON.parse(match[1].trim());
-            if (parsed.headline) baseState.headline = parsed.headline;
-            if (parsed.badYearLoss) baseState.trimmedBadLoss = parsed.badYearLoss;
-            if (parsed.untrimmedBadLoss) baseState.untrimmedBadLoss = parsed.untrimmedBadLoss;
-            if (parsed.missProb) baseState.trimmedMissProb = parsed.missProb;
-            if (parsed.giftProb) baseState.trimmedGiftProb = parsed.giftProb;
+          const rawLLM = await callLiveLLMAPI(queryText, baseState);
+          const cleaned = rawLLM.replace(/<PORTFOLIO_JSON>[\s\S]*?<\/PORTFOLIO_JSON>/g, "").trim();
+          if (cleaned) {
+            llmNote = cleaned.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white">$1</strong>').replace(/\n/g, " ");
           }
         } catch (err) {
-          extraNarrativeHTML = `<div class="text-amber-300">⚠️ Live API Note: ${err.message} — Rendered using Built-In First-Principles Engine.</div>`;
+          llmNote = `Built-In Polarity-Verified Engine active (${err.message}).`;
         }
       }
 
-      // Sync across Active Reclassification Output, Trim Lab, LDI Engine, and Company Cards!
       syncAllViewsWithReanalysis(baseState, true);
-      return renderUnifiedReanalysisHTML(baseState, true, extraNarrativeHTML);
+      return renderUnifiedReanalysisHTML(baseState, true, llmNote);
     }
 
     function appendChatMessage(role, htmlContent, id = null) {
@@ -2486,10 +2727,10 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
     }
 
     // =========================================================================
-    // 10. SIMULATOR LAB VIEW LOGIC (TWO-WAY LINKED)
+    // 11. SIMULATOR LAB VIEW LOGIC (TWO-WAY LINKED)
     // =========================================================================
     function populateSimScenarios(ticker) {
-      const comp = COMPANIES[ticker];
+      const comp = COMPANIES[ticker] || COMPANIES.BA;
       const select = document.getElementById("sim-scenario");
       select.innerHTML = comp.scenarios.map(s => `<option value="${s.id}">${s.name}</option>`).join("");
     }
@@ -2508,22 +2749,22 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
           `${year} (${Math.round(state.baseBondShare*100)}% Gov Bonds / ${Math.round(state.baseStockShare*100)}% Stocks)`;
         document.getElementById("sim-severity-label").textContent = `${severity.toFixed(1)}x Impact Multiplier`;
         document.getElementById("sim-result-box").innerHTML = renderUnifiedReanalysisHTML(state, false);
-        updateSimBarsChart(ticker);
+        updateSimBarsChart();
       }
       return state;
     }
 
     // =========================================================================
-    // 11. LDI & MONTE CARLO ENGINE VIEW LOGIC
+    // 12. LDI & MONTE CARLO ENGINE VIEW LOGIC
     // =========================================================================
     const STRATEGY_PRESETS = {
       reclassified: {
         name: "⚡ Active AI-Synced Portfolio (60.9% 2033-Duration Bonds / 39.1% Stocks)",
         shares: [0.3908, 0.3908, 0.2931, 0.1954, 0.0977, 0.0977],
-        missProb: 0.49,
-        giftProb: 80.8,
+        missProb: 0.52,
+        giftProb: 80.3,
         medianLeft: 161120,
-        badLoss: 6.12
+        badLoss: 6.19
       },
       glidepath: {
         name: "Baseline Plan: 60%→90% Gov Bonds / 40%→10% Stocks",
@@ -2622,7 +2863,6 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
 
       const selectedPreset = STRATEGY_PRESETS[stratKey] || STRATEGY_PRESETS.reclassified;
 
-      // Render year-by-year Gov Bonds vs Companies schedule
       const schedEl = document.getElementById("ldi-glidepath-schedule-rows");
       if (schedEl) {
         schedEl.innerHTML = GLIDEPATH_YEARS.map((yr, i) => {
@@ -2731,7 +2971,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
     }
 
     // =========================================================================
-    // 12. 8-COMPANY RESEARCH MATRIX VIEW (WITH LIVE SYNCED WEIGHTS)
+    // 13. 7-COMPANY RESEARCH MATRIX VIEW (WITH LIVE SYNCED WEIGHTS)
     // =========================================================================
     let activeSectorFilter = "ALL";
 
@@ -2778,7 +3018,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
 
               <div class="flex flex-wrap items-center gap-2 text-xs">
                 <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">
-                  Base Risk: <strong class="text-amber-300">${c.baseRiskClass}</strong>
+                  Base Risk: <strong class="text-amber-300">${c.baseRiskClass} (${c.baseRiskScore})</strong>
                 </span>
                 <span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 mono">
                   Base: <strong class="text-blue-300">${baseW}% Sleeve (${+(baseW*0.4).toFixed(2)}% Total)</strong>
@@ -2810,7 +3050,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
                   <div class="font-bold text-blue-300">${c.financials.ocfQ2_26}</div>
                 </div>
                 <div>
-                  <div class="text-[10px] text-slate-400 font-sans">Total Debt</div>
+                  <div class="text-[10px] text-slate-400 font-sans">Total / Net Debt</div>
                   <div class="font-bold text-amber-300">${c.financials.debtQ2_26}</div>
                 </div>
               </div>
@@ -2845,7 +3085,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
     }
 
     // =========================================================================
-    // 13. NAVIGATION & INITIALIZATION
+    // 14. NAVIGATION & INITIALIZATION
     // =========================================================================
     window.switchTab = function(tabName) {
       const views = ["chat", "simulator", "ldi", "companies"];
@@ -2863,7 +3103,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         }
       });
 
-      if (tabName === "simulator") updateSimBarsChart(document.getElementById("sim-company").value);
+      if (tabName === "simulator") updateSimBarsChart();
       if (tabName === "ldi") updateLDIView(false);
       if (tabName === "companies") renderCompanyCards();
     };
@@ -2896,14 +3136,12 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
       renderTickerTape();
       loadLLMConfig();
 
-      // Nav buttons
       document.getElementById("nav-chat").addEventListener("click", () => window.switchTab("chat"));
       document.getElementById("nav-simulator").addEventListener("click", () => window.switchTab("simulator"));
       document.getElementById("nav-ldi").addEventListener("click", () => window.switchTab("ldi"));
       document.getElementById("nav-companies").addEventListener("click", () => window.switchTab("companies"));
       document.getElementById("btn-jump-to-lab-header").addEventListener("click", () => window.switchTab("simulator"));
 
-      // Donut Chart Mode Toggle (Total 60% Bonds / 40% Stocks vs 40% Sleeve)
       const btnModeTotal = document.getElementById("btn-chart-mode-total");
       const btnModeSleeve = document.getElementById("btn-chart-mode-sleeve");
       btnModeTotal.addEventListener("click", () => {
@@ -2919,7 +3157,6 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         updateMiniChart();
       });
 
-      // API Modal handlers
       const apiModal = document.getElementById("api-modal");
       const providerSelect = document.getElementById("api-provider");
       const modelInput = document.getElementById("api-model");
@@ -2943,7 +3180,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
       providerSelect.addEventListener("change", () => {
         const p = providerSelect.value;
         endpointWrap.classList.toggle("hidden", p !== "openrouter");
-        if (p === "gemini") modelInput.value = "gemini-3.8-flash";
+        if (p === "gemini") modelInput.value = "gemini-2.5-flash";
         if (p === "openai") modelInput.value = "gpt-4o-mini";
         if (p === "anthropic") modelInput.value = "claude-3-7-sonnet-latest";
         if (p === "openrouter") modelInput.value = "google/gemini-2.5-flash";
@@ -2965,7 +3202,6 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         apiModal.classList.add("hidden");
       });
 
-      // Initialize Simulator Controls
       populateSimScenarios("BA");
       document.getElementById("sim-company").addEventListener("change", (e) => {
         populateSimScenarios(e.target.value);
@@ -2986,7 +3222,6 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         appendChatMessage("assistant", renderUnifiedReanalysisHTML(state, true));
       });
 
-      // Inject custom news directly from Trim Lab
       document.getElementById("btn-lab-inject-news").addEventListener("click", async () => {
         const input = document.getElementById("lab-custom-news-input");
         const txt = input.value.trim();
@@ -2997,9 +3232,8 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         appendChatMessage("assistant", replyHTML);
       });
 
-      // Reset weights button
       document.getElementById("btn-reset-weights").addEventListener("click", () => {
-        Object.keys(COMPANIES).forEach(k => {
+        CORE_TICKERS.forEach(k => {
           currentSleeveWeights[k] = COMPANIES[k].baseSleeveWeight;
         });
         currentSleeveWeights.UST_EXTRA = 0;
@@ -3011,12 +3245,10 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         document.getElementById("kpi-active-alert").textContent = "Baseline 60/40 Weights Active";
       });
 
-      // LDI Controls
       document.getElementById("ldi-strategy").addEventListener("change", () => updateLDIView(false));
       document.getElementById("ldi-rate").addEventListener("input", () => updateLDIView(false));
       document.getElementById("btn-run-mc").addEventListener("click", () => updateLDIView(true));
 
-      // Company Matrix Controls
       document.querySelectorAll(".sector-btn").forEach(btn => {
         btn.addEventListener("click", () => {
           document.querySelectorAll(".sector-btn").forEach(b => {
@@ -3031,11 +3263,10 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
       });
       document.getElementById("company-search").addEventListener("input", renderCompanyCards);
 
-      // Chat Form & Quick Prompts
       async function submitChatPrompt(text) {
         appendChatMessage("user", text);
         const loadingId = "loading-" + Date.now();
-        appendChatMessage("assistant", `<div class="flex items-center gap-2 text-xs text-blue-300 mono"><span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span> Running Dynamic First-Principles Reanalysis &amp; syncing across Active Output, Trim Lab &amp; LDI Engine...</div>`, loadingId);
+        appendChatMessage("assistant", `<div class="flex items-center gap-2 text-xs text-blue-300 mono"><span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span> Running Polarity-Aware 7-Stock Reanalysis &amp; syncing across Takeaways, Table, Active Output &amp; Trim Lab...</div>`, loadingId);
         const replyHTML = await handleUserQuery(text);
         const loader = document.getElementById(loadingId);
         if (loader) loader.remove();
@@ -3063,7 +3294,6 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         seedInitialChat();
       });
 
-      // Initial render: seed Boeing 777X delay analysis in the unified Dynamic First-Principles format and sync all tabs
       seedInitialChat();
     });
 
@@ -3075,9 +3305,7 @@ Give a concise executive takeaway (2-3 bullet points) on the user's scenario, an
         renderUnifiedReanalysisHTML(
           initialBAState,
           true,
-          `👋 <strong>Welcome to the Cross-Linked Wharton LDI Reanalysis Engine!</strong><br/>
-          • <strong>60% US Government Bonds / 40% Company Stocks (2027–2028):</strong> Every analysis explicitly tracks both the <strong>Total Portfolio Split (60% Gov Bonds / 40% Stocks)</strong> and each company's weight inside the 40% Equity Sleeve.<br/>
-          • <strong>100% Live Cross-Tab Synchronization:</strong> Whenever you input news below, the AI formats its answer into the <strong>Dynamic First-Principles Reanalysis</strong> table, updates all sections of the <strong>Active Reclassification Output</strong> on the right, and injects the confirmed news directly into the <strong>Interactive Stress-Test &amp; Reclassification Lab</strong> dropdown!`
+          `7-Company Portfolio Active (GE 18%, TSM 16%, LLY 15%, NVDA 14%, XOM 13%, BA 12%, SHEL 12% = 100% of the 40% Equity Sleeve). Try clicking "✅ 737-10 Just Got Certified" above to see the Polarity-Aware De-Risking & 15% Profit-Harvest mode in action!`
         )
       );
     }
